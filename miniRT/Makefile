@@ -6,7 +6,7 @@
 #    By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/01 17:04:15 by nclabaux          #+#    #+#              #
-#    Updated: 2020/04/02 17:11:45 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/04/07 17:52:23 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,5 +37,8 @@ re: fclean all
 
 libft: 
 	make -C libft/
+
+test:
+	gcc tester.c -lmlx -framework OpenGL -framework AppKit 
 
 .PHONY: all clean fclean re
