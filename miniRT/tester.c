@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx_mms_20200219/mlx.h"
+#include "minilibx-linux/mlx.h"
 #include <stdio.h>
 
 int main()

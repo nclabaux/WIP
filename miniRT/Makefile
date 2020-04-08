@@ -16,7 +16,7 @@ SRCS =
 
 OBJS = $(SRCS:.c=.o)
 
-CC = cc 
+CC = gcc 
 
 RM = rm -f
 
@@ -38,7 +38,10 @@ re: fclean all
 libft: 
 	make -C libft/
 
-test:
+mactest:
 	gcc tester.c -lmlx -framework OpenGL -framework AppKit 
+
+linuxtest:
+	clang tester.c -lmlx -lXext -lX11 
 
 .PHONY: all clean fclean re
