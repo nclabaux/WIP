@@ -42,6 +42,6 @@ mactest:
 	gcc tester.c -lmlx -framework OpenGL -framework AppKit 
 
 linuxtest:
-	clang tester.c -lmlx -lXext -lX11 
+	clang tester.c rgb_to_int.c -lm -lmlx -lXext -lX11 
 
 .PHONY: all clean fclean re

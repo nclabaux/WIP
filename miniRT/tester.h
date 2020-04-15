@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_to_int.c                                       :+:      :+:    :+:   */
+/*   tester.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/07 18:01:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/04/07 18:16:56 by nclabaux         ###   ########.fr       */
+/*   Created: 2020/04/02 17:15:55 by nclabaux          #+#    #+#             */
+/*   Updated: 2020/04/15 15:22:30 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+#ifndef MINI_RT_H
+# define MINI_RT_H
 
-int	rgb_to_int(int r, int g, int b)
-{
-	r = range_check(r);
-	g = range_check(g);
-	b = range_check(b);
-	return (65536 * r + 256 * g + b);
-}
+# include <fcntl.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+# include <errno.h>
+# include "minilibx-linux/mlx.h"
+# include <math.h>
 
-int	range_check(int a)
-{
-	if (a < 0)
-		return (0);
-	if (a > 255)
-		return (255);
-	return (a);
-}
+int	rgb_to_int(int r, int g, int b);
+int	range_check(int a);
+
+#endif

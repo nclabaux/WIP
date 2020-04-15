@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_to_int.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+        */
+/*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/07 18:01:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/04/07 18:16:56 by nclabaux         ###   ########.fr       */
+/*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
+/*   Updated: 2020/04/14 19:57:47 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+#include "mini_rt.h"
 
-int	rgb_to_int(int r, int g, int b)
+int main(int argc, char **argv)
 {
-	r = range_check(r);
-	g = range_check(g);
-	b = range_check(b);
-	return (65536 * r + 256 * g + b);
-}
+	t_scene	scene;
 
-int	range_check(int a)
-{
-	if (a < 0)
+	if (argc < 2)
 		return (0);
-	if (a > 255)
-		return (255);
-	return (a);
-}
+
+
+	ft_read_file(argv[1], &scene);	
+}	
