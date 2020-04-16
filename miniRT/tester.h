@@ -6,7 +6,7 @@
 /*   By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:15:55 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/04/15 15:22:30 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/04/16 17:14:46 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
-# include <errno.h>
+//# include <errno.h>
 # include "minilibx-linux/mlx.h"
 # include <math.h>
 

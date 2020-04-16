@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/04/15 16:20:48 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/04/16 17:17:35 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_res_rd(char **line, t_scene *ascene)
 	int	i;
 
 	i = 1;
-	while (ft_isspace(line[i]))
+	while (ft_isspace(*line[i]))
 		i++;
 	if (ft_isdigit(line[i]))
 		ascene->res.x = ft_atoi(*(line + i));
@@ -96,9 +96,9 @@ void	ft_res_rd(char **line, t_scene *ascene)
 		errno = 22;
 	       	perror("Error 22: Non-compliant resolution declaration");
 	}
-	while (ft_isspace(line[i]))
+	while (ft_isspace(*line[i]))
 		i++;
-	if (ft_isdigit(line[i]))
+	if (ft_isdigit(*line[i]))
 		ascene->res.y = ft_atoi(*(line + i));
 	else
 	{
@@ -109,5 +109,56 @@ void	ft_res_rd(char **line, t_scene *ascene)
 
 void	ft_al_rd(char **line, t_scene *ascene)
 {
+	int	i;
+	
+	i = 1;
+	while (ft_isspace(*line[i]))
+		i++;
+	if (dt_isdigit(*line[i]))
+		ascene->al.intensity = *line[i] - '0';
+	else
+		ERROR;
+	if (*line[++i] == '.')
+		i++;
+	else
+		ERROR;
+	if (dt_isdigit(*line[i]))
+		ascene->al.intensity += (*line[i] - '0') / 10;
+	else
+		ERROR;
+	i++;
+	ft_read_color(*line + i, &(ascene->al.color));
 }	
 
+void	ft_read_color(char *s, t_color *color_storage)
+{
+	int	i;
+	
+
+	while (ft_isspace(s[i]))
+		i++;
+	if (ft_isdigit(s[i]))
+		color_storage->r = ft_atoi(*(s + i));
+	else
+		ERROR;
+	if (s[++i] == ',')
+		i++;
+	else
+		ERROR;
+	if (ft_isdigit(s[i]))
+		color_storage->g = ft_atoi(*(s + i));
+	else
+		ERROR;
+	if (s[++i] == ',')
+		i++;
+	else
+		ERROR;
+	if (ft_isdigit(s[i]))
+		color_storage->b = ft_atoi(*(s + i));
+	else
+		ERROR;
+}
+
+void	ft_read_point(char *s, t_point3 *point)
+{
+}
