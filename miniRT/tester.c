@@ -6,7 +6,7 @@
 /*   By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 17:29:08 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/04/16 17:15:16 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/04/21 18:59:13 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main()
 	}
 	mlx_key_hook(win_ptr, &key_esc, 0);
 	//mlx_loop(mlx_ptr);
-	for (x = 0; x < 200; x++)
+	for (x = 0; x < 135; x++)
 		printf("Error %3d : %s\n", x, strerror(x));
 	return (0);
 }

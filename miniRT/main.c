@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/04/16 15:52:35 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/04/21 18:58:48 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	t_scene	scene;
 
 	if (argc < 2)
-		return (0);
+		ft_errors(1000);	
 
 	ft_init_scene(&scene);
 
