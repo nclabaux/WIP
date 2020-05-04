@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 18:22:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/04/21 19:45:33 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/04 16:53:24 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,45 +47,45 @@ void	ft_errors(int i, char *s)
 		ft_prt_err("Bad color declaration", i, 22);
 	if (i == 1009)
 		ft_prt_err("Bad coordinates", i, 22);
-	if (i == 100)
+	if (i == 1010)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 100)
+	if (i == 10)
 		ft_prt_err("", i,);
 }
 		

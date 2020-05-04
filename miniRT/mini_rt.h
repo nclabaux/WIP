@@ -6,13 +6,14 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/04/15 15:19:11 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/04 15:58:41 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINI_RT_H
 # define MINI_RT_H
 
+# include <mlx.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <sys/types.h>
