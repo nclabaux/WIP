@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 13:40:13 by nclabaux          #+#    #+#              #
-#    Updated: 2020/04/15 14:52:10 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/05/07 15:00:33 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS =	ft_memset.c\
 		ft_strlcat.c\
 		ft_strnstr.c\
 		ft_atoi.c\
+		ft_atod.c\
 		ft_calloc.c\
 		ft_strdup.c\
 		ft_substr.c\

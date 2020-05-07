@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/04 16:15:30 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/07 15:39:07 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_translate_line(char **line, t_scene *ascene)
 		ft_errors(1005, *line);
 }
 
-void	ft_read_color(char *s, t_color *color_storage)
+int		ft_read_color(char *s, t_color *color_storage)
 {
 	int	i;
 
@@ -98,14 +98,15 @@ void	ft_read_color(char *s, t_color *color_storage)
 		color_storage->b = ft_atoi(*(s + i));
 	else
 		ft_errors(1008, NULL);
+	return (i);
 }
 
-int		ft_read_float(char *s, double *coor)
+int		ft_read_double(char *s, double *coor)
 {
 	int	i;
 
 	if (ft_isdigit(s[i]))
-		*coor = ft_atoi(*(s + i));
+		*coor = ft_atod(*(s + i));
 	else
 		ft_errors(1009, NULL);
 	while (ft_isdigit(s[i]))
@@ -114,30 +115,27 @@ int		ft_read_float(char *s, double *coor)
 		i++;
 	else
 		ft_errors(1009, NULL);
-	if (ft_isdigit(s[i]))
-		*coor += (s[i] - '0') / 10;
-	else
-		ft_errors(1009, NULL);
 	while (ft_isdigit(s[i]))
 		i++;
 	return (i);
 }
 
-void	ft_read_point(char *s, t_point3 *point)
+int	ft_read_point(char *s, t_point3 *point)
 {
 	int	i;
 
 	while (ft_isspace(s[i]))
 		i++;
-	i += ft_read_float(s + i, &point->x);
+	i += ft_read_double(s + i, &point->x);
 	if (s[++i] == ',')
 		i++;
 	else
 		ft_errors(1009, NULL);
-	i += ft_read_float(s + i, &point->y);
+	i += ft_read_double(s + i, &point->y);
 	if (s[++i] == ',')
 		i++;
 	else
 		ft_errors(1009, NULL);
-	i += ft_read_float(s + i, &point->z);
+	i += ft_read_double(s + i, &point->z);
+	return (i);
 }

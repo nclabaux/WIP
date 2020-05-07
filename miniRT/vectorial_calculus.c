@@ -6,13 +6,13 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 16:01:45 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/04/14 18:49:47 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/07 14:33:20 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_vector3	vec_from_3pts(t_point3 a, t_point3 b, t_point3 c)
+t_vector3	ft_vec_from_3pts(t_point3 a, t_point3 b, t_point3 c)
 {
 	t_vector3	result;
 	double		x;
