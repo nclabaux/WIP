@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/04/21 18:58:48 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/11 15:53:58 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int main(int argc, char **argv)
 	t_scene	scene;
 
 	if (argc < 2)
-		ft_errors(1000);	
+		ft_errors(1000, "");	
 
 	ft_init_scene(&scene);
+	ft_read_file(argv[1], &scene);
 
-	ft_read_file(argv[1], &scene);	
 }
 
 void	ft_init_scene(t_scene *ascene)

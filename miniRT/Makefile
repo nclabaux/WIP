@@ -6,13 +6,20 @@
 #    By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/01 17:04:15 by nclabaux          #+#    #+#              #
-#    Updated: 2020/04/07 17:52:23 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/05/11 15:08:01 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 
-SRCS =
+SRCS = main.c\
+       file_reading.c\
+       file_reading1.c\
+       file_reading2.c\
+       list_handling.c\
+       distances.c\
+       errors.c\
+       vectorial_calculus.c
 
 OBJS = $(SRCS:.c=.o)
 

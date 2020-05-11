@@ -6,7 +6,7 @@
 /*   By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 17:29:08 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/04/21 18:59:13 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/07 17:55:12 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ int	key_esc(int key, void *p)
 	return (0);
 }
 
+int	mousetrack(int button, int x, int y, void *p)
+{
+	printf("x : %d, y : %d\n", x ,y);
+}
+
 int	main()
 {
 	int	x;
@@ -65,8 +70,9 @@ int	main()
 		}		
 	}
 	mlx_key_hook(win_ptr, &key_esc, 0);
-	//mlx_loop(mlx_ptr);
-	for (x = 0; x < 135; x++)
-		printf("Error %3d : %s\n", x, strerror(x));
+	mlx_mouse_hook(win_ptr, &mousetrack, 0);
+	mlx_loop(mlx_ptr);
+//	for (x = 0; x < 135; x++)
+//		printf("Error %3d : %s\n", x, strerror(x));
 	return (0);
 }
