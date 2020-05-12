@@ -6,7 +6,7 @@
 #    By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/01 17:04:15 by nclabaux          #+#    #+#              #
-#    Updated: 2020/05/11 15:08:01 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/05/12 19:53:33 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,22 +28,22 @@ CC = gcc
 RM = rm -f
 
 CFLAGS = 
+LIBFLAGS = -lm -lmlx -lXext -lX11 -L./libft -lft
 
-$(NAME): $(OBJS) libft
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft.a
+$(NAME): $(OBJS)
+	make -C libft/ 
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFLAGS)
 
 all: $(NAME)
 
 clean: 
+	make -C libft/ clean
 	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-
-libft: 
-	make -C libft/
 
 mactest:
 	gcc tester.c -lmlx -framework OpenGL -framework AppKit 

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 18:22:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/04 16:53:24 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/12 17:40:19 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,32 @@ void	ft_errors(int i, char *s)
 	if (i == 1005)
 		ft_prt_err(s, i, 22);
 	if (i == 1006)
-		ft_prt_err("Bad resolution declaration", i, 22);
+		ft_prt_err("Bad resolution setting given", i, 22);
 	if (i == 1007)
-		ft_prt_err("Bad ambient light declaration", i, 22);
+		ft_prt_err("Bad ambient light setting given", i, 22);
 	if (i == 1008)
-		ft_prt_err("Bad color declaration", i, 22);
+		ft_prt_err("Bad color given", i, 22);
 	if (i == 1009)
-		ft_prt_err("Bad coordinates", i, 22);
+		ft_prt_err("Bad coordinates given", i, 22);
 	if (i == 1010)
+		ft_prt_err("Bad orientation vector given", i, 22);
+	if (i == 1011)
+		ft_prt_err("Error during memory allocation", i, 12);
+	if (i == 1012)
+		ft_prt_err("Bad camera setting given", i, 22);
+	if (i == 1013)
+		ft_prt_err("Bad light setting given", i, 22);
+	if (i == 1014)
+		ft_prt_err("Bad plane setting given", i, 22);
+	if (i == 1015)
+		ft_prt_err("Bad sphere setting given", i, 22);
+	if (i == 1016)
+		ft_prt_err("Bad square setting given", i, 22);
+	if (i == 1017)
+		ft_prt_err("Bad cylinder setting given", i, 22);
+	if (i == 1018)
+		ft_prt_err("Bad triangle setting given", i, 22);
+/*	if (i == 1019)
 		ft_prt_err("", i,);
 	if (i == 10)
 		ft_prt_err("", i,);
@@ -69,23 +87,5 @@ void	ft_errors(int i, char *s)
 		ft_prt_err("", i,);
 	if (i == 10)
 		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-}
+*/}
 		

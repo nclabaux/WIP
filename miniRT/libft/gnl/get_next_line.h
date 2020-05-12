@@ -6,13 +6,14 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 13:24:56 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/02/13 02:58:12 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/12 17:58:40 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 
 # define GET_NEXT_LINE_H
+# define BUFFER_SIZE 1
 # include <unistd.h>
 # include <stdlib.h>
 

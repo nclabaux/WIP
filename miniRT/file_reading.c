@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/07 15:39:07 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/12 17:49:29 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void	ft_read_file(char *file, t_scene *ascene)
 	int	fd;
 	int	end;
 	char	**line;
+	int		status;
 
 	end = 0;
 	if(!(fd = open(file, O_RDONLY)))
 		ft_errors(1001, file);
 	while (!end)
 	{
-		status = get_next_line(fd, lines);
+		status = get_next_line(fd, line);
 		if (!status)
 			end = 1;
 		if (status == -1)
@@ -61,13 +62,13 @@ void	ft_translate_line(char **line, t_scene *ascene)
 	else if (*line[0] == 'p' && *line[1] == 'l')
 		ft_pl_rd(line, ascene);
 	else if (*line[0] == 's' && *line[1] == 'p')
-		ft__rd(line, ascene);
+		ft_sp_rd(line, ascene);
 	else if (*line[0] == 's' && *line[1] == 'q')
-		ft__rd(line, ascene);
+		ft_sq_rd(line, ascene);
 	else if (*line[0] == 'c' && *line[1] == 'y')
-		ft__rd(line, ascene);
+		ft_cy_rd(line, ascene);
 	else if (*line[0] == 't' && *line[1] == 'r')
-		ft__rd(line, ascene);
+		ft_tr_rd(line, ascene);
 	else
 		ft_errors(1005, *line);
 }
@@ -79,7 +80,7 @@ int		ft_read_color(char *s, t_color *color_storage)
 	while (ft_isspace(s[i]))
 		i++;
 	if (ft_isdigit(s[i]))
-		color_storage->r = ft_atoi(*(s + i));
+		color_storage->r = ft_atoi(s + i);
 	else
 		ft_errors(1008, NULL);
 	if (s[++i] == ',')
@@ -87,7 +88,7 @@ int		ft_read_color(char *s, t_color *color_storage)
 	else
 		ft_errors(1008, NULL);
 	if (ft_isdigit(s[i]))
-		color_storage->g = ft_atoi(*(s + i));
+		color_storage->g = ft_atoi(s + i);
 	else
 		ft_errors(1008, NULL);
 	if (s[++i] == ',')
@@ -95,7 +96,7 @@ int		ft_read_color(char *s, t_color *color_storage)
 	else
 		ft_errors(1008, NULL);
 	if (ft_isdigit(s[i]))
-		color_storage->b = ft_atoi(*(s + i));
+		color_storage->b = ft_atoi(s + i);
 	else
 		ft_errors(1008, NULL);
 	return (i);
@@ -106,7 +107,7 @@ int		ft_read_double(char *s, double *coor)
 	int	i;
 
 	if (ft_isdigit(s[i]))
-		*coor = ft_atod(*(s + i));
+		*coor = ft_atod(s + i);
 	else
 		ft_errors(1009, NULL);
 	while (ft_isdigit(s[i]))
@@ -120,7 +121,7 @@ int		ft_read_double(char *s, double *coor)
 	return (i);
 }
 
-int	ft_read_point(char *s, t_point3 *point)
+int	ft_read_point(char *s, t_point *point)
 {
 	int	i;
 
