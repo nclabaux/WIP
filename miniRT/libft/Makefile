@@ -6,11 +6,11 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/02 16:55:41 by nclabaux          #+#    #+#              #
-#    Updated: 2020/05/13 16:57:17 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/05/13 17:20:03 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ../libft.a
+NAME = libft.a
 
 SRCS =	ft_printf/character.c\
 		ft_printf/ft_begin_rd.c\
@@ -75,17 +75,19 @@ RM = rm -f
 CFLAGS = 
 
 $(NAME): $(OBJS)
-	ar -rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@ar -rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+	
+.SILENT: all clean fclean re $(NAME) $(OBJS)

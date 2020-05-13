@@ -6,7 +6,7 @@
 #    By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/01 17:04:15 by nclabaux          #+#    #+#              #
-#    Updated: 2020/05/13 16:26:37 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/05/13 17:20:41 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ CC = gcc
 RM = rm -f
 
 CFLAGS = 
-LIBFLAGS = -lm -lmlx -lXext -lX11 -L. libft.a
+LIBFLAGS = -lm -lmlx -lXext -lX11 -L./libft -lft
 
 $(NAME): $(OBJS)
 	make -C libft/ 
@@ -53,3 +53,5 @@ linuxtest:
 	clang tester.c rgb_to_int.c -lm -lmlx -lXext -lX11 
 
 .PHONY: all clean fclean re
+
+.SILENT: all clean fclean re $(NAME) $(OBJS) make
