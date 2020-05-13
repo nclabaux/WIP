@@ -6,11 +6,11 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/02 16:55:41 by nclabaux          #+#    #+#              #
-#    Updated: 2020/05/12 19:28:07 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/05/13 16:57:17 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = ../libft.a
 
 SRCS =	ft_printf/character.c\
 		ft_printf/ft_begin_rd.c\
@@ -36,6 +36,7 @@ SRCS =	ft_printf/character.c\
 		libft/ft_isalnum.c\
 		libft/ft_isascii.c\
 		libft/ft_isprint.c\
+		libft/ft_isspace.c\
 		libft/ft_toupper.c\
 		libft/ft_tolower.c\
 		libft/ft_strchr.c\
@@ -45,6 +46,7 @@ SRCS =	ft_printf/character.c\
 		libft/ft_strlcat.c\
 		libft/ft_strnstr.c\
 		libft/ft_atoi.c\
+		libft/ft_atod.c\
 		libft/ft_calloc.c\
 		libft/ft_strdup.c\
 		libft/ft_substr.c\
@@ -57,10 +59,12 @@ SRCS =	ft_printf/character.c\
 		libft/ft_putstr_fd.c\
 		libft/ft_putendl_fd.c\
 		libft/ft_putnbr_fd.c\
+		libft/ft_putchar_cpt.c\
 		libft/ft_convert_base.c\
 		libft/ft_convert_base2.c\
 		libft/ft_digit_nbr.c\
-		libft/ft_digit_nbr_hex.c
+		libft/ft_digit_nbr_hex.c\
+		libft/ft_min_max.c
 
 OBJS = $(SRCS:.c=.o)
 
