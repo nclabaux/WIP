@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/12 17:49:29 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/14 18:09:31 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	ft_read_file(char *file, t_scene *ascene)
 {
-	char	buffer[2147483647];
 	int	fd;
 	int	end;
-	char	**line;
+	char	*line;
 	int		status;
 
 	end = 0;
@@ -25,12 +24,12 @@ void	ft_read_file(char *file, t_scene *ascene)
 		ft_errors(1001, file);
 	while (!end)
 	{
-		status = get_next_line(fd, line);
+		status = get_next_line(fd, &line);
 		if (!status)
 			end = 1;
 		if (status == -1)
 			ft_errors(1002, NULL);	
-		ft_translate_line(line, ascene);
+		ft_translate_line(&line, ascene);
 	}
 }
 
@@ -69,6 +68,8 @@ void	ft_translate_line(char **line, t_scene *ascene)
 		ft_cy_rd(line, ascene);
 	else if (*line[0] == 't' && *line[1] == 'r')
 		ft_tr_rd(line, ascene);
+	else if (*line[0] == 0)
+		ft_printf("EOF\n");
 	else
 		ft_errors(1005, *line);
 }
@@ -77,28 +78,48 @@ int		ft_read_color(char *s, t_color *color_storage)
 {
 	int	i;
 
-	while (ft_isspace(s[i]))
+	i = 0;
+	while (s[i] && ft_isspace(s[i]))
 		i++;
 	if (ft_isdigit(s[i]))
 		color_storage->r = ft_atoi(s + i);
 	else
+	{
+		ft_printf("0 %s\n", s + i);
 		ft_errors(1008, NULL);
-	if (s[++i] == ',')
+	}
+	while (ft_isdigit(s[i]))
+		i++;
+	if (s[i] == ',')
 		i++;
 	else
+	{
+		ft_printf("1");
 		ft_errors(1008, NULL);
+	}
 	if (ft_isdigit(s[i]))
 		color_storage->g = ft_atoi(s + i);
 	else
+	{
+		ft_printf("2");
 		ft_errors(1008, NULL);
-	if (s[++i] == ',')
+	}
+	while (ft_isdigit(s[i]))
+		i++;
+	if (s[i] == ',')
 		i++;
 	else
+	{
+		ft_printf("3");
 		ft_errors(1008, NULL);
+	}
 	if (ft_isdigit(s[i]))
 		color_storage->b = ft_atoi(s + i);
 	else
+	{
+		ft_printf("4");
 		ft_errors(1008, NULL);
+	}
 	return (i);
 }
 
@@ -106,6 +127,7 @@ int		ft_read_double(char *s, double *coor)
 {
 	int	i;
 
+	i = 0;
 	if (ft_isdigit(s[i]))
 		*coor = ft_atod(s + i);
 	else
@@ -125,10 +147,10 @@ int	ft_read_point(char *s, t_point *point)
 {
 	int	i;
 
-	while (ft_isspace(s[i]))
+	while (s[i] && ft_isspace(s[i]))
 		i++;
 	i += ft_read_double(s + i, &point->x);
-	if (s[++i] == ',')
+	if (s[i] == ',')
 		i++;
 	else
 		ft_errors(1009, NULL);

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/12 17:35:29 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/14 16:35:20 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_pl_rd(char **s, t_scene *ascene)
 	int	i;
 	t_obj_link	*new_ol;
 
+	if(!(new_ol = malloc(sizeof(t_obj_link))))
+		ft_errors(1011, "");
 	if(!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
 	new_ol->next = NULL;
@@ -44,6 +46,8 @@ void	ft_sp_rd(char **s, t_scene *ascene)
 	int	i;
 	t_obj_link	*new_ol;
 
+	if(!(new_ol = malloc(sizeof(t_obj_link))))
+		ft_errors(1011, "");
 	if(!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
 	new_ol->next = NULL;
@@ -71,6 +75,8 @@ void	ft_sq_rd(char **s, t_scene *ascene)
 	int	i;
 	t_obj_link	*new_ol;
 
+	if(!(new_ol = malloc(sizeof(t_obj_link))))
+		ft_errors(1011, "");
 	if(!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
 	new_ol->next = NULL;
@@ -103,6 +109,8 @@ void	ft_cy_rd(char **s, t_scene *ascene)
 	int	i;
 	t_obj_link	*new_ol;
 
+	if(!(new_ol = malloc(sizeof(t_obj_link))))
+		ft_errors(1011, "");
 	if(!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
 	new_ol->next = NULL;
@@ -140,6 +148,8 @@ void	ft_tr_rd(char **s, t_scene *ascene)
 	int	i;
 	t_obj_link	*new_ol;
 
+	if(!(new_ol = malloc(sizeof(t_obj_link))))
+		ft_errors(1011, "");
 	if(!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
 	new_ol->next = NULL;

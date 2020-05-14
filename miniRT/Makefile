@@ -6,7 +6,7 @@
 #    By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/01 17:04:15 by nclabaux          #+#    #+#              #
-#    Updated: 2020/05/13 17:20:41 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/05/14 16:48:36 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CC = gcc
 
 RM = rm -f
 
-CFLAGS = 
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 LIBFLAGS = -lm -lmlx -lXext -lX11 -L./libft -lft
 
 $(NAME): $(OBJS)
@@ -54,4 +54,4 @@ linuxtest:
 
 .PHONY: all clean fclean re
 
-.SILENT: all clean fclean re $(NAME) $(OBJS) make
+#.SILENT: all clean fclean re $(NAME) $(OBJS) make
