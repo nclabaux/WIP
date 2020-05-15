@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/14 18:09:31 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/15 17:54:47 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_read_file(char *file, t_scene *ascene)
 {
-	int	fd;
-	int	end;
+	int		fd;
+	int		end;
 	char	*line;
 	int		status;
 
@@ -40,35 +40,35 @@ void	ft_translate_line(char **line, t_scene *ascene)
 
 	r = 0;
 	a = 0;
-	if (*line[0] == 'R')
+	if ((*line)[0] == 'R')
 	{
 		if (r)
 			ft_errors(1003, NULL);
 		r++;
 		ft_res_rd(line, ascene);
 	}
-	else if (*line[0] == 'A')
+	else if ((*line)[0] == 'A')
 	{
 		if (a)
 			ft_errors(1004, NULL);
 		a++;
 		ft_al_rd(line, ascene);
 	}
-	else if (*line[0] == 'c')
+	else if ((*line)[0] == 'c')
 		ft_cam_rd(line, ascene);
-	else if (*line[0] == 'l')
+	else if ((*line)[0] == 'l')
 		ft_light_rd(line, ascene);
-	else if (*line[0] == 'p' && *line[1] == 'l')
+	else if ((*line)[0] == 'p' && (*line)[1] == 'l')
 		ft_pl_rd(line, ascene);
-	else if (*line[0] == 's' && *line[1] == 'p')
+	else if ((*line)[0] == 's' && (*line)[1] == 'p')
 		ft_sp_rd(line, ascene);
-	else if (*line[0] == 's' && *line[1] == 'q')
+	else if ((*line)[0] == 's' && (*line)[1] == 'q')
 		ft_sq_rd(line, ascene);
-	else if (*line[0] == 'c' && *line[1] == 'y')
+	else if ((*line)[0] == 'c' && (*line)[1] == 'y')
 		ft_cy_rd(line, ascene);
-	else if (*line[0] == 't' && *line[1] == 'r')
+	else if ((*line)[0] == 't' && (*line)[1] == 'r')
 		ft_tr_rd(line, ascene);
-	else if (*line[0] == 0)
+	else if ((*line)[0] == 0)
 		ft_printf("EOF\n");
 	else
 		ft_errors(1005, *line);
@@ -94,14 +94,14 @@ int		ft_read_color(char *s, t_color *color_storage)
 		i++;
 	else
 	{
-		ft_printf("1");
+		ft_printf("1 %s\n", s + i);
 		ft_errors(1008, NULL);
 	}
 	if (ft_isdigit(s[i]))
 		color_storage->g = ft_atoi(s + i);
 	else
 	{
-		ft_printf("2");
+		ft_printf("2 %s\n", s + i);
 		ft_errors(1008, NULL);
 	}
 	while (ft_isdigit(s[i]))
@@ -110,14 +110,14 @@ int		ft_read_color(char *s, t_color *color_storage)
 		i++;
 	else
 	{
-		ft_printf("3");
+		ft_printf("3 %s\n", s + i);
 		ft_errors(1008, NULL);
 	}
 	if (ft_isdigit(s[i]))
 		color_storage->b = ft_atoi(s + i);
 	else
 	{
-		ft_printf("4");
+		ft_printf("4 %s\n", s + i);
 		ft_errors(1008, NULL);
 	}
 	return (i);
@@ -126,19 +126,20 @@ int		ft_read_color(char *s, t_color *color_storage)
 int		ft_read_double(char *s, double *coor)
 {
 	int	i;
+	int	neg;
 
 	i = 0;
+	neg = 1;
+	if (s[i] == '-')
+	{
+		neg = -1;
+		i++;
+	}
 	if (ft_isdigit(s[i]))
-		*coor = ft_atod(s + i);
+		*coor = neg * ft_atod(s + i);
 	else
 		ft_errors(1009, NULL);
-	while (ft_isdigit(s[i]))
-		i++;
-	if (s[++i] == '.')
-		i++;
-	else
-		ft_errors(1009, NULL);
-	while (ft_isdigit(s[i]))
+	while (ft_isdigit(s[i]) || s[i] == '.')
 		i++;
 	return (i);
 }
@@ -147,6 +148,7 @@ int	ft_read_point(char *s, t_point *point)
 {
 	int	i;
 
+	i = 0;
 	while (s[i] && ft_isspace(s[i]))
 		i++;
 	i += ft_read_double(s + i, &point->x);
@@ -155,7 +157,7 @@ int	ft_read_point(char *s, t_point *point)
 	else
 		ft_errors(1009, NULL);
 	i += ft_read_double(s + i, &point->y);
-	if (s[++i] == ',')
+	if (s[i] == ',')
 		i++;
 	else
 		ft_errors(1009, NULL);

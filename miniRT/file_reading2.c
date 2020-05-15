@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/14 16:35:20 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/15 18:13:25 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,26 @@ void	ft_pl_rd(char **s, t_scene *ascene)
 	int	i;
 	t_obj_link	*new_ol;
 
+	i = 0;
 	if(!(new_ol = malloc(sizeof(t_obj_link))))
 		ft_errors(1011, "");
 	if(!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
 	new_ol->next = NULL;
 	i = 2;
-	while (ft_isspace(*s[i]))
+	while ((*s)[i] && ft_isspace((*s)[i]))
 		i++;
-	if (!(ft_isdigit(*s[i])))
+	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1014, "");
 	i += ft_read_point(*s + i, &(new_ol->object->pl.point));
-	while (ft_isspace(*s[i]))
+	while (ft_isspace((*s)[i]))
 		i++;
-	if (!(ft_isdigit(*s[i])))
+	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1014, "");
 	i += ft_read_vector(*s + i, &(new_ol->object->pl.orientation));
-	while (ft_isspace(*s[i]))
+	while (ft_isspace((*s)[i]))
 		i++;
-	if (!(ft_isdigit(*s[i])))
+	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1014, "");
 	ft_read_color(*s + i, &(new_ol->object->pl.color));
 	ft_add_object(ascene, new_ol);
@@ -81,25 +82,39 @@ void	ft_sq_rd(char **s, t_scene *ascene)
 		ft_errors(1011, "");
 	new_ol->next = NULL;
 	i = 2;
-	while (ft_isspace(*s[i]))
+	while (ft_isspace((*s)[i]))
 		i++;
-	if (!(ft_isdigit(*s[i])))
+	if (!(ft_isdigit((*s)[i])))
+	{
+		ft_printf("point %s\n", *s + i);
 		ft_errors(1016, "");
+	}
 	i += ft_read_point(*s + i, &(new_ol->object->sq.point));
-	while (ft_isspace(*s[i]))
+	while (ft_isspace((*s)[i]))
 		i++;
-	if (!(ft_isdigit(*s[i])))
+	if (!(ft_isdigit((*s)[i])))
+	{
+		ft_printf("vector %s\n", *s + i);
 		ft_errors(1016, "");
+	}
 	i += ft_read_vector(*s + i, &(new_ol->object->sq.orientation));
-	while (ft_isspace(*s[i]))
+	while (ft_isspace((*s)[i]))
 		i++;
-	if (!(ft_isdigit(*s[i])))
+	if (!(ft_isdigit((*s)[i])))
+	{
+		ft_printf("size %s\n", *s + i);
 		ft_errors(1016, "");
+	}
 	new_ol->object->sq.size = ft_atod(*s + i);
-	while (ft_isdigit(*s[i]) || *s[i] == '.')
+	while (ft_isdigit((*s)[i]) || (*s)[i] == '.')
 		i++;
-	if (!(ft_isdigit(*s[i])))
+	while (ft_isspace((*s)[i]))
+		i++;
+	if (!(ft_isdigit((*s)[i])))
+	{
+		ft_printf("color %s\n", *s + i);
 		ft_errors(1016, "");
+	}
 	ft_read_color(*s + i, &(new_ol->object->sq.color));
 	ft_add_object(ascene, new_ol);
 }	
