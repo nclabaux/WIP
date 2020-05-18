@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/14 16:41:19 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/18 17:09:40 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ typedef struct	s_sphere
 
 typedef struct	s_plane
 {	
-	t_point	point;
-	t_vector	orientation;
+	t_point	p;
+	t_vector	v;
 	t_color	color;
 }		t_plane;
 

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 18:22:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/12 17:40:19 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/18 15:33:07 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ void	ft_errors(int i, char *s)
 		ft_prt_err("Bad color given", i, 22);
 	if (i == 1009)
 		ft_prt_err("Bad coordinates given", i, 22);
+	else
+		ft_errors1(i, *s);
+}
+
+void	ft_errors1(int i, char *s)
+{
 	if (i == 1010)
 		ft_prt_err("Bad orientation vector given", i, 22);
 	if (i == 1011)
@@ -65,27 +71,4 @@ void	ft_errors(int i, char *s)
 		ft_prt_err("Bad cylinder setting given", i, 22);
 	if (i == 1018)
 		ft_prt_err("Bad triangle setting given", i, 22);
-/*	if (i == 1019)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-	if (i == 10)
-		ft_prt_err("", i,);
-*/}
-		
+}

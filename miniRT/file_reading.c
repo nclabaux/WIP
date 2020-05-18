@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/15 17:54:47 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/18 15:34:36 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_read_file(char *file, t_scene *ascene)
 	int		status;
 
 	end = 0;
-	if(!(fd = open(file, O_RDONLY)))
+	if (!(fd = open(file, O_RDONLY)))
 		ft_errors(1001, file);
 	while (!end)
 	{
@@ -28,7 +28,7 @@ void	ft_read_file(char *file, t_scene *ascene)
 		if (!status)
 			end = 1;
 		if (status == -1)
-			ft_errors(1002, NULL);	
+			ft_errors(1002, NULL);
 		ft_translate_line(&line, ascene);
 	}
 }
@@ -54,7 +54,7 @@ void	ft_translate_line(char **line, t_scene *ascene)
 		a++;
 		ft_al_rd(line, ascene);
 	}
-	else if ((*line)[0] == 'c')
+	else if ((*line)[0] == 'c' && (*line)[1] != 'y')
 		ft_cam_rd(line, ascene);
 	else if ((*line)[0] == 'l')
 		ft_light_rd(line, ascene);
@@ -144,7 +144,7 @@ int		ft_read_double(char *s, double *coor)
 	return (i);
 }
 
-int	ft_read_point(char *s, t_point *point)
+int		ft_read_point(char *s, t_point *point)
 {
 	int	i;
 

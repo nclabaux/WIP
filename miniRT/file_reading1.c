@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 16:12:54 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/15 17:39:51 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/18 15:36:10 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_read_vector(char *s, t_vector *vector)
 {
-	int 	i;
+	int	i;
 
 	i = 0;
 	while (ft_isspace(s[i]))
@@ -52,7 +52,7 @@ void	ft_res_rd(char **s, t_scene *ascene)
 		ascene->res.y = ft_atoi(*s + i);
 	else
 		ft_errors(1006, NULL);
-}	
+}
 
 void	ft_al_rd(char **s, t_scene *ascene)
 {
@@ -79,49 +79,34 @@ void	ft_al_rd(char **s, t_scene *ascene)
 
 void	ft_cam_rd(char **s, t_scene *ascene)
 {
-	int	i;
+	int			i;
 	t_camera	*new_cam;
 
 	if (!(new_cam = malloc(sizeof(t_camera))))
 		ft_errors(1011, "");
 	i = 1;
-	ft_printf("a %s\n", *s + i);
 	while (ft_isspace((*s)[i]))
 		i++;
-	ft_printf("b %s\n", *s + i);
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
-	{
-		ft_printf("c %s\n", *s + i);
 		ft_errors(1012, "");
-	}
 	i += ft_read_point((*s) + i, &new_cam->point);
-	ft_printf("d %s\n", *s + i);
 	while (ft_isspace((*s)[i]))
 		i++;
-	ft_printf("e %s\n", *s + i);
-	if (!(ft_isdigit((*s)[i])))
-	{
-		ft_printf("f %s\n", *s + i);
+	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1012, "");
-	}
 	i += ft_read_vector(*s + i, &new_cam->orientation);
-	ft_printf("g %s\n", *s + i);
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))
-	{
-		ft_printf("h %s\n", *s + i);
 		ft_errors(1012, "");
-	}
-	ft_printf("i %s\n", *s + i);
-	new_cam->fov=ft_atod(*s + i);
+	new_cam->fov = ft_atod(*s + i);
 	new_cam->next = NULL;
 	ft_add_cam(ascene, new_cam);
 }
 
 void	ft_light_rd(char **s, t_scene *ascene)
 {
-	int	i;
+	int		i;
 	t_light	*new_light;
 
 	if (!(new_light = malloc(sizeof(t_light))))

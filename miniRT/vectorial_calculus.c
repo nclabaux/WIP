@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 16:01:45 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/12 17:46:33 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/18 15:41:03 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_vector	ft_vec_from_3pts(t_point a, t_point b, t_point c)
 	return (result);
 }
 
-double	ft_max_double(double a, double b)
+double		ft_max_double(double a, double b)
 {
 	if (a > b)
 		return (a);
