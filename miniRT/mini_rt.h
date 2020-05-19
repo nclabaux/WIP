@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/18 17:09:40 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/19 20:56:38 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,12 @@ typedef struct	s_scene
 	t_light		*light_list;
 	t_obj_link	*object_list;
 }		t_scene;
+
+typedef struct	s_ray
+{
+	t_point		p;
+	t_vector	v;
+}		t_ray;
 
 double	ft_two_pts_dist(t_point a, t_point b);
 
