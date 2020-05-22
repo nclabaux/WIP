@@ -6,13 +6,13 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/19 21:28:08 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/22 17:34:02 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_ray.p	ft_pl_inter(t_ray ray, t_plane pl)
+t_point	ft_pl_inter(t_ray ray, t_plane pl)
 {
 	double	d;
 	double	t0;
@@ -31,7 +31,23 @@ t_ray.p	ft_pl_inter(t_ray ray, t_plane pl)
 	return (res);
 }
 
-t_ray.p	ft_sq_inter(t_ray ray, t_square sq)
+void	ft_tr_inter(t_ray ray, t_triangle tr)
+{
+	t_vector	v;
+	t_plane		pl;
+	t_point		intersect;
+
+	v = ft_vec_from_3pts(tr.p1, tr.p2, tr.p3);
+	pl.p = tr.p1;
+	pl.v = v;
+	intersect = ft_pl_inter(ray, pl);
+	VERIF;
+	ft_point_in_triangle(intersect, tr);
+	RETURN;
+}
+	
+/*
+t_point	ft_sq_inter(t_ray ray, t_square sq)
 {
 	double	d;
 	double	t0;
@@ -50,7 +66,7 @@ t_ray.p	ft_sq_inter(t_ray ray, t_square sq)
 	if ()
 	return (res);
 }
-
+*/
 void	ft_sp_inter(t_ray ray, t_sphere sp)
 {
 	double	t0;

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/19 20:56:38 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/22 17:07:04 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,5 +178,8 @@ void	ft_init_scene(t_scene *ascene);
 
 t_vector	ft_vec_from_3pts(t_point a, t_point b, t_point c);
 double	ft_max_double(double a, double b);
+t_vector	ft_cross_product(t_vector a, t_vector b);
+double	ft_norm(t_vector v);
+t_vector	ft_2p2v(t_point a, t_point b);
 
 #endif
