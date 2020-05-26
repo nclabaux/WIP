@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/22 17:34:02 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/26 16:02:21 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,42 @@ void	ft_sp_inter(t_ray ray, t_sphere sp)
 	{
 		Y A DEUX INTERSECTIONS;
 		t0 = (- b - sqrt(delta)) / (2 * a);
+		DISTANCE;
 		t0 = (- b + sqrt(delta)) / (2 * a);
+		DISTANCE;
 	}
 }
+
+void	ft_cy_inter(t_ray ray, t_cylinder cy)
+{
+	t_point	intersect;
+	t_plane base_disc;
+	t_plane upper_disc;
+
+	base_disc.p = cy.point;
+	base_disc.v = cy.orientation;
+	upper_disc.p.x = cy.p.x + cy.height * cy.orientation.x / ft_norm(cy.orientation);
+	upper_disc.p.y = cy.p.y + cy.height * cy.orientation.y / ft_norm(cy.orientation);
+	upper_disc.p.z = cy.p.z + cy.height * cy.orientation.z / ft_norm(cy.orientation);
+	upper_disc.v = cy.orientation;
+	if (intersect = ft_pl_inter(ray, base_disc))
+	{
+		EQUATION DE BOULE;
+		DISTANCE;
+	}
+	if (intersect = ft_pl_inter(ray, upper_disc))
+	{
+		EQUATION DE BOULE;
+		DISTANCE;
+		GARDER LE PLUS PRET;
+	}
+	if (SURFACE LATTERALE)
+	{
+		2 INTERSECTIONS;
+		DISTANCE;
+		GARDER LE PLUS PRET DES DEUX;
+		DISTANCE;
+		GARDER LE PLUS PRET DE TOUS;
+	}
+	return (res);
+

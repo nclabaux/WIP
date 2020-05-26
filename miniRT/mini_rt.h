@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/22 17:07:04 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/26 18:38:38 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef	union	u_object
 typedef	struct	s_obj_link
 {
 	t_object	*object;
+	char		*type;
 	struct s_obj_link	*next;
 }		t_obj_link;
 
@@ -145,6 +146,15 @@ typedef struct	s_ray
 	t_point		p;
 	t_vector	v;
 }		t_ray;
+
+typedef struct	s_intersec;
+{
+	t_point		p;
+	t_obj_link	*ol;
+	double		dist_2_cam;
+	t_vector	normal;
+	t_color		color;
+}		t_intersec;
 
 double	ft_two_pts_dist(t_point a, t_point b);
 

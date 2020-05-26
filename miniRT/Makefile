@@ -6,7 +6,7 @@
 #    By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/01 17:04:15 by nclabaux          #+#    #+#              #
-#    Updated: 2020/05/15 17:57:10 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/05/26 11:00:36 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,10 @@ SRCS = main.c\
        list_handling.c\
        distances.c\
        errors.c\
-       vectorial_calculus.c
+       vectorial_calculus.c\
+       intersection.c\
+       intersection1.c\
+       rgb_to_int.c
 
 OBJS = $(SRCS:.c=.o)
 
