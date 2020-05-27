@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/27 18:24:56 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/27 18:56:23 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,43 +155,92 @@ typedef struct	s_intersec
 	t_color		color;
 }		t_intersec;
 
+/*
+**	calculus.c
+*/
+double	*ft_solve_quadratic(double a, double b, double c);
+double	ft_sq(double x);
+double	ft_max_double(double a, double b);
+
+/*
+**	distance.c
+*/
 double	ft_two_pts_dist(t_point a, t_point b);
 
-double	*ft_solve_quadratic(double a, double b, double c);
-
+/*
+**	errors.c
+*/
 void	ft_ptr_err(char *s, int i, int x);
 void	ft_errors(int i, char *s);
 void	ft_errors1(int i, char *s);
 
+/*
+**	file_reading.c
+*/
 void	ft_read_file(char *file, t_scene *ascene);
 void	ft_translate_line(char **line, t_scene *ascene);
 int		ft_read_color(char *s, t_color *color_storage);
 int		ft_read_double(char *s, double *coor);
 int		ft_read_point(char*s, t_point *point);
 
+/*
+**	file_reading1.c
+*/
 int		ft_read_vector(char *s, t_vector *vector);
 void	ft_res_rd(char **line, t_scene *ascene);
 void	ft_al_rd(char **line, t_scene *ascene);
 void	ft_cam_rd(char **line, t_scene *ascene);
 void	ft_light_rd(char **line, t_scene *ascene);
 
+/*
+**	file_reading2.c
+*/
 void	ft_pl_rd(char **line, t_scene *ascene);
 void	ft_sp_rd(char **line, t_scene *ascene);
 void	ft_sq_rd(char **line, t_scene *ascene);
 void	ft_cy_rd(char **line, t_scene *ascene);
 void	ft_tr_rd(char **line, t_scene *ascene);
 
+/*
+**	intersection.c
+*/
+t_intersec	ft_pl_inter(t_ray, t_plane pl);
+t_intersec	ft_tr_inter(t_ray, t_triangle tr);
+t_intersec	ft_sq_inter(t_ray, t_square sq);
+t_intersec	ft_sp_inter(t_ray, t_sphere sp);
+t_intersec	ft_cy_inter(t_ray, t_cylinder cy);
+
+/*
+**	intersection1.c
+*/
+double	ft_point_in_triangle(t_point p, t_triangle tr);
+t_intersec	ft_cy_side(t_ray ray, t_cylinder cy);
+void	ft_set_number(double **an, t_ray ray, t_cylinder cy);
+
+/*
+**	list_handling.c
+*/
 void	ft_add_cam(t_scene *ascene, t_camera *new_cam);
 void	ft_add_light(t_scene *ascene, t_light *new_light);
 void	ft_add_object(t_scene *ascene, t_obj_link *new_ol);
 
+/*
+**	main.c
+*/
 int	main(int argc, char **argv);
 void	ft_init_scene(t_scene *ascene);
 
-void	ft_set_number(double **an, t_ray ray, t_cylinder cy);
+/*
+**	colors.c
+*/
+int	ft_rgb_to_int(int r, int g, int b);
+int	ft_range_check(int a);
 
+/*
+**	vectorial_calculus.c
+*/
 t_vector	ft_vec_from_3pts(t_point a, t_point b, t_point c);
-double	ft_max_double(double a, double b);
+double		ft_scalar_product(t_vector a, t_vector b);
 t_vector	ft_cross_product(t_vector a, t_vector b);
 double	ft_norm(t_vector v);
 t_vector	ft_2p2v(t_point a, t_point b);

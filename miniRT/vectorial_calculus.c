@@ -6,13 +6,13 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 16:01:45 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/22 17:06:48 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/27 18:56:27 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_vector	ft_vec_from_3pts(t_point a, t_point b, t_point c)
+t_vector	ft_3p_to_v(t_point a, t_point b, t_point c)
 {
 	t_vector	result;
 	double		x;
@@ -30,11 +30,9 @@ t_vector	ft_vec_from_3pts(t_point a, t_point b, t_point c)
 	return (result);
 }
 
-double		ft_max_double(double a, double b)
+double		ft_scalar_product(t_vector a, t_vector b)
 {
-	if (a > b)
-		return (a);
-	return (b);
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
 t_vector	ft_cross_product(t_vector a, t_vector b)
@@ -51,7 +49,7 @@ double		ft_norm(t_vector v)
 	return (hypot(hypot(v.x, v.y), v.z));
 }
 
-t_vector	ft_2p2v(t_point a, t_point b)
+t_vector	ft_2p_to_v(t_point a, t_point b)
 {
 	t_vector	result;
 	result.x = b.x - a.x;

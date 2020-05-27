@@ -6,23 +6,24 @@
 #    By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/01 17:04:15 by nclabaux          #+#    #+#              #
-#    Updated: 2020/05/26 11:00:36 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/05/27 19:00:07 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 
-SRCS = main.c\
-       file_reading.c\
-       file_reading1.c\
-       file_reading2.c\
-       list_handling.c\
-       distances.c\
-       errors.c\
-       vectorial_calculus.c\
-       intersection.c\
-       intersection1.c\
-       rgb_to_int.c
+SRCS =	calculus.c\
+	colors.c\
+	distances.c\
+	errors.c\
+	file_reading.c\
+	file_reading1.c\
+	file_reading2.c\
+	intersection.c\
+	intersection1.c\
+	list_handling.c\
+	main.c\
+	vectorial_calculus.c\
 
 OBJS = $(SRCS:.c=.o)
 

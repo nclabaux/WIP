@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 16:09:22 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/27 16:47:22 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/27 18:57:11 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,11 @@ double	*ft_solve_quadratic(double a, double b, double c)
 double	ft_sq(double x)
 {
 	return (x * x);
+}
+
+double	ft_max_double(double a, double b)
+{
+	if (a < b)
+		return (b);
+	return (a);
 }

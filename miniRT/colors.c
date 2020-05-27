@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_to_int.c                                       :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/18 15:40:22 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/18 15:40:25 by nclabaux         ###   ########.fr       */
+/*   Created: 2020/05/27 18:52:34 by nclabaux          #+#    #+#             */
+/*   Updated: 2020/05/27 18:52:36 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+#include "mini_rt.h"
 
-int	rgb_to_int(int r, int g, int b)
+int	ft_rgb_to_int(int r, int g, int b)
 {
 	r = range_check(r);
 	g = range_check(g);
@@ -20,7 +20,7 @@ int	rgb_to_int(int r, int g, int b)
 	return (65536 * r + 256 * g + b);
 }
 
-int	range_check(int a)
+int	ft_range_check(int a)
 {
 	if (a < 0)
 		return (0);
