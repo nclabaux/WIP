@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/18 15:39:07 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/27 16:01:56 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	ft_pl_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1014, "");
-	i += ft_read_point(*s + i, &(new_ol->object->pl.point));
+	i += ft_read_point(*s + i, &(new_ol->object->pl.p));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1014, "");
-	i += ft_read_vector(*s + i, &(new_ol->object->pl.orientation));
+	i += ft_read_vector(*s + i, &(new_ol->object->pl.v));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))

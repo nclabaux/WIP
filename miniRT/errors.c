@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 18:22:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/18 15:33:07 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/27 16:05:20 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_errors(int i, char *s)
 	if (i == 1009)
 		ft_prt_err("Bad coordinates given", i, 22);
 	else
-		ft_errors1(i, *s);
+		ft_errors1(i, s);
 }
 
 void	ft_errors1(int i, char *s)

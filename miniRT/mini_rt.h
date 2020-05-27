@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/26 18:38:38 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/27 18:24:56 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ typedef struct	s_square
 
 typedef struct	s_cylinder
 {
-	t_point	point;
-	t_vector	orientation;
-	double	diameter;
+	t_point	p;
+	t_vector	v;
+	double	d;
 	double	height;
 	t_color	color;	
 }		t_cylinder;
@@ -147,19 +147,21 @@ typedef struct	s_ray
 	t_vector	v;
 }		t_ray;
 
-typedef struct	s_intersec;
+typedef struct	s_intersec
 {
 	t_point		p;
-	t_obj_link	*ol;
-	double		dist_2_cam;
+	double		dist;
 	t_vector	normal;
 	t_color		color;
 }		t_intersec;
 
 double	ft_two_pts_dist(t_point a, t_point b);
 
+double	*ft_solve_quadratic(double a, double b, double c);
+
 void	ft_ptr_err(char *s, int i, int x);
 void	ft_errors(int i, char *s);
+void	ft_errors1(int i, char *s);
 
 void	ft_read_file(char *file, t_scene *ascene);
 void	ft_translate_line(char **line, t_scene *ascene);
@@ -185,6 +187,8 @@ void	ft_add_object(t_scene *ascene, t_obj_link *new_ol);
 
 int	main(int argc, char **argv);
 void	ft_init_scene(t_scene *ascene);
+
+void	ft_set_number(double **an, t_ray ray, t_cylinder cy);
 
 t_vector	ft_vec_from_3pts(t_point a, t_point b, t_point c);
 double	ft_max_double(double a, double b);

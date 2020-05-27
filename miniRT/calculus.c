@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 16:09:22 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/26 18:38:14 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/27 16:47:22 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,9 @@ double	*ft_solve_quadratic(double a, double b, double c)
 	res[0] = (-b - sqrt(delta)) / (2 * a);
 	res[1] = (-b + sqrt(delta)) / (2 * a);
 	return (res);
+}
+
+double	ft_sq(double x)
+{
+	return (x * x);
 }
