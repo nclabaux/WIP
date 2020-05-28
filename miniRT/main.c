@@ -6,22 +6,20 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/14 15:46:16 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/28 18:21:53 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_scene	scene;
 
 	if (argc < 2)
-		ft_errors(1000, "");	
-
+		ft_errors(1000, "");
 	ft_init_scene(&scene);
 	ft_read_file(argv[1], &scene);
-
 }
 
 void	ft_init_scene(t_scene *ascene)

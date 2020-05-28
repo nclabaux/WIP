@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/28 16:19:19 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/28 18:20:11 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 t_intersec	ft_pl_inter(t_ray ray, t_plane pl)
 {
-	double	d;
-	double	t0;
-	double	div;
+	double		d;
+	double		t0;
+	double		div;
 	t_intersec	res;
 
 	res.dist = -1;
 	d = -(pl.v.x * pl.p.x + pl.v.y * pl.p.y + pl.v.z * pl.p.z);
-	
 	div = pl.v.x * ray.v.x + pl.v.y * ray.v.y + pl.v.z * ray.v.z;
 	if (!(div))
-		return (res); 
+		return (res);
 	t0 = (-(pl.v.x * pl.v.x + pl.v.y * pl.v.y + pl.v.z * pl.v.z + d) / div);
 	res.p.x = ray.p.x + ray.v.x * t0;
 	res.p.y = ray.p.y + ray.v.y * t0;
@@ -50,7 +49,7 @@ t_intersec	ft_tr_inter(t_ray ray, t_triangle tr)
 		res.dist = -1;
 	return (res);
 }
-	
+
 /*
 t_point	ft_sq_inter(t_ray ray, t_square sq)
 {
@@ -75,15 +74,15 @@ t_point	ft_sq_inter(t_ray ray, t_square sq)
 
 t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 {
-	double	t0;
-	double	coef[3];
-	double	roots[2];
+	double		t0;
+	double		coef[3];
+	double		roots[2];
 	t_intersec	res;
 	t_point		storage;
 
 	res.dist = -1;
 	coef[0] = ft_sq(ray.v.x) + ft_sq(ray.v.y) + ft_sq(ray.v.z);
-	coef[1] = 2 * (ray.v.x * (ray.p.x - sp.point.x) + ray.v.y * (ray.p.y - sp.point.y) + + ray.v.y * (ray.p.y - sp.point.y));
+	coef[1] = 2 * (ray.v.x * (ray.p.x - sp.point.x) + ray.v.y * (ray.p.y - sp.point.y) + ray.v.y * (ray.p.y - sp.point.y));
 	coef[2] = -(ft_sq(sp.diameter / 2) + ft_sq(ray.p.x) + ft_sq(ray.p.y) + ft_sq(ray.p.z) - 2 * (ray.p.x * sp.point.x + ray.p.y * sp.point.y + ray.p.z * sp.point.z));
 	if (!(ft_solve_quadratic(coef[0], coef[1], coef[2], roots)))
 		return (res);
@@ -110,8 +109,8 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 {
 	t_intersec	res;
 	t_intersec	storage;
-	t_plane base_disc;
-	t_plane upper_disc;
+	t_plane		base_disc;
+	t_plane		upper_disc;
 
 	base_disc.p = cy.p;
 	base_disc.v = cy.v;

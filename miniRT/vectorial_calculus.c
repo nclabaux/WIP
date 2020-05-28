@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 16:01:45 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/27 18:56:27 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/28 18:22:35 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ t_vector	ft_3p_to_v(t_point a, t_point b, t_point c)
 	return (result);
 }
 
-double		ft_scalar_product(t_vector a, t_vector b)
+double		ft_scalar_prod(t_vector a, t_vector b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
-t_vector	ft_cross_product(t_vector a, t_vector b)
+t_vector	ft_cross_prod(t_vector a, t_vector b)
 {
 	t_vector	result;
+
 	result.x = (a.y * b.z) - (a.z * b.y);
 	result.y = (a.z * b.x) - (a.x * b.z);
 	result.z = (a.x * b.y) - (a.y * b.x);
@@ -52,8 +53,9 @@ double		ft_norm(t_vector v)
 t_vector	ft_2p_to_v(t_point a, t_point b)
 {
 	t_vector	result;
+
 	result.x = b.x - a.x;
 	result.y = b.y - a.y;
 	result.x = b.z - a.z;
 	return (result);
-}	
+}

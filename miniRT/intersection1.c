@@ -6,34 +6,36 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 17:09:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/28 16:17:55 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/28 18:18:03 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-double	ft_point_in_triangle(t_point p, t_triangle tr)
+double		ft_point_in_triangle(t_point p, t_triangle tr)
 {
-	double	area_tr;
-	double	area1;
-	double	area2;
-	double	area3;
+	double		area_tr;
+	double		area1;
+	double		area2;
+	double		area3;
+	t_vector	stock;
 
-	area_tr = ft_norm(ft_cross_product(ft_2p_to_v(tr.p1, tr.p2),ft_2p_to_v(tr.p1, tr.p3)));
-	area1 = ft_norm(ft_cross_product(ft_2p_to_v(p, tr.p1),ft_2p_to_v(p, tr.p2)));
-	area2 = ft_norm(ft_cross_product(ft_2p_to_v(p, tr.p1),ft_2p_to_v(p, tr.p3)));
-	area3 = ft_norm(ft_cross_product(ft_2p_to_v(p, tr.p2),ft_2p_to_v(p, tr.p3)));
+	stock = ft_cross_prod(ft_2p_to_v(tr.p1, tr.p2), ft_2p_to_v(tr.p1, tr.p3));
+	area_tr = ft_norm(stock);
+	area1 = ft_norm(ft_cross_prod(ft_2p_to_v(p, tr.p1), ft_2p_to_v(p, tr.p2)));
+	area2 = ft_norm(ft_cross_prod(ft_2p_to_v(p, tr.p1), ft_2p_to_v(p, tr.p3)));
+	area3 = ft_norm(ft_cross_prod(ft_2p_to_v(p, tr.p2), ft_2p_to_v(p, tr.p3)));
 	return (area1 + area2 + area3 - area_tr);
 }
 
 t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 {
-	double	t0;
-	double	h[2];
-	double	*coef;
+	double		t0;
+	double		h[2];
+	double		*coef;
 	t_intersec	res;
 	t_intersec	storage;
-	t_point	slide;
+	t_point		slide;
 
 	res.dist = -1;
 	coef = ft_set_number(ray, cy);
@@ -69,7 +71,7 @@ t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 	return (res);
 }
 
-double	*ft_set_number(t_ray ray, t_cylinder cy)
+double		*ft_set_number(t_ray ray, t_cylinder cy)
 {
 	double	*coef;
 	double	n[8];
@@ -92,4 +94,3 @@ double	*ft_set_number(t_ray ray, t_cylinder cy)
 	coef[5] = n[3];
 	return (coef);
 }
-

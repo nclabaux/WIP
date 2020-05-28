@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/28 16:19:43 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/28 18:16:30 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,8 +240,8 @@ int	ft_range_check(int a);
 **	vectorial_calculus.c
 */
 t_vector	ft_3p_to_v(t_point a, t_point b, t_point c);
-double		ft_scalar_product(t_vector a, t_vector b);
-t_vector	ft_cross_product(t_vector a, t_vector b);
+double		ft_scalar_prod(t_vector a, t_vector b);
+t_vector	ft_cross_prod(t_vector a, t_vector b);
 double	ft_norm(t_vector v);
 t_vector	ft_2p_to_v(t_point a, t_point b);
 
