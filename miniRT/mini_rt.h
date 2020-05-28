@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/27 18:56:23 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/28 16:19:43 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ typedef struct	s_intersec
 /*
 **	calculus.c
 */
-double	*ft_solve_quadratic(double a, double b, double c);
+int		ft_solve_quadratic(double a, double b, double c, double root[2]);
 double	ft_sq(double x);
 double	ft_max_double(double a, double b);
 
@@ -215,7 +215,7 @@ t_intersec	ft_cy_inter(t_ray, t_cylinder cy);
 */
 double	ft_point_in_triangle(t_point p, t_triangle tr);
 t_intersec	ft_cy_side(t_ray ray, t_cylinder cy);
-void	ft_set_number(double **an, t_ray ray, t_cylinder cy);
+double*		ft_set_number(t_ray ray, t_cylinder cy);
 
 /*
 **	list_handling.c
@@ -239,10 +239,10 @@ int	ft_range_check(int a);
 /*
 **	vectorial_calculus.c
 */
-t_vector	ft_vec_from_3pts(t_point a, t_point b, t_point c);
+t_vector	ft_3p_to_v(t_point a, t_point b, t_point c);
 double		ft_scalar_product(t_vector a, t_vector b);
 t_vector	ft_cross_product(t_vector a, t_vector b);
 double	ft_norm(t_vector v);
-t_vector	ft_2p2v(t_point a, t_point b);
+t_vector	ft_2p_to_v(t_point a, t_point b);
 
 #endif

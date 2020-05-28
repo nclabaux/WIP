@@ -6,23 +6,22 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 16:09:22 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/27 18:57:11 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/28 15:30:25 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-double	*ft_solve_quadratic(double a, double b, double c)
+int	ft_solve_quadratic(double a, double b, double c, double root[2])
 {
 	double	delta;
-	double	res[2];
 
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
-		return (NULL);
-	res[0] = (-b - sqrt(delta)) / (2 * a);
-	res[1] = (-b + sqrt(delta)) / (2 * a);
-	return (res);
+		return (0);
+	root[0] = (-b - sqrt(delta)) / (2 * a);
+	root[1] = (-b + sqrt(delta)) / (2 * a);
+	return (1);
 }
 
 double	ft_sq(double x)

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 18:22:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/27 16:05:20 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/28 15:08:20 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,5 @@ void	ft_errors1(int i, char *s)
 		ft_prt_err("Bad cylinder setting given", i, 22);
 	if (i == 1018)
 		ft_prt_err("Bad triangle setting given", i, 22);
+	(void)s;
 }
