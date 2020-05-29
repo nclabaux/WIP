@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/28 18:16:30 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/05/29 19:05:18 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct	s_amb_light
 
 typedef struct	s_camera
 {
-	t_point	point;
-	t_vector	orientation;
+	t_point	p;
+	t_vector	v;
 	int	fov;
 	struct s_camera	*next;
 }		t_camera;
