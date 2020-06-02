@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/29 19:05:18 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/02 16:55:45 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ typedef	union	u_object
 typedef	struct	s_obj_link
 {
 	t_object	*object;
-	char		*type;
+	int		type;
 	struct s_obj_link	*next;
 }		t_obj_link;
 

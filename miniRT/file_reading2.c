@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/28 15:09:05 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/02 17:21:55 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_pl_rd(char **s, t_scene *ascene)
 	if (!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
 	new_ol->next = NULL;
+	new_ol->type = 2;
 	i = 2;
 	while ((*s)[i] && ft_isspace((*s)[i]))
 		i++;
@@ -51,6 +52,7 @@ void	ft_sp_rd(char **s, t_scene *ascene)
 	if (!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
 	new_ol->next = NULL;
+	new_ol->type = 1;
 	i = 2;
 	while (ft_isspace((*s)[i]))
 		i++;
@@ -82,6 +84,7 @@ void	ft_sq_rd(char **s, t_scene *ascene)
 	if (!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
 	new_ol->next = NULL;
+	new_ol->type = 3;
 	i = 2;
 	while (ft_isspace((*s)[i]))
 		i++;
@@ -118,6 +121,7 @@ void	ft_cy_rd(char **s, t_scene *ascene)
 	if (!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
 	new_ol->next = NULL;
+	new_ol->type = 4;
 	i = 2;
 	while (ft_isspace((*s)[i]))
 		i++;
@@ -161,6 +165,7 @@ void	ft_tr_rd(char **s, t_scene *ascene)
 	if (!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
 	new_ol->next = NULL;
+	new_ol->type = 5;
 	i = 2;
 	while (ft_isspace((*s)[i]))
 		i++;

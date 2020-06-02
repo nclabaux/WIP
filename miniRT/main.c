@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/29 19:10:09 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/02 17:07:02 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		main(int argc, char **argv)
 			while (x < scene.res.x)
 			{
 				ray.v = ft_get_ray_v(scene, cam, x, y);
-				ft_shot_ray(ray);
+				ft_shot_ray(ray, scene);
 				x++;
 			}
 			y++;
@@ -70,6 +70,8 @@ t_vector	ft_get_ray(t_scene scene, t_camera *cam, int x, int y)
 	l.x = cam->v.y;
 	l.y = - cam->v.x;
 	l.z = 0;
+	if (l.x == 0 && l.y == 0)
+		l.x = 1;
 	m = ft_cross_product(cam->v, l);
 	p = cam->fov / 2 * x / scene.res.x;
 	q = cam->fov / 2 * y / scene.res.y;
@@ -86,4 +88,33 @@ t_vector	ft_get_ray(t_scene scene, t_camera *cam, int x, int y)
 		v.z = 2 * (cam->p.z + cos(p) * cam->v.z) + sin(p) * sin(q) * l.z * m.z;
 	}
 	return (v);
+}
+
+ft_shot_ray(t_ray ray, t_scene scene)
+{
+	t_obj_link	*obj;
+	t_intersec	res;
+	t_intersec	storage;
+
+	obj = scene.object_list;
+	res.dist = -1;
+	while (obj)
+	{
+		if (obj->type == 1)
+			storage = ft_sp_inter(ray, obj->*object);
+		else if (obj->type == 2)
+			storage = ft_pl_inter(ray, obj->*object);
+		else if (obj->type == 3)
+			storage = ft_sq_inter(ray, obj->*object);
+		else if (obj->type == 4)
+			storage = ft_cy_inter(ray, obj->*object);
+		else if (obj->type == 5)
+			storage = ft_pl_inter(ray, obj->*object);
+		else
+			storage.dist = -1;
+		if (res.dist > 0 && storage.dist < res.dist)
+			res = storage;
+		obj = obj->next;
+	}
+	ft_get_light(res, scene);
 }
