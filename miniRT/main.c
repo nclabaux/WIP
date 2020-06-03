@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/02 17:07:02 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/03 16:00:09 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,21 @@
 
 int		main(int argc, char **argv)
 {
+	void	*mlx_ptr;
 	t_scene	scene;
-	int		x;
-	int		y;
-	t_ray	ray;
-	t_camera	*cam;
+	t_img_link	*img_list;
 
 	if (argc < 2)
 		ft_errors(1000, "");
 	ft_init_scene(&scene);
 	ft_read_file(argv[1], &scene);
-	VERIFY RESOLUTION;
-	cam = scene.cam_list;
-	while (cam)
-	{
-		ALLOCATE IMAGE MEMORY;
-		y = 0;
-		ray.p = cam->p;
-		while (y < scene.res.y)
-		{
-			x = 0;
-			while (x < scene.res.x)
-			{
-				ray.v = ft_get_ray_v(scene, cam, x, y);
-				ft_shot_ray(ray, scene);
-				x++;
-			}
-			y++;
-		}
-		cam = cam->next;
-	}
+	//VERIFY RESOLUTION;
+	img_list = NULL;
+	mlx_ptr = mlx_init();
+	ft_gen_images(scene, &img_list, mlx_ptr);
+	//AFFICHER LA PREMIERE CAM;
+	//MAYBE STHG;
+	mlx_loop(mlx_ptr);
 }
 
 void	ft_init_scene(t_scene *ascene)
@@ -59,7 +44,7 @@ void	ft_init_scene(t_scene *ascene)
 	ascene->object_list = NULL;
 }
 
-t_vector	ft_get_ray(t_scene scene, t_camera *cam, int x, int y)
+t_vector	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
 {
 	t_vector	v;
 	t_vector	l;
@@ -72,7 +57,7 @@ t_vector	ft_get_ray(t_scene scene, t_camera *cam, int x, int y)
 	l.z = 0;
 	if (l.x == 0 && l.y == 0)
 		l.x = 1;
-	m = ft_cross_product(cam->v, l);
+	m = ft_cross_prod(cam->v, l);
 	p = cam->fov / 2 * x / scene.res.x;
 	q = cam->fov / 2 * y / scene.res.y;
 	if ((x - scene.res.x / 2) * (scene.res.y / 2 - y) < 0)
@@ -90,7 +75,7 @@ t_vector	ft_get_ray(t_scene scene, t_camera *cam, int x, int y)
 	return (v);
 }
 
-ft_shot_ray(t_ray ray, t_scene scene)
+void	ft_shot_ray(t_ray ray, t_scene scene)
 {
 	t_obj_link	*obj;
 	t_intersec	res;
@@ -101,20 +86,20 @@ ft_shot_ray(t_ray ray, t_scene scene)
 	while (obj)
 	{
 		if (obj->type == 1)
-			storage = ft_sp_inter(ray, obj->*object);
+			storage = ft_sp_inter(ray, obj->object->sp);
 		else if (obj->type == 2)
-			storage = ft_pl_inter(ray, obj->*object);
+			storage = ft_pl_inter(ray, obj->object->pl);
 		else if (obj->type == 3)
-			storage = ft_sq_inter(ray, obj->*object);
+			storage = ft_sq_inter(ray, obj->object->sq);
 		else if (obj->type == 4)
-			storage = ft_cy_inter(ray, obj->*object);
+			storage = ft_cy_inter(ray, obj->object->cy);
 		else if (obj->type == 5)
-			storage = ft_pl_inter(ray, obj->*object);
+			storage = ft_tr_inter(ray, obj->object->tr);
 		else
 			storage.dist = -1;
 		if (res.dist > 0 && storage.dist < res.dist)
 			res = storage;
 		obj = obj->next;
 	}
-	ft_get_light(res, scene);
+	//ft_get_light(res, scene);
 }

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 16:12:54 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/18 15:36:10 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/03 15:42:15 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ void	ft_cam_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1012, "");
-	i += ft_read_point((*s) + i, &new_cam->point);
+	i += ft_read_point((*s) + i, &new_cam->p);
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1012, "");
-	i += ft_read_vector(*s + i, &new_cam->orientation);
+	i += ft_read_vector(*s + i, &new_cam->v);
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))

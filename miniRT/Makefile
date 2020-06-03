@@ -6,7 +6,7 @@
 #    By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/01 17:04:15 by nclabaux          #+#    #+#              #
-#    Updated: 2020/05/27 19:00:07 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/06/03 15:58:34 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,11 @@ SRCS =	calculus.c\
 	file_reading.c\
 	file_reading1.c\
 	file_reading2.c\
+	images.c\
 	intersection.c\
 	intersection1.c\
 	list_handling.c\
+	loop.c\
 	main.c\
 	vectorial_calculus.c\
 

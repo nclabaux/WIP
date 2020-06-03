@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/02 16:55:45 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/03 16:00:24 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct	s_camera
 	t_point	p;
 	t_vector	v;
 	int	fov;
+	void	*image_p;
 	struct s_camera	*next;
 }		t_camera;
 
@@ -155,12 +156,24 @@ typedef struct	s_intersec
 	t_color		color;
 }		t_intersec;
 
+typedef struct	s_img_link
+{
+	void	*img;
+	struct s_img_link	*next;
+}		t_img_link;
+
 /*
 **	calculus.c
 */
 int		ft_solve_quadratic(double a, double b, double c, double root[2]);
 double	ft_sq(double x);
 double	ft_max_double(double a, double b);
+
+/*
+**	colors.c
+*/
+int	ft_rgb_to_int(int r, int g, int b);
+int	ft_range_check(int a);
 
 /*
 **	distance.c
@@ -202,6 +215,11 @@ void	ft_cy_rd(char **line, t_scene *ascene);
 void	ft_tr_rd(char **line, t_scene *ascene);
 
 /*
+**	images.c
+*/
+void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr);
+
+/*
 **	intersection.c
 */
 t_intersec	ft_pl_inter(t_ray, t_plane pl);
@@ -225,16 +243,17 @@ void	ft_add_light(t_scene *ascene, t_light *new_light);
 void	ft_add_object(t_scene *ascene, t_obj_link *new_ol);
 
 /*
+**	loop.c
+*/
+int esc_key_pressed(int key, void *p);
+
+/*
 **	main.c
 */
 int	main(int argc, char **argv);
 void	ft_init_scene(t_scene *ascene);
-
-/*
-**	colors.c
-*/
-int	ft_rgb_to_int(int r, int g, int b);
-int	ft_range_check(int a);
+t_vector	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y);
+void	ft_shot_ray(t_ray ray, t_scene scene);
 
 /*
 **	vectorial_calculus.c
