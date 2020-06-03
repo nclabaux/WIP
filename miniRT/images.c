@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 14:11:37 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/03 16:00:57 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/03 17:15:11 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,11 @@ void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
 		cam = cam->next;
 	}
 }
+
+void	ft_create_bmp(void *image, char *filename)
+{
+	int fd;
+	
+	fd = open(filename, O_CREATE);
+	ft_putstr_fd("BA", fd);
+	ft_putdata_fd(0, fd);
