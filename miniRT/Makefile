@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+         #
+#    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/04/01 17:04:15 by nclabaux          #+#    #+#              #
-#    Updated: 2020/06/03 15:58:34 by nclabaux         ###   ########.fr        #
+#    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
+#    Updated: 2020/06/05 18:29:50 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,12 @@ SRCS =	calculus.c\
 	intersection.c\
 	intersection1.c\
 	list_handling.c\
-	loop.c\
 	main.c\
 	vectorial_calculus.c\
+	verification.c\
+	verification1.c
+
+A = loop.c
 
 OBJS = $(SRCS:.c=.o)
 

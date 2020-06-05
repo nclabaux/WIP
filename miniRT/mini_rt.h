@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/03 16:00:24 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/05 18:17:43 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct	s_camera
 	t_point	p;
 	t_vector	v;
 	int	fov;
-	void	*image_p;
 	struct s_camera	*next;
 }		t_camera;
 
@@ -263,5 +262,20 @@ double		ft_scalar_prod(t_vector a, t_vector b);
 t_vector	ft_cross_prod(t_vector a, t_vector b);
 double	ft_norm(t_vector v);
 t_vector	ft_2p_to_v(t_point a, t_point b);
+
+/*
+**	verification.c
+*/
+void	ft_scene_verif(t_scene *ascene, void *mlx_ptr);
+int	ft_color_verif(t_color *acolor);
+int		ft_vector_verif(t_vector *v);
+void	ft_res_verif(t_scene *ascene, void *mlx_ptr);
+void	ft_al_verif(t_scene *ascene);
+
+/*
+**	verification1.c
+*/
+void	ft_cam_verif(t_scene *ascene);
+void	ft_light_verif(t_scene *ascene);
 
 #endif

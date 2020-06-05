@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 11:57:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/07 15:00:06 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/05 18:21:11 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void				ft_putchar_cpt(char c, int *g_res);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+void				ft_putint_fd(int n, int fd);
+void				ft_putbyte_fd(char n, int fd);
 char				*cut(char *str, int *negative);
 char				*ft_convert_base(char *nbr, char *base_from, char *base_to);
 char				*ft_nbr_base(unsigned long nbr, char *base);
