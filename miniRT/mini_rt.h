@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/05 18:17:43 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/08 16:10:38 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct	s_camera
 
 typedef struct	s_light
 {
-	t_point	point;
+	t_point	p;
 	double		brightness;
 	t_color	color;
 	struct s_light		*next;
@@ -93,8 +93,8 @@ typedef struct	s_plane
 
 typedef struct	s_square
 {
-	t_point	point;
-	t_vector	orientation;
+	t_point	p;
+	t_vector	v;
 	double	size;
 	t_color	color;
 }		t_square;
@@ -262,6 +262,12 @@ double		ft_scalar_prod(t_vector a, t_vector b);
 t_vector	ft_cross_prod(t_vector a, t_vector b);
 double	ft_norm(t_vector v);
 t_vector	ft_2p_to_v(t_point a, t_point b);
+
+/*
+**	vectorial_calculus1.c
+*/
+t_point	ft_add_v(t_point p, t_vector v, double	size);
+t_vector	ft_unit_v(t_vector v);
 
 /*
 **	verification.c

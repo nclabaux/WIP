@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 18:52:34 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/28 15:07:33 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/08 19:36:37 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,47 @@
 
 int	ft_rgb_to_int(int r, int g, int b)
 {
-	r = ft_range_check(r);
-	g = ft_range_check(g);
-	b = ft_range_check(b);
 	return (65536 * r + 256 * g + b);
 }
 
-int	ft_range_check(int a)
+t_color	ft_int_to_rgb(int c)
 {
-	if (a < 0)
-		return (0);
-	if (a > 255)
-		return (255);
-	return (a);
+	t_color	res;
+
+	res.r = c / 65536;
+	c -= res.r;
+	res.g = c / 256;
+	c -= res.g;
+	res.b = c;
+	return (res);
+}
+
+t_color	ft_add_colors(t_color a, t_color b)
+{
+	t_color res;
+
+	res.r = a.r + b.r;
+	res.g = a.g + b.g;
+	res.b = a.b + b.b;
+	return (res);
+}
+
+t_color	ft_multiply_colors(t_color a, t_color b)
+{
+	t_color res;
+
+	res.r = a.r / 255 * b.r / 255;
+	res.g = a.g / 255 * b.g / 255;
+	res.b = a.b / 255 * b.b / 255;
+	return (res);
+}
+
+t_color	ft_weight_color(t_color	c, double intensity)
+{
+	t_color	res;
+
+	res.r = c.r * intensity;
+	res.g = c.g * intensity;
+	res.b = c.b * intensity;
+	return (res);
 }

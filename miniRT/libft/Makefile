@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/02 16:55:41 by nclabaux          #+#    #+#              #
-#    Updated: 2020/05/13 17:20:03 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/06/08 14:04:05 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ CC = cc
 
 RM = rm -f
 
-CFLAGS = 
+CFLAGS = -Wall -Wextra -Werror 
 
 $(NAME): $(OBJS)
 	@ar -rc $(NAME) $(OBJS)
@@ -90,4 +90,4 @@ re: fclean all
 
 .PHONY: all clean fclean re
 	
-.SILENT: all clean fclean re $(NAME) $(OBJS)
+#.SILENT: all clean fclean re $(NAME) $(OBJS)

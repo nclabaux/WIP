@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/02 17:21:55 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/08 16:12:55 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ void	ft_sq_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1016, "");
-	i += ft_read_point(*s + i, &(new_ol->object->sq.point));
+	i += ft_read_point(*s + i, &(new_ol->object->sq.p));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1016, "");
-	i += ft_read_vector(*s + i, &(new_ol->object->sq.orientation));
+	i += ft_read_vector(*s + i, &(new_ol->object->sq.v));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))

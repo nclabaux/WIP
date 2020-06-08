@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/05 17:20:43 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/08 16:28:28 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,12 @@ t_vector	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
 	return (v);
 }
 
-void	ft_shot_ray(t_ray ray, t_scene scene)
+t_color	ft_shot_ray(t_ray ray, t_scene scene)
 {
 	t_obj_link	*obj;
-	t_intersec	res;
+	t_intersec	closest;
 	t_intersec	storage;
+	t_color		res;
 
 	obj = scene.object_list;
 	res.dist = -1;

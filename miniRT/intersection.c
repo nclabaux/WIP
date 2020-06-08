@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/28 18:20:11 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/08 16:29:17 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,39 @@ t_intersec	ft_tr_inter(t_ray ray, t_triangle tr)
 	return (res);
 }
 
-/*
-t_point	ft_sq_inter(t_ray ray, t_square sq)
-{
-	double	d;
-	double	t0;
-	double	div;
-	t_ray.p	res;
 
-	d = -(sq.v.x * sq.p.x + sq.v.y * sq.p.y + sq.v.z * sq.p.z);
-	
-	div = sq.v.x * ray.v.x + sq.v.y * ray.v.y + sq.v.z * ray.v.z;
-	if (!(div))
-		NO;
-	t0 = (-(sq.v.x * sq.v.x + sq.v.y * sq.v.y + sq.v.z * sq.v.z + d) / div);
-	res.x = ray.p.x + ray.v.x * t0;
-	res.y = ray.p.y + ray.v.y * t0;
-	res.z = ray.p.z + ray.v.z * t0;
-	if ()
+t_intersec	ft_sq_inter(t_ray ray, t_square sq)
+{
+	t_triangle	a;
+	t_triangle	b;
+	t_vector	s;
+	t_vector	t;
+	t_intersec	res;
+	t_intersec	storage;
+
+	a.p1 = sq.p;
+	s.x = 0;
+	s.y = -sq.v.z;
+	s.z = sq.v.y;
+	if (!sq.v.y && !sq.v.z)
+	{
+		s.x = sq.v.y;
+		s.y = -sq.v.x;
+		s.z = 0;
+	}
+	s = ft_unit_v(s);
+	a.p2 = ft_add_v(sq.p, s, sq.size);
+	t = ft_cross_prod(ft_unit_v(sq.v), s);
+	a.p3 = ft_add_v(sq.p, t, sq.size);
+	b.p1 = ft_add_v(ft_add_v(sq.p, s, sq.size), t, sq.size);
+	b.p2 = a.p2;
+	b.p3 = a.p3;
+	res = ft_tr_inter(ray, a);
+       	storage = ft_tr_inter(ray, b);
+	if (storage.dist != -1)
+		res = storage;
 	return (res);
 }
-*/
 
 t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 {

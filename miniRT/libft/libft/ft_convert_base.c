@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:13 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/01/30 22:34:57 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:03:20 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 char	*cut(char *str, int *negative)
 {
-	int minus;
-
 	*negative = 1;
-	minus = 0;
 	while (*str == '\t' || *str == '\n' || *str == '\v' || *str == '\r'
 		|| *str == '\f' || *str == ' ')
 	{

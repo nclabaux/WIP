@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 18:12:35 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/04 16:36:32 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:02:18 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ void		ft_putint_fd(int n, int fd)
 	n -= b;
 	c = n / exp2(8);
 	n -= c;
-	write(fd, a, 1);
-	write(fd, b, 1);
-	write(fd, c, 1);
-	write(fd, n, 1);
+	write(fd, &a, 1);
+	write(fd, &b, 1);
+	write(fd, &c, 1);
+	write(fd, &n, 1);
 }
 
 void		ft_putbyte_fd(char n, int fd)
 {
-	write(fd, n, 1);
+	write(fd, &n, 1);
 }
