@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/08 16:10:38 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/09 16:24:32 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,11 @@ double	ft_max_double(double a, double b);
 **	colors.c
 */
 int	ft_rgb_to_int(int r, int g, int b);
-int	ft_range_check(int a);
+t_color	ft_int_to_rgb(int c);
+t_color	ft_add_colors(t_color a, t_color b);
+t_color	ft_multiply_colors(t_color a, t_color b);
+t_color	ft_weight_color(t_color	c, double intensity);
+
 
 /*
 **	distance.c
@@ -217,6 +221,7 @@ void	ft_tr_rd(char **line, t_scene *ascene);
 **	images.c
 */
 void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr);
+void	ft_create_bmp(void *image, char *filename, t_scene scene);
 
 /*
 **	intersection.c
@@ -233,6 +238,11 @@ t_intersec	ft_cy_inter(t_ray, t_cylinder cy);
 double	ft_point_in_triangle(t_point p, t_triangle tr);
 t_intersec	ft_cy_side(t_ray ray, t_cylinder cy);
 double*		ft_set_number(t_ray ray, t_cylinder cy);
+
+/*
+**	light.c
+*/
+t_color	ft_get_light(t_intersec i, t_scene scene);
 
 /*
 **	list_handling.c
@@ -252,7 +262,7 @@ int esc_key_pressed(int key, void *p);
 int	main(int argc, char **argv);
 void	ft_init_scene(t_scene *ascene);
 t_vector	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y);
-void	ft_shot_ray(t_ray ray, t_scene scene);
+t_intersec	ft_shot_ray(t_ray ray, t_scene scene);
 
 /*
 **	vectorial_calculus.c

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 14:11:37 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/05 18:26:20 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:12:47 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
 			while (x < scene.res.x)
 			{
 				ray.v = ft_get_ray_v(scene, cam, x, y);
-				ft_shot_ray(ray, scene);
+			//	(img_lst->img)[x + y] = ft_get_light(ft_shot_ray(ray, scene), scene);
 				x++;
 			}
 			y++;
@@ -45,7 +45,7 @@ void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
 		cam = cam->next;
 	}
 }
-/*
+
 void	ft_create_bmp(void *image, char *filename, t_scene scene)
 {
 	int fd;
@@ -57,7 +57,7 @@ void	ft_create_bmp(void *image, char *filename, t_scene scene)
 	
 	fd = open(filename, O_CREAT);
 	mlx_get_data_addr(image, &bpp, &size_line, &endian);
-	ft_putstr_fd("BA", fd);
+	ft_putstr_fd("BM", fd);
 	ft_putint_fd(14 + scene.res.x * scene.res.y * bpp, fd);
 	ft_putint_fd(0, fd);
 	ft_putint_fd(14, fd);
@@ -67,9 +67,10 @@ void	ft_create_bmp(void *image, char *filename, t_scene scene)
 		x = 0;
 		while (x < scene.res.x * bpp)
 		{
-			ft_putbyte_fd(*(*image + x + y * size_line), fd);
+			//ft_putbyte_fd((char)(image[x + y * size_line]), fd);
 			x++;
 		}
 		y++;
 	}
-}*/
+	close(fd);
+}

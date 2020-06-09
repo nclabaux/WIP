@@ -6,14 +6,14 @@
 /*   By: nclabaux </var/mail/nclabaux>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 17:29:08 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/12 16:34:29 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/09 16:54:41 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+#include "mini_rt.h"
 
-int	X = 1536;
-int	Y = 256;
+int	X = 256*6;
+int	Y = 512;
 void	*mlx_ptr;
 void	*win_ptr;
 int	errno;
@@ -56,23 +56,32 @@ int	main()
 		for (y = 0; y < Y; y++)
 		{
 			if (x < 256)
-				mlx_pixel_put(mlx_ptr, win_ptr, x, y, rgb_to_int(255, x, 0));
+				mlx_pixel_put(mlx_ptr, win_ptr, x, y, ft_rgb_to_int(255, x, 0));
 			else if (x < 512)
-				mlx_pixel_put(mlx_ptr, win_ptr, x, y, rgb_to_int(512 - x, 255, 0));
+				mlx_pixel_put(mlx_ptr, win_ptr, x, y, ft_rgb_to_int(512 - x, 255, 0));
 			else if (x < 768)
-				mlx_pixel_put(mlx_ptr, win_ptr, x, y, rgb_to_int(0, 255, x-512));
+				mlx_pixel_put(mlx_ptr, win_ptr, x, y, ft_rgb_to_int(0, 255, x-512));
 			else if (x < 1024)
-				mlx_pixel_put(mlx_ptr, win_ptr, x, y, rgb_to_int(0, 1024 - x, 255));
+				mlx_pixel_put(mlx_ptr, win_ptr, x, y, ft_rgb_to_int(0, 1024 - x, 255));
 			else if (x < 1280)
-				mlx_pixel_put(mlx_ptr, win_ptr, x, y, rgb_to_int(x - 1024, 0, 255));
+				mlx_pixel_put(mlx_ptr, win_ptr, x, y, ft_rgb_to_int(x - 1024, 0, 255));
 			else if (x < 1536)
-				mlx_pixel_put(mlx_ptr, win_ptr, x, y, rgb_to_int(255, 0, 1536-x));
+				mlx_pixel_put(mlx_ptr, win_ptr, x, y, ft_rgb_to_int(255, 0, 1536-x));
 		}		
 	}
 	mlx_key_hook(win_ptr, &key_esc, 0);
 	mlx_mouse_hook(win_ptr, &mousetrack, 0);
-//	mlx_loop(mlx_ptr);
+/*	mlx_loop(mlx_ptr);
 	for (x = 0; x < 135; x++)
-		printf("Error %3d : %s\n", x, strerror(x));
+		printf("Error %3d : %s\n", x, strerror(x));*/
+	int	*image;
+	t_scene	scene;
+	image = mlx_new_image(mlx_ptr, 2, 2);
+
+	ft_init_scene(&scene);
+	scene.res.x = 2;
+	scene.res.y = 2;
+	ft_create_bmp(image, "test.bmp", scene);
+	mlx_loop(mlx_ptr);
 	return (0);
 }

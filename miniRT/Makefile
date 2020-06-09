@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/06/08 16:09:03 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/06/09 16:27:57 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +20,17 @@ SRCS =	calculus.c\
 	file_reading1.c\
 	file_reading2.c\
 	images.c\
+	light.c\
 	intersection.c\
 	intersection1.c\
 	list_handling.c\
-	main.c\
 	vectorial_calculus.c\
 	vectorial_calculus1.c\
 	verification.c\
 	verification1.c
 
-A = loop.c
+A = loop.c\
+	main.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -60,7 +61,8 @@ mactest:
 	gcc tester.c -lmlx -framework OpenGL -framework AppKit 
 
 linuxtest:
-	clang tester.c rgb_to_int.c -lm -lmlx -lXext -lX11 
+	make -C libft/ 
+	clang tester.c f_main.c $(SRCS) $(LIBFLAGS) 
 
 .PHONY: all clean fclean re
 
