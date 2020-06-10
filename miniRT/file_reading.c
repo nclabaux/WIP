@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/18 15:34:36 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/10 15:05:21 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ void	ft_translate_line(char **line, t_scene *ascene)
 		ft_cy_rd(line, ascene);
 	else if ((*line)[0] == 't' && (*line)[1] == 'r')
 		ft_tr_rd(line, ascene);
-	else if ((*line)[0] == 0)
-		ft_printf("EOF\n");
-	else
+	else if ((*line)[0] != 0)
 		ft_errors(1005, *line);
 }
 

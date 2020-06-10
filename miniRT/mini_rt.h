@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/09 16:24:32 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/10 18:35:49 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ typedef	struct	s_vector
 
 typedef struct	s_color
 {
-	int	r;
-	int	g;
-	int	b;
+	char	r;
+	char	g;
+	char	b;
 }		t_color;
 
 typedef struct	s_resolution
@@ -157,7 +157,11 @@ typedef struct	s_intersec
 
 typedef struct	s_img_link
 {
-	void	*img;
+	void	*ip;
+	char	*fp;
+	int		bpp;
+	int		sl;
+	int		en;
 	struct s_img_link	*next;
 }		t_img_link;
 
