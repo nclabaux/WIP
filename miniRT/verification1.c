@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:44:36 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/05 18:10:23 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/11 14:18:16 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	ft_light_verif(t_scene *ascene)
 			ft_printf("Light brightness changed to 1 ");
 			ft_printf("for light placed in %lf, %lf, %lf\n", light->p.x, light->p.y, light->p.z);
 		}
-		if (ft_color_verif(&(light->color)))
-			ft_printf("for light placed in %lf, %lf, %lf\n", light->p.x, light->p.y, light->p.z);
 		light = light->next;
 	}
 }

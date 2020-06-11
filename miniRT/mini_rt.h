@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/10 18:35:49 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/11 14:17:27 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ typedef	struct	s_vector
 
 typedef struct	s_color
 {
-	char	r;
-	char	g;
-	char	b;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 }		t_color;
 
 typedef struct	s_resolution
@@ -287,7 +287,6 @@ t_vector	ft_unit_v(t_vector v);
 **	verification.c
 */
 void	ft_scene_verif(t_scene *ascene, void *mlx_ptr);
-int	ft_color_verif(t_color *acolor);
 int		ft_vector_verif(t_vector *v);
 void	ft_res_verif(t_scene *ascene, void *mlx_ptr);
 void	ft_al_verif(t_scene *ascene);

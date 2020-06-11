@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:05:42 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/09 16:27:00 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/11 14:19:09 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_color	ft_get_light(t_intersec i, t_scene scene)
 			c = ft_multiply_colors(light->color, i.color);
 			c = ft_weight_color(c, ft_scalar_prod(light_source.v, i.normal));
 			res = ft_add_colors(res, c);
-			ft_color_verif(&res);
 		}
 		light = light->next;
 	}

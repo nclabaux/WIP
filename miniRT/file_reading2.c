@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/08 16:12:55 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/11 17:22:35 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,6 @@ void	ft_tr_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1018, "");
-	ft_read_color(*s + i, &(new_ol->object->cy.color));
+	ft_read_color(*s + i, &(new_ol->object->tr.color));
 	ft_add_object(ascene, new_ol);
 }

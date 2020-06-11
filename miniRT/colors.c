@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 18:52:34 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/08 19:36:37 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/11 14:21:12 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,23 @@ t_color	ft_int_to_rgb(int c)
 t_color	ft_add_colors(t_color a, t_color b)
 {
 	t_color res;
-
-	res.r = a.r + b.r;
-	res.g = a.g + b.g;
-	res.b = a.b + b.b;
+	int	x;
+	
+	x = a.r + b.r;
+	if (x > 255)
+		res.r = 255;
+	else
+		res.r = x;
+	x = a.g + b.g;
+	if (x > 255)
+		res.g = 255;
+	else
+		res.g = x;
+	x = a.b + b.b;
+	if (x > 255)
+		res.b = 255;
+	else
+		res.b = x;
 	return (res);
 }
 

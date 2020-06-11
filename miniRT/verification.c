@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:05:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/08 13:56:25 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/11 14:18:02 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,50 +18,6 @@ void	ft_scene_verif(t_scene *ascene, void *mlx_ptr)
 	ft_al_verif(ascene);
 	ft_cam_verif(ascene);
 	ft_light_verif(ascene);
-}
-
-int	ft_color_verif(t_color *acolor)
-{
-	int	res;
-
-	res = 0;
-	if (acolor->r < 0)
-	{
-		acolor->r = 0;
-		res = 1;
-		ft_printf("Red color setting changed to 0 (min value) ");
-	}
-	if (acolor->r > 255)
-	{
-		acolor->r = 255;
-		res = 1;
-		ft_printf("Red color setting changed to 255 (max value) ");
-	}
-	if (acolor->g < 0)
-	{
-		acolor->g = 0;
-		res = 1;
-		ft_printf("Green color setting changed to 0 (min value) ");
-	}
-	if (acolor->g > 255)
-	{
-		acolor->g = 255;
-		res = 1;
-		ft_printf("Green color setting to 255 (max value) ");
-	}
-	if (acolor->b < 0)
-	{
-		acolor->b = 0;
-		res = 1;
-		ft_printf("Blue color setting changed to 0 (min value) ");
-	}
-	if (acolor->b > 255)
-	{
-		acolor->b = 255;
-		res = 1;
-		ft_printf("Blue color setting changed to 255 (max value) ");
-	}
-	return (res);
 }
 
 int		ft_vector_verif(t_vector *v)
@@ -121,8 +77,6 @@ void	ft_al_verif(t_scene *ascene)
 		ascene->al.intensity = 1;
 		ft_printf("Ambient light ratio has been change to 1 (max value)\n");
 	}
-	if (ft_color_verif(&(ascene->al.color)))
-		ft_printf("in ambient light\n");
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 11:57:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/08 13:59:42 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/11 17:15:58 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char				*ft_strnstr(const char *haystck, const char *needle,
 						size_t len);
 int					ft_atoi(const char *str);
 double					ft_atod(char *s);
-int					ft_pot(int n);
+double					ft_pot(int n);
 void				*ft_calloc(size_t count, size_t size);
 char				*ft_strdup(const char *s1);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
