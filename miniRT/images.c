@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 14:11:37 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/11 14:28:56 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/12 18:07:34 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
 	t_ray	ray;
 	t_camera	*cam;
 	t_img_link	*new;
-	t_color		c;
 	unsigned int	color;
 
 	cam = scene.cam_list;
@@ -27,8 +26,8 @@ void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
 		return ;
 	while (cam)
 	{
-		new->ip =  mlx_new_image(mlx_ptr, scene.res.x, scene.res.y);
-		if (!(*img_lst))
+		ft_set_image(&new, mlx_ptr, scene);
+		if (*img_lst)
 			new->next = *img_lst;
 		else
 			new->next = NULL;
@@ -40,11 +39,10 @@ void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
 			x = 0;
 			while (x < scene.res.x)
 			{
-				new->fp = mlx_get_data_addr(&new->ip, &new->bpp, &new->sl, &new->en);
 				ray.v = ft_get_ray_v(scene, cam, x, y);
-				c = ft_get_light(ft_shot_ray(ray, scene), scene);
-				color = mlx_get_color_value(mlx_ptr, ft_rgb_to_int(c.r, c.g, c.b));
-				ft_printf("\nbpp:%d\tcolor:%d\n", new->bpp, color);
+				color = ft_get_color(ray, mlx_ptr, scene);	
+				//ft_printf("color:%u\n", color);
+				(void)color;
 				x++;
 			}
 			y++;
@@ -53,6 +51,14 @@ void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
 	}
 }
 
+void	ft_set_image(t_img_link **il, void *mlx_ptr, t_scene scene)
+{
+	ft_printf("%p\n%p\n%d\t%d\n", *il, mlx_ptr, scene.res.x, scene.res.y);
+	(*il)->ip = mlx_new_image(mlx_ptr, scene.res.x, scene.res.y);
+	(*il)->fp = mlx_get_data_addr(&((*il)->ip), &((*il)->bpp), &((*il)->sl), &((*il)->en));
+	ft_printf("\nip:%p\tfp:%p\tbpp:%d\tsl:%d\tendian:%d\n", (*il)->ip, (*il)->fp, (*il)->bpp, (*il)->sl, (*il)->en);
+}
+	
 void	ft_create_bmp(void *image, char *filename, t_scene scene)
 {
 	int fd;

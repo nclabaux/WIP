@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/11 14:17:27 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/12 17:54:07 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,12 +175,11 @@ double	ft_max_double(double a, double b);
 /*
 **	colors.c
 */
-int	ft_rgb_to_int(int r, int g, int b);
-t_color	ft_int_to_rgb(int c);
+int	ft_rgb_to_int(t_color c);
 t_color	ft_add_colors(t_color a, t_color b);
 t_color	ft_multiply_colors(t_color a, t_color b);
 t_color	ft_weight_color(t_color	c, double intensity);
-
+unsigned int	ft_get_color(t_ray ray, void *mlx_ptr, t_scene scene);
 
 /*
 **	distance.c
@@ -225,6 +224,7 @@ void	ft_tr_rd(char **line, t_scene *ascene);
 **	images.c
 */
 void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr);
+void	ft_set_image(t_img_link **il, void *mlx_ptr, t_scene scene);
 void	ft_create_bmp(void *image, char *filename, t_scene scene);
 
 /*

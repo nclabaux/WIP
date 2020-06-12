@@ -6,27 +6,15 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 18:52:34 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/11 14:21:12 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/12 17:45:34 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-int	ft_rgb_to_int(int r, int g, int b)
+int	ft_rgb_to_int(t_color c)
 {
-	return (65536 * r + 256 * g + b);
-}
-
-t_color	ft_int_to_rgb(int c)
-{
-	t_color	res;
-
-	res.r = c / 65536;
-	c -= res.r;
-	res.g = c / 256;
-	c -= res.g;
-	res.b = c;
-	return (res);
+	return (65536 * c.r + 256 * c.g + c.b);
 }
 
 t_color	ft_add_colors(t_color a, t_color b)
@@ -69,5 +57,15 @@ t_color	ft_weight_color(t_color	c, double intensity)
 	res.r = c.r * intensity;
 	res.g = c.g * intensity;
 	res.b = c.b * intensity;
+	return (res);
+}
+
+unsigned int	ft_get_color(t_ray ray, void *mlx_ptr, t_scene scene)
+{
+	unsigned int	res;
+	t_color		color;
+
+	color = ft_get_light(ft_shot_ray(ray, scene), scene);
+	res = mlx_get_color_value(mlx_ptr, ft_rgb_to_int(color));
 	return (res);
 }

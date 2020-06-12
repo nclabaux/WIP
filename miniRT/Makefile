@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/06/11 16:41:44 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/06/11 18:05:34 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ LIBFLAGS = -lm -lmlx -lXext -lX11 -L./libft -lft
 
 $(NAME): $(OBJS)
 	make -C libft/ 
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFLAGS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) main.c $(LIBFLAGS)
 
 all: $(NAME)
 
