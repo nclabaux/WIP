@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/06/11 18:05:34 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/06/13 17:20:15 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,15 +40,16 @@ CC = gcc
 RM = rm -f
 
 CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
-LIBFLAGS = -lm -lmlx -lXext -lX11 -L./libft -lft
 
-$(NAME): $(OBJS)
-	make -C libft/ 
+LIBFLAGS = -L./minilibx-linux -lm -lmlx -lXext -lX11 -L./libft -lft
+
+$(NAME): $(OBJS) libraries
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) main.c $(LIBFLAGS)
 
 all: $(NAME)
 
 clean: 
+	make -C minilibx-linux/ clean
 	make -C libft/ clean
 	$(RM) $(OBJS)
 
@@ -64,6 +65,10 @@ mactest:
 linuxtest:
 	make -C libft/ 
 	clang tester.c f_main.c $(SRCS) $(LIBFLAGS) 
+
+libraries:
+	make -C minilibx-linux/
+	make -C libft/
 
 .PHONY: all clean fclean re
 
