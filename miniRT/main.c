@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/10 15:04:09 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:53:50 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ int		main(int argc, char **argv)
 	mlx_ptr = mlx_init();
 	ft_scene_verif(&scene, mlx_ptr);
 	img_list = NULL;
-	ft_printf("f\n");
 	ft_gen_images(scene, &img_list, mlx_ptr);
-	ft_printf("g\n");
 	//AFFICHER LA PREMIERE CAM;
 	//MAYBE STHG;
 	//mlx_loop(mlx_ptr);
@@ -87,6 +85,7 @@ t_intersec	ft_shot_ray(t_ray ray, t_scene scene)
 	res.dist = -1;
 	while (obj)
 	{
+		storage.dist = -1;
 		if (obj->type == 1)
 			storage = ft_sp_inter(ray, obj->object->sp);
 		else if (obj->type == 2)
@@ -99,7 +98,7 @@ t_intersec	ft_shot_ray(t_ray ray, t_scene scene)
 			storage = ft_tr_inter(ray, obj->object->tr);
 		else
 			storage.dist = -1;
-		if (res.dist > 0 && storage.dist < res.dist)
+		if (res.dist == -1 || (storage.dist > 0 && storage.dist < res.dist))
 			res = storage;
 		obj = obj->next;
 	}

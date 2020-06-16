@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 17:09:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/28 18:18:03 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:22:27 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 		slide.x = cy.p.z + h[0] * cy.v.z / ft_norm(cy.v);
 		storage.normal = ft_2p_to_v(slide, res.p);
 	}
-	if (storage.dist < res.dist)
+	if (storage.dist < res.dist && storage.dist != -1)
 		res = storage;
 	free(coef);
 	return (res);

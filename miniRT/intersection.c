@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/08 16:29:17 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:21:25 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,11 @@ t_intersec	ft_tr_inter(t_ray ray, t_triangle tr)
 	pl.v = v;
 	res = ft_pl_inter(ray, pl);
 	res.color = tr.color;
-	if (!(ft_point_in_triangle(res.p, tr)))
-		res.dist = -1;
+	if (res.dist != -1)
+	{
+		if (!(ft_point_in_triangle(res.p, tr)))
+			res.dist = -1;
+	}
 	return (res);
 }
 
@@ -90,7 +93,7 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 	double		coef[3];
 	double		roots[2];
 	t_intersec	res;
-	t_point		storage;
+	t_intersec	storage;
 
 	res.dist = -1;
 	coef[0] = ft_sq(ray.v.x) + ft_sq(ray.v.y) + ft_sq(ray.v.z);
@@ -104,14 +107,12 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 	res.p.z = ray.p.z + t0 * ray.v.z;
 	res.dist = ft_two_pts_dist(res.p, ray.p);
 	t0 = roots[1];
-	storage.x = ray.p.x + t0 * ray.v.x;
-	storage.y = ray.p.y + t0 * ray.v.y;
-	storage.z = ray.p.z + t0 * ray.v.z;
-	if (ft_two_pts_dist(res.p, ray.p) < res.dist && res.dist > 0)
-	{
-		res.p = storage;
-		res.dist = ft_two_pts_dist(res.p, ray.p);
-	}
+	storage.p.x = ray.p.x + t0 * ray.v.x;
+	storage.p.y = ray.p.y + t0 * ray.v.y;
+	storage.p.z = ray.p.z + t0 * ray.v.z;
+	storage.dist = ft_two_pts_dist(storage.p, ray.p);
+	if (storage.dist < res.dist && storage.dist != -1)
+		res = storage;
 	res.color = sp.color;
 	res.normal = ft_2p_to_v(sp.point, res.p);
 	return (res);
@@ -132,7 +133,7 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 	upper_disc.v = cy.v;
 	res.dist = -1;
 	res = ft_pl_inter(ray, base_disc);
-	if (res.dist < 0)
+	if (res.dist > 0)
 	{
 		if (ft_two_pts_dist(res.p, cy.p) <= ft_sq(cy.d / 2))
 		{
@@ -143,7 +144,7 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 			res.dist = -1;
 	}
 	storage = ft_pl_inter(ray, upper_disc);
-	if (storage.dist < 0)
+	if (storage.dist > 0)
 	{
 		if (ft_two_pts_dist(storage.p, upper_disc.p) <= ft_sq(cy.d / 2))
 		{
