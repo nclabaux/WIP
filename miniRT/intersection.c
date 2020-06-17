@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/16 16:21:25 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/17 17:29:10 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_intersec	ft_pl_inter(t_ray ray, t_plane pl)
 	if (!(div))
 		return (res);
 	t0 = (-(pl.v.x * pl.v.x + pl.v.y * pl.v.y + pl.v.z * pl.v.z + d) / div);
+	if (t0 < 0)
+		return (res);
 	res.p.x = ray.p.x + ray.v.x * t0;
 	res.p.y = ray.p.y + ray.v.y * t0;
 	res.p.z = ray.p.z + ray.v.z * t0;

@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/16 16:53:50 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/17 16:59:12 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		main(int argc, char **argv)
 	ft_gen_images(scene, &img_list, mlx_ptr);
 	//AFFICHER LA PREMIERE CAM;
 	//MAYBE STHG;
-	//mlx_loop(mlx_ptr);
+	mlx_loop(mlx_ptr);
 }
 
 void	ft_init_scene(t_scene *ascene)
@@ -49,29 +49,20 @@ t_vector	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
 	t_vector	v;
 	t_vector	l;
 	t_vector	m;
-	int			p;
-	int			q;
+	double			p;
+	double			q;
 
-	l.x = cam->v.y;
-	l.y = - cam->v.x;
+	l.x = -cam->v.y;
+	l.y = cam->v.x;
 	l.z = 0;
 	if (l.x == 0 && l.y == 0)
 		l.x = 1;
 	m = ft_cross_prod(cam->v, l);
-	p = cam->fov / 2 * x / scene.res.x;
-	q = cam->fov / 2 * y / scene.res.y;
-	if ((x - scene.res.x / 2) * (scene.res.y / 2 - y) < 0)
-	{
-		v.x = 2 * (cam->p.x + cos(p) * cam->v.x) - sin(p) * sin(q) * l.x * m.x;
-		v.y = 2 * (cam->p.y + cos(p) * cam->v.y) - sin(p) * sin(q) * l.y * m.y;
-		v.z = 2 * (cam->p.z + cos(p) * cam->v.z) - sin(p) * sin(q) * l.z * m.z;
-	}
-	else
-	{
-		v.x = 2 * (cam->p.x + cos(p) * cam->v.x) + sin(p) * sin(q) * l.x * m.x;
-		v.y = 2 * (cam->p.y + cos(p) * cam->v.y) + sin(p) * sin(q) * l.y * m.y;
-		v.z = 2 * (cam->p.z + cos(p) * cam->v.z) + sin(p) * sin(q) * l.z * m.z;
-	}
+	p = ((double)cam->fov / 2 - (double)cam->fov / scene.res.x * x) * M_PI / 180;
+	q = ((double)cam->fov / 2 * (double)scene.res.y / scene.res.x - (double)cam->fov / scene.res.x * y) * M_PI / 180;
+	v.x = (cam->v.x * cos(p) + l.x * sin(p)) * cos(q) + m.x * sin(q);
+	v.y = (cam->v.y * cos(p) + l.y * sin(p)) * cos(q) + m.y * sin(q);
+	v.z = (cam->v.z * cos(p) + l.z * sin(p)) * cos(q) + m.z * sin(q);
 	return (v);
 }
 
