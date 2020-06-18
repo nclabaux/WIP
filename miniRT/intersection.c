@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/17 17:29:10 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/18 17:40:31 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ t_intersec	ft_pl_inter(t_ray ray, t_plane pl)
 	t_intersec	res;
 
 	res.dist = -1;
-	d = -(pl.v.x * pl.p.x + pl.v.y * pl.p.y + pl.v.z * pl.p.z);
+	d = (pl.v.x * pl.p.x + pl.v.y * pl.p.y + pl.v.z * pl.p.z);
+	if (!(ray.p.x * pl.v.x + ray.p.y * pl.v.y + ray.p.z * pl.v.z - d))
+		return (res);
 	div = pl.v.x * ray.v.x + pl.v.y * ray.v.y + pl.v.z * ray.v.z;
 	if (!(div))
 		return (res);
-	t0 = (-(pl.v.x * pl.v.x + pl.v.y * pl.v.y + pl.v.z * pl.v.z + d) / div);
-	if (t0 < 0)
+	t0 = (d - pl.v.x * ray.p.x - pl.v.y * ray.p.y - pl.v.z * ray.p.z) / div;
+	if (t0 <= 0)
 		return (res);
 	res.p.x = ray.p.x + ray.v.x * t0;
 	res.p.y = ray.p.y + ray.v.y * t0;
