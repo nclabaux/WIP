@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/17 16:59:12 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/19 16:43:29 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,14 @@ void	ft_init_scene(t_scene *ascene)
 t_vector	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
 {
 	t_vector	v;
-	t_vector	l;
-	t_vector	m;
 	double			p;
 	double			q;
 
-	l.x = -cam->v.y;
-	l.y = cam->v.x;
-	l.z = 0;
-	if (l.x == 0 && l.y == 0)
-		l.x = 1;
-	m = ft_cross_prod(cam->v, l);
 	p = ((double)cam->fov / 2 - (double)cam->fov / scene.res.x * x) * M_PI / 180;
 	q = ((double)cam->fov / 2 * (double)scene.res.y / scene.res.x - (double)cam->fov / scene.res.x * y) * M_PI / 180;
-	v.x = (cam->v.x * cos(p) + l.x * sin(p)) * cos(q) + m.x * sin(q);
-	v.y = (cam->v.y * cos(p) + l.y * sin(p)) * cos(q) + m.y * sin(q);
-	v.z = (cam->v.z * cos(p) + l.z * sin(p)) * cos(q) + m.z * sin(q);
+	v.x = (cam->v.x * cos(p) + cam->l.x * sin(p)) * cos(q) + cam->m.x * sin(q);
+	v.y = (cam->v.y * cos(p) + cam->l.y * sin(p)) * cos(q) + cam->m.y * sin(q);
+	v.z = (cam->v.z * cos(p) + cam->l.z * sin(p)) * cos(q) + cam->m.z * sin(q);
 	return (v);
 }
 

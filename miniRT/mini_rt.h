@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/12 17:54:07 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/19 16:31:03 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct	s_camera
 {
 	t_point	p;
 	t_vector	v;
+	t_vector	l;
+	t_vector	m;
 	int	fov;
 	struct s_camera	*next;
 }		t_camera;
