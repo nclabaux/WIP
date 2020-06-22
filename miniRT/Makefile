@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/06/13 17:20:15 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/06/22 12:12:33 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS =	calculus.c\
 	intersection.c\
 	intersection1.c\
 	list_handling.c\
+	set_data.c\
 	vectorial_calculus.c\
 	vectorial_calculus1.c\
 	verification.c\

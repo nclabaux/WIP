@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 16:09:22 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/28 17:37:05 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/22 12:11:47 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ double	ft_sq(double x)
 double	ft_max_double(double a, double b)
 {
 	if (a < b)
+		return (b);
+	return (a);
+}
+
+double	ft_min_double(double a, double b)
+{
+	if (a > b)
 		return (b);
 	return (a);
 }

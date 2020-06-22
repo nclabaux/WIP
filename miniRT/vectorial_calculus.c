@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 16:01:45 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/28 18:22:35 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/22 12:02:40 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ t_vector	ft_2p_to_v(t_point a, t_point b)
 	t_vector	result;
 
 	result.x = b.x - a.x;
+//	printf("%lf - %lf = %lf\n", b.x, a.x, result.x);
 	result.y = b.y - a.y;
-	result.x = b.z - a.z;
+//	printf("%lf - %lf = %lf\n", b.y, a.y, result.y);
+	result.z = b.z - a.z;
+//	printf("%lf - %lf = %lf\n", b.z, a.z, result.z);
 	return (result);
 }

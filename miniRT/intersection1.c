@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 17:09:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/16 16:22:27 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/22 12:16:49 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 double		ft_point_in_triangle(t_point p, t_triangle tr)
 {
-	double		area_tr;
 	double		area1;
 	double		area2;
 	double		area3;
-	t_vector	stock;
 
-	stock = ft_cross_prod(ft_2p_to_v(tr.p1, tr.p2), ft_2p_to_v(tr.p1, tr.p3));
-	area_tr = ft_norm(stock);
 	area1 = ft_norm(ft_cross_prod(ft_2p_to_v(p, tr.p1), ft_2p_to_v(p, tr.p2)));
 	area2 = ft_norm(ft_cross_prod(ft_2p_to_v(p, tr.p1), ft_2p_to_v(p, tr.p3)));
 	area3 = ft_norm(ft_cross_prod(ft_2p_to_v(p, tr.p2), ft_2p_to_v(p, tr.p3)));
-	return (area1 + area2 + area3 - area_tr);
+	return (area1 + area2 + area3 <= tr.area_x2 + 0.000004);
 }
 
 t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)

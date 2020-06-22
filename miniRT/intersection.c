@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/19 17:54:13 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/22 16:11:26 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ t_intersec	ft_pl_inter(t_ray ray, t_plane pl)
 
 t_intersec	ft_tr_inter(t_ray ray, t_triangle tr)
 {
-	t_vector	v;
 	t_plane		pl;
 	t_intersec	res;
 
-	v = ft_3p_to_v(tr.p1, tr.p2, tr.p3);
 	pl.p = tr.p1;
-	pl.v = v;
+	pl.v = ft_3p_to_v(tr.p1, tr.p2, tr.p3);
 	res = ft_pl_inter(ray, pl);
 	res.color = tr.color;
 	if (res.dist != -1)
@@ -60,32 +58,13 @@ t_intersec	ft_tr_inter(t_ray ray, t_triangle tr)
 
 t_intersec	ft_sq_inter(t_ray ray, t_square sq)
 {
-	t_triangle	a;
-	t_triangle	b;
-	t_vector	s;
-	t_vector	t;
 	t_intersec	res;
 	t_intersec	storage;
 
-	a.p1 = sq.p;
-	s.x = 0;
-	s.y = -sq.v.z;
-	s.z = sq.v.y;
-	if (!sq.v.y && !sq.v.z)
-	{
-		s.x = sq.v.y;
-		s.y = -sq.v.x;
-		s.z = 0;
-	}
-	s = ft_unit_v(s);
-	a.p2 = ft_add_v(sq.p, s, sq.size);
-	t = ft_cross_prod(ft_unit_v(sq.v), s);
-	a.p3 = ft_add_v(sq.p, t, sq.size);
-	b.p1 = ft_add_v(ft_add_v(sq.p, s, sq.size), t, sq.size);
-	b.p2 = a.p2;
-	b.p3 = a.p3;
-	res = ft_tr_inter(ray, a);
-       	storage = ft_tr_inter(ray, b);
+	res = ft_tr_inter(ray, sq.a);
+       	storage = ft_tr_inter(ray, sq.b);
+	if (storage.dist != -1)
+		printf("%lf\t%lf\n", res.dist, storage.dist);
 	if (storage.dist != -1)
 		res = storage;
 	return (res);

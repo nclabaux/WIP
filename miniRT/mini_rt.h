@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/19 16:31:03 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/22 15:40:05 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,23 @@ typedef struct	s_plane
 	t_color	color;
 }		t_plane;
 
+typedef struct	s_triangle
+{
+	t_point	p1;
+	t_point	p2;
+	t_point	p3;
+	t_color	color;	
+	double	area_x2;
+}		t_triangle;
+
 typedef struct	s_square
 {
 	t_point	p;
 	t_vector	v;
 	double	size;
 	t_color	color;
+	t_triangle	a;
+	t_triangle	b;
 }		t_square;
 
 typedef struct	s_cylinder
@@ -109,14 +120,6 @@ typedef struct	s_cylinder
 	double	height;
 	t_color	color;	
 }		t_cylinder;
-
-typedef struct	s_triangle
-{
-	t_point	p1;
-	t_point	p2;
-	t_point	p3;
-	t_color	color;	
-}		t_triangle;
 
 typedef	union	u_object
 {
@@ -173,6 +176,7 @@ typedef struct	s_img_link
 int		ft_solve_quadratic(double a, double b, double c, double root[2]);
 double	ft_sq(double x);
 double	ft_max_double(double a, double b);
+double	ft_min_double(double a, double b);
 
 /*
 **	colors.c
@@ -269,6 +273,12 @@ int	main(int argc, char **argv);
 void	ft_init_scene(t_scene *ascene);
 t_vector	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y);
 t_intersec	ft_shot_ray(t_ray ray, t_scene scene);
+
+/*
+**	set_data.c
+*/
+void	ft_set_tr_data(t_triangle *tr);
+void	ft_set_sq_data(t_square *sq);
 
 /*
 **	vectorial_calculus.c

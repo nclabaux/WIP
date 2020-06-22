@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/11 17:22:35 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/22 15:58:21 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ void	ft_sq_rd(char **s, t_scene *ascene)
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1016, "");
 	ft_read_color(*s + i, &(new_ol->object->sq.color));
+	ft_set_sq_data(&(new_ol->object->sq));
+	ft_set_tr_data(&(new_ol->object->sq.a));
+	ft_set_tr_data(&(new_ol->object->sq.b));
 	ft_add_object(ascene, new_ol);
 }
 
@@ -187,5 +190,6 @@ void	ft_tr_rd(char **s, t_scene *ascene)
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1018, "");
 	ft_read_color(*s + i, &(new_ol->object->tr.color));
+	ft_set_tr_data(&(new_ol->object->tr));
 	ft_add_object(ascene, new_ol);
 }
