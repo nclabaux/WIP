@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/22 16:11:26 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/23 17:27:11 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_intersec	ft_tr_inter(t_ray ray, t_triangle tr)
 	t_plane		pl;
 	t_intersec	res;
 
+//	printf("bp1 %lf %lf %lf\nbp2 %lf %lf %lf\nbp3 %lf %lf %lf\n", tr.p1.x, tr.p1.y, tr.p1.z, tr.p2.x, tr.p2.y, tr.p2.z, tr.p3.x, tr.p3.y, tr.p3.z);
 	pl.p = tr.p1;
 	pl.v = ft_3p_to_v(tr.p1, tr.p2, tr.p3);
 	res = ft_pl_inter(ray, pl);
@@ -61,8 +62,10 @@ t_intersec	ft_sq_inter(t_ray ray, t_square sq)
 	t_intersec	res;
 	t_intersec	storage;
 
-	res = ft_tr_inter(ray, sq.a);
-       	storage = ft_tr_inter(ray, sq.b);
+	res = ft_tr_inter(ray, sq.b);
+       	storage = ft_tr_inter(ray, sq.a);
+	//	printf("ap1 %lf %lf %lf\nap2 %lf %lf %lf\nap3 %lf %lf %lf\n", sq.a.p1.x, sq.a.p1.y, sq.a.p1.z, sq.a.p2.x, sq.a.p2.y, sq.a.p2.z, sq.a.p3.x, sq.a.p3.y, sq.a.p3.z);
+	//printf("bp1 %lf %lf %lf\nbp2 %lf %lf %lf\nbp3 %lf %lf %lf\n", sq.b.p1.x, sq.b.p1.y, sq.b.p1.z, sq.b.p2.x, sq.b.p2.y, sq.b.p2.z, sq.b.p3.x, sq.b.p3.y, sq.b.p3.z);
 	if (storage.dist != -1)
 		printf("%lf\t%lf\n", res.dist, storage.dist);
 	if (storage.dist != -1)
@@ -84,16 +87,22 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 	coef[2] = -(ft_sq(sp.diameter / 2)) + ft_sq(ray.p.x) + ft_sq(ray.p.y) + ft_sq(ray.p.z) - 2 * (ray.p.x * sp.point.x + ray.p.y * sp.point.y + ray.p.z * sp.point.z);
 	if (!(ft_solve_quadratic(coef[0], coef[1], coef[2], roots)))
 		return (res);
-	t0 = roots[0];
-	res.p.x = ray.p.x + t0 * ray.v.x;
-	res.p.y = ray.p.y + t0 * ray.v.y;
-	res.p.z = ray.p.z + t0 * ray.v.z;
-	res.dist = ft_two_pts_dist(res.p, ray.p);
-	t0 = roots[1];
-	storage.p.x = ray.p.x + t0 * ray.v.x;
-	storage.p.y = ray.p.y + t0 * ray.v.y;
-	storage.p.z = ray.p.z + t0 * ray.v.z;
-	storage.dist = ft_two_pts_dist(storage.p, ray.p);
+	if (roots[0] > 0)
+	{
+		t0 = roots[0];
+		res.p.x = ray.p.x + t0 * ray.v.x;
+		res.p.y = ray.p.y + t0 * ray.v.y;
+		res.p.z = ray.p.z + t0 * ray.v.z;
+		res.dist = ft_two_pts_dist(res.p, ray.p);
+	}
+	if (roots[1] > 0)
+	{
+		t0 = roots[1];
+		storage.p.x = ray.p.x + t0 * ray.v.x;
+		storage.p.y = ray.p.y + t0 * ray.v.y;
+		storage.p.z = ray.p.z + t0 * ray.v.z;
+		storage.dist = ft_two_pts_dist(storage.p, ray.p);
+	}
 	if (storage.dist < res.dist && storage.dist != -1)
 		res = storage;
 	res.color = sp.color;
@@ -132,7 +141,9 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 		if (ft_two_pts_dist(storage.p, upper_disc.p) <= ft_sq(cy.d / 2))
 		{
 			storage.dist = ft_two_pts_dist(ray.p, storage.p);
-			storage.normal = cy.v;
+			storage.normal.x = -cy.v.x;
+			storage.normal.y = -cy.v.y;
+			storage.normal.z = -cy.v.z;
 		}
 		else
 			storage.dist = -1;
@@ -142,5 +153,6 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 	storage = ft_cy_side(ray, cy);
 	if (res.dist < 0 || (storage.dist < res.dist && storage.dist > 0))
 		res = storage;
+	res.color = cy.color;
 	return (res);
 }

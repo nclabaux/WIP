@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:06:55 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/22 16:14:32 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/23 16:25:43 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	ft_set_sq_data(t_square *sq)
 	sq->b.p1 = sq->a.p2;
 	sq->b.p2 = sq->a.p3;
 	sq->b.p3 = ft_add_v(sq->a.p2, t, sq->size);
-	printf("%lf %lf %lf\n%lf %lf %lf\n%lf %lf %lf\n", sq->a.p1.x, sq->a.p1.y, sq->a.p1.z, sq->a.p2.x, sq->a.p2.y, sq->a.p2.z, sq->a.p3.x, sq->a.p3.y, sq->a.p3.z);
-	printf("%lf %lf %lf\n%lf %lf %lf\n%lf %lf %lf\n", sq->b.p1.x, sq->b.p1.y, sq->b.p1.z, sq->b.p2.x, sq->b.p2.y, sq->b.p2.z, sq->b.p3.x, sq->b.p3.y, sq->b.p3.z);
+//	printf("%lf %lf %lf\n%lf %lf %lf\n%lf %lf %lf\n", sq->a.p1.x, sq->a.p1.y, sq->a.p1.z, sq->a.p2.x, sq->a.p2.y, sq->a.p2.z, sq->a.p3.x, sq->a.p3.y, sq->a.p3.z);
+//	printf("%lf %lf %lf\n%lf %lf %lf\n%lf %lf %lf\n", sq->b.p1.x, sq->b.p1.y, sq->b.p1.z, sq->b.p2.x, sq->b.p2.y, sq->b.p2.z, sq->b.p3.x, sq->b.p3.y, sq->b.p3.z);
 	sq->a.color = sq->color;
 	sq->b.color = sq->color;
 }
