@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:05:42 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/18 14:30:37 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/24 19:50:22 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 t_color	ft_get_light(t_intersec i, t_scene scene)
 {
-	t_light	*light;
-	t_ray	light_source;
+	t_light		*light;
+	t_ray		light_source;
 	t_intersec	storage;
 	t_color		c;
-	t_color	res;
+	t_color		res;
 
 	if (i.dist == -1)
 	{
@@ -32,11 +32,9 @@ t_color	ft_get_light(t_intersec i, t_scene scene)
 	light = scene.light_list;
 	while (light)
 	{
-//		ft_printf("in while\n");
 		light_source.p = i.p;
 		light_source.v = ft_2p_to_v(i.p, light->p);
 		storage = ft_shot_ray(light_source, scene);
-//		printf("obstacle : %lf\tangle : %lf\n", storage.dist, ft_scalar_prod(light_source.v, i.normal));
 		if ((storage.dist == -1 || storage.dist > ft_two_pts_dist(light->p, i.p)) && (ft_scalar_prod(light_source.v, i.normal) > 0 || (i.normal.x == 0 && i.normal.y == 0 && i.normal.z == 0)))
 		{
 			c.r = 0;
@@ -46,11 +44,8 @@ t_color	ft_get_light(t_intersec i, t_scene scene)
 			c = ft_multiply_colors(c, i.color);
 			c = ft_weight_color(c, ft_scalar_prod(light_source.v, i.normal));
 			res = ft_add_colors(res, c);
-//			ft_printf("get light: %d\t%d\t%d\n", c.r, c.g, c.b);
-//			ft_printf("get light: %d\t%d\t%d\n", res.r, res.g, res.b);
 		}
 		light = light->next;
 	}
-//	ft_printf("final light:   %d\t%d\t%d\n", res.r, res.g, res.b);
 	return (res);
 }

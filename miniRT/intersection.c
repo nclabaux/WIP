@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/22 16:11:26 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/24 19:48:50 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,13 @@ t_intersec	ft_tr_inter(t_ray ray, t_triangle tr)
 	return (res);
 }
 
-
 t_intersec	ft_sq_inter(t_ray ray, t_square sq)
 {
 	t_intersec	res;
 	t_intersec	storage;
 
 	res = ft_tr_inter(ray, sq.a);
-       	storage = ft_tr_inter(ray, sq.b);
+	storage = ft_tr_inter(ray, sq.b);
 	if (storage.dist != -1)
 		printf("%lf\t%lf\n", res.dist, storage.dist);
 	if (storage.dist != -1)
