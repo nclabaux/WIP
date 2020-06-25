@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 14:11:37 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/15 16:29:26 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/24 19:47:03 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
 {
-	int	x;
-	int	y;
-	t_ray	ray;
-	t_camera	*cam;
-	t_img_link	*new;
+	int				x;
+	int				y;
+	t_ray			ray;
+	t_camera		*cam;
+	t_img_link		*new;
 	unsigned int	color;
-	void	*win_ptr;
+	void			*win_ptr;
 
 	cam = scene.cam_list;
 	if (!(new = malloc(sizeof(t_img_link))))
@@ -42,9 +42,8 @@ void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
 			while (x < scene.res.x)
 			{
 				ray.v = ft_get_ray_v(scene, cam, x, y);
-				color = ft_get_color(ray, mlx_ptr, scene);	
+				color = ft_get_color(ray, mlx_ptr, scene);
 				mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
-//				ft_printf("%d\n", color);
 				(void)color;
 				x++;
 			}
@@ -61,7 +60,7 @@ void	ft_set_image(t_img_link **il, void *mlx_ptr, t_scene scene)
 	(*il)->fp = mlx_get_data_addr(&((*il)->ip), &((*il)->bpp), &((*il)->sl), &((*il)->en));
 	ft_printf("\nip:%p\tfp:%p\tbpp:%d\tsl:%d\tendian:%d\n", (*il)->ip, (*il)->fp, (*il)->bpp, (*il)->sl, (*il)->en);
 }
-	
+
 void	ft_create_bmp(void *image, char *filename, t_scene scene)
 {
 	int fd;

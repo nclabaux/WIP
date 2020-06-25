@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:05:42 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/23 18:00:46 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:04:16 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_color	ft_get_light(t_intersec i, t_scene scene)
 {
-	t_light	*light;
-	t_ray	light_source;
+	t_light		*light;
+	t_ray		light_source;
 	t_intersec	storage;
 	t_color		c;
 	t_color	res;

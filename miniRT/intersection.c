@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/23 17:27:11 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:05:09 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,13 @@ t_intersec	ft_tr_inter(t_ray ray, t_triangle tr)
 	return (res);
 }
 
-
 t_intersec	ft_sq_inter(t_ray ray, t_square sq)
 {
 	t_intersec	res;
 	t_intersec	storage;
 
-	res = ft_tr_inter(ray, sq.b);
-       	storage = ft_tr_inter(ray, sq.a);
-	//	printf("ap1 %lf %lf %lf\nap2 %lf %lf %lf\nap3 %lf %lf %lf\n", sq.a.p1.x, sq.a.p1.y, sq.a.p1.z, sq.a.p2.x, sq.a.p2.y, sq.a.p2.z, sq.a.p3.x, sq.a.p3.y, sq.a.p3.z);
-	//printf("bp1 %lf %lf %lf\nbp2 %lf %lf %lf\nbp3 %lf %lf %lf\n", sq.b.p1.x, sq.b.p1.y, sq.b.p1.z, sq.b.p2.x, sq.b.p2.y, sq.b.p2.z, sq.b.p3.x, sq.b.p3.y, sq.b.p3.z);
+	res = ft_tr_inter(ray, sq.a);
+	storage = ft_tr_inter(ray, sq.b);
 	if (storage.dist != -1)
 		printf("%lf\t%lf\n", res.dist, storage.dist);
 	if (storage.dist != -1)

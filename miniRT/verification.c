@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:05:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/11 14:18:02 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/24 20:16:52 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_scene_verif(t_scene *ascene, void *mlx_ptr)
 
 int		ft_vector_verif(t_vector *v)
 {
-	int	res;
+	int		res;
 	double	max;
 
 	res = 0;
@@ -51,17 +51,19 @@ void	ft_res_verif(t_scene *ascene, void *mlx_ptr)
 {
 	int	x;
 	int	y;
-	
+
 	mlx_get_screen_size(mlx_ptr, &x, &y);
 	if (ascene->res.x > x)
 	{
 		ascene->res.x = x;
-		ft_printf("Horizontal resolution changed to %d to fit current display\n", x);
+		ft_printf("Horizontal resolution changed to %d", x);
+		ft_printf(" to fit current display\n");
 	}
 	if (ascene->res.y > y)
 	{
 		ascene->res.y = y;
-		ft_printf("Vertical resolution changed to %d to fit current display\n", y);
+		ft_printf("Vertical resolution changed to %d", y);
+		ft_printf(" to fit current display\n");
 	}
 }
 
@@ -78,5 +80,3 @@ void	ft_al_verif(t_scene *ascene)
 		ft_printf("Ambient light ratio has been change to 1 (max value)\n");
 	}
 }
-
-
