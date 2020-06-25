@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 17:09:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/22 12:16:49 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:08:41 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 
 	res.dist = -1;
 	coef = ft_set_number(ray, cy);
-	if (!(ft_solve_quadratic(coef[0], coef[1], coef[2], h)))
+	if (!(ft_solve_quadra(coef[0], coef[1], coef[2], h)))
 		return (res);
 	if (h[0] >= 0 && h[0] <= cy.height)
 	{

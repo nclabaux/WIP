@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/24 19:57:06 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:09:11 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			main(int argc, char **argv)
 	mlx_ptr = mlx_init();
 	ft_scene_verif(&scene, mlx_ptr);
 	img_list = NULL;
-	ft_gen_images(scene, &img_list, mlx_ptr);
+	ft_gen_img(scene, &img_list, mlx_ptr);
 	//AFFICHER LA PREMIERE CAM;
 	//MAYBE STHG;
 	ft_printf("done\n");

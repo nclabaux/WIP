@@ -6,13 +6,13 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 14:11:37 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/24 19:47:03 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:10:25 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	ft_gen_images(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
+void	ft_gen_img(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
 {
 	int				x;
 	int				y;
