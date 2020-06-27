@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/24 20:12:12 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/27 16:12:10 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ typedef struct	s_light
 
 typedef struct	s_sphere
 {
-	t_point	point;
-	double	diameter;
+	t_point	p;
+	double	diam;
 	t_color	color;
 }				t_sphere;
 
@@ -116,7 +116,7 @@ typedef struct	s_cylinder
 	t_point		p;
 	t_vector	v;
 	double		d;
-	double		height;
+	double		h;
 	t_color		color;
 }				t_cylinder;
 
@@ -297,6 +297,7 @@ t_vector		ft_2p_to_v(t_point a, t_point b);
 */
 t_point			ft_add_v(t_point p, t_vector v, double	size);
 t_vector		ft_unit_v(t_vector v);
+t_vector		ft_inverse_v(t_vector v);
 
 /*
 **	verification.c

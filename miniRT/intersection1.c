@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 17:09:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/25 15:08:41 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/27 16:23:12 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 	coef = ft_set_number(ray, cy);
 	if (!(ft_solve_quadra(coef[0], coef[1], coef[2], h)))
 		return (res);
-	if (h[0] >= 0 && h[0] <= cy.height)
+	if (h[0] >= 0 && h[0] <= cy.h)
 	{
 		t0 = (h[0] * coef[3] + coef[4]) / coef[5];
 		res.p.x = ray.p.x + t0 * ray.v.x;
@@ -49,7 +49,7 @@ t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 		slide.x = cy.p.z + h[0] * cy.v.z / ft_norm(cy.v);
 		res.normal = ft_2p_to_v(slide, res.p);
 	}
-	if (h[1] >= 0 && h[1] <= cy.height)
+	if (h[1] >= 0 && h[1] <= cy.h)
 	{
 		t0 = (h[0] * coef[3] + coef[4]) / coef[5];
 		storage.p.x = ray.p.x + t0 * ray.v.x;

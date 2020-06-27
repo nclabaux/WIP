@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/22 15:58:21 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/27 16:20:47 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ void	ft_sp_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1015, "");
-	i += ft_read_point(*s + i, &(new_ol->object->sp.point));
+	i += ft_read_point(*s + i, &(new_ol->object->sp.p));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1015, "");
-	new_ol->object->sp.diameter = ft_atod(*s + i);
+	new_ol->object->sp.diam = ft_atod(*s + i);
 	while (ft_isdigit((*s)[i]) || (*s)[i] == '.')
 		i++;
 	while (ft_isspace((*s)[i]))
@@ -147,7 +147,7 @@ void	ft_cy_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1017, "");
-	new_ol->object->cy.height = ft_atod(*s + i);
+	new_ol->object->cy.h = ft_atod(*s + i);
 	while (ft_isdigit((*s)[i]) || (*s)[i] == '.')
 		i++;
 	while (ft_isspace((*s)[i]))

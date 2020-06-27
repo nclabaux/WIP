@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 15:45:15 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/24 20:14:01 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/27 16:11:43 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,15 @@ t_vector	ft_unit_v(t_vector v)
 	res.x = v.x / norm;
 	res.y = v.y / norm;
 	res.z = v.z / norm;
+	return (res);
+}
+
+t_vector	ft_inverse_v(t_vector v)
+{
+	t_vector	res;
+
+	res.x = -v.x;
+	res.y = -v.y;
+	res.z = -v.z;
 	return (res);
 }
