@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/10 15:05:21 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/28 17:29:56 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,15 @@ void	ft_translate_line(char **line, t_scene *ascene)
 	a = 0;
 	if ((*line)[0] == 'R')
 	{
-		if (r)
-			ft_errors(1003, NULL);
 		r++;
 		ft_res_rd(line, ascene);
 	}
 	else if ((*line)[0] == 'A')
 	{
-		if (a)
-			ft_errors(1004, NULL);
 		a++;
 		ft_al_rd(line, ascene);
 	}
-	else if ((*line)[0] == 'c' && (*line)[1] != 'y')
+	else if ((*line)[0] == 'c' && ft_isspace((*line)[1]))
 		ft_cam_rd(line, ascene);
 	else if ((*line)[0] == 'l')
 		ft_light_rd(line, ascene);
@@ -83,7 +79,7 @@ int		ft_read_color(char *s, t_color *color_storage)
 		color_storage->r = ft_atoi(s + i);
 	else
 	{
-		ft_printf("0 %s\n", s + i);
+		ft_printf("%s\n", s + i);
 		ft_errors(1008, NULL);
 	}
 	while (ft_isdigit(s[i]))
@@ -92,7 +88,7 @@ int		ft_read_color(char *s, t_color *color_storage)
 		i++;
 	else
 	{
-		ft_printf("1 %s\n", s + i);
+		ft_printf("%s\n", s + i);
 		ft_errors(1008, NULL);
 	}
 	if (ft_isdigit(s[i]))

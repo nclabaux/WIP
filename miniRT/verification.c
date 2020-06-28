@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:05:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/24 20:16:52 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/28 17:57:19 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,15 @@ void	ft_scene_verif(t_scene *ascene, void *mlx_ptr)
 	ft_al_verif(ascene);
 	ft_cam_verif(ascene);
 	ft_light_verif(ascene);
+	ft_object_verif(ascene);
 }
 
-int		ft_vector_verif(t_vector *v)
+void	ft_vector_verif(t_vector *v)
 {
-	int		res;
-	double	max;
-
-	res = 0;
-	if (v->x > 1 || v->y > 1 || v->z > 1)
-	{
-		max = ft_max_double(ft_max_double(v->x, v->y), v->z);
-		v->x = v->x / max;
-		v->y = v->y / max;
-		v->z = v->z / max;
-		res = 1;
-		ft_printf("Vector coord. divided by %lf to fit [-1;1] range ", max);
-	}
-	if (v->x < -1 || v->y < -1 || v->z < -1)
-	{
-		max = ft_max_double(ft_max_double(-v->x, -v->y), -v->z);
-		v->x = v->x / max;
-		v->y = v->y / max;
-		v->z = v->z / max;
-		res = 1;
-		ft_printf("Vector coord. divided by %lf to fit [-1;1] range ", max);
-	}
-	return (res);
+	if (!v->x && !v->y && !v->z)
+		ft_errors(1020, "");
+	if (v->x > 1 || v->y > 1 || v->z > 1 || v->x < -1 || v->y < -1 || v->z < -1)
+		ft_errors(1021, "");
 }
 
 void	ft_res_verif(t_scene *ascene, void *mlx_ptr)
@@ -52,12 +34,14 @@ void	ft_res_verif(t_scene *ascene, void *mlx_ptr)
 	int	x;
 	int	y;
 
+	if (ascene->res.x < 1 || ascene->res.y < 1)
+		ft_errors(1006, "");
 	mlx_get_screen_size(mlx_ptr, &x, &y);
 	if (ascene->res.x > x)
 	{
 		ascene->res.x = x;
 		ft_printf("Horizontal resolution changed to %d", x);
-		ft_printf(" to fit current display\n");
+		ft_printf(" to fit current monitor\n");
 	}
 	if (ascene->res.y > y)
 	{

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 16:12:54 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/19 16:34:49 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/28 17:22:37 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	ft_res_rd(char **s, t_scene *ascene)
 {
 	int	i;
 
+	if (ascene->res.x || ascene->res.y)
+		ft_errors(1003, "");
 	i = 1;
 	while ((*s)[i] && ft_isspace((*s)[i]))
 		i++;
@@ -58,6 +60,9 @@ void	ft_al_rd(char **s, t_scene *ascene)
 {
 	int	i;
 
+	if (ascene->al.intensity || ascene->al.color.r
+			|| ascene->al.color.g || ascene->al.color.b)
+		ft_errors(1004, "");
 	i = 1;
 	while (ft_isspace((*s)[i]))
 		i++;

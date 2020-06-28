@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/27 16:48:38 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/28 19:03:53 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ t_intersec	ft_tr_inter(t_ray ray, t_triangle tr)
 		if (!(ft_point_in_triangle(res.p, tr)))
 			res.dist = -1;
 	}
-	res.normal = pl.v;
-	if (ft_scalar_prod(ft_unit_v(pl.v), ft_unit_v(ft_2p_to_v(res.p, ray.p))) < 0)
-		res.normal = ft_inverse_v(res.normal);
 	res.color = tr.color;
 	return (res);
 }
@@ -63,10 +60,8 @@ t_intersec	ft_sq_inter(t_ray ray, t_square sq)
 	t_intersec	res;
 	t_intersec	storage;
 
-	res = ft_tr_inter(ray, sq.a);
-	storage = ft_tr_inter(ray, sq.b);
-//	if (storage.dist != -1)
-//		printf("%lf\t%lf\n", res.dist, storage.dist);
+	res = ft_tr_inter(ray, sq.b);
+	storage = ft_tr_inter(ray, sq.a);
 	if (storage.dist != -1)
 		res = storage;
 	return (res);
@@ -123,7 +118,7 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 		if (ft_two_pts_dist(res.p, cy.p) <= ft_sq(cy.d / 2))
 		{
 			res.dist = ft_two_pts_dist(ray.p, res.p);
-			res.normal = ft_inverse_v(cy.v);
+			res.normal = ft_unit_v(ft_inverse_v(cy.v));
 		}
 		else
 			res.dist = -1;
@@ -134,7 +129,7 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 		if (ft_two_pts_dist(storage.p, upper_disc.p) <= ft_sq(cy.d / 2))
 		{
 			storage.dist = ft_two_pts_dist(ray.p, storage.p);
-			storage.normal = cy.v;
+			storage.normal = ft_unit_v(cy.v);
 		}
 		else
 			storage.dist = -1;
@@ -142,7 +137,7 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 			res = storage;
 	}
 	storage = ft_cy_side(ray, cy);
-	if (res.dist < 0 || (storage.dist < res.dist && storage.dist > 0))
+	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
 		res = storage;
 	res.color = cy.color;
 	return (res);

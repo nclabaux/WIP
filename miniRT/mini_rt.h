@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/27 16:12:10 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/28 17:57:52 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ double			ft_two_pts_dist(t_point a, t_point b);
 void			ft_ptr_err(char *s, int i, int x);
 void			ft_errors(int i, char *s);
 void			ft_errors1(int i, char *s);
+void			ft_errors2(int i, char *s);
 
 /*
 **	file_reading.c
@@ -303,7 +304,7 @@ t_vector		ft_inverse_v(t_vector v);
 **	verification.c
 */
 void			ft_scene_verif(t_scene *ascene, void *mlx_ptr);
-int				ft_vector_verif(t_vector *v);
+void			ft_vector_verif(t_vector *v);
 void			ft_res_verif(t_scene *ascene, void *mlx_ptr);
 void			ft_al_verif(t_scene *ascene);
 
@@ -312,5 +313,6 @@ void			ft_al_verif(t_scene *ascene);
 */
 void			ft_cam_verif(t_scene *ascene);
 void			ft_light_verif(t_scene *ascene);
+void			ft_object_verif(t_scene *ascene);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 18:22:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/28 15:08:20 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/28 17:55:53 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_errors(int i, char *s)
 	if (i < 1000 || i > 1100)
 		ft_prt_err("Unknown error  ¯\\_(ツ)_/¯", i, 0);
 	if (i == 1000)
-		ft_prt_err("To few arguments", i, 0);
+		ft_prt_err("No file given\n\"./miniRT <file.rt> [-save]", i, 0);
 	if (i == 1001)
 		ft_prt_err(s, i, 22);
 	if (i == 1002)
@@ -47,8 +47,7 @@ void	ft_errors(int i, char *s)
 		ft_prt_err("Bad color given", i, 22);
 	if (i == 1009)
 		ft_prt_err("Bad coordinates given", i, 22);
-	else
-		ft_errors1(i, s);
+	ft_errors1(i, s);
 }
 
 void	ft_errors1(int i, char *s)
@@ -71,5 +70,16 @@ void	ft_errors1(int i, char *s)
 		ft_prt_err("Bad cylinder setting given", i, 22);
 	if (i == 1018)
 		ft_prt_err("Bad triangle setting given", i, 22);
+	if (i == 1019)
+		ft_prt_err("No camera", i, 22);
+	ft_errors2(i, s);
+}
+
+void	ft_errors2(int i, char *s)
+{
+	if (i == 1020)
+		ft_prt_err("Zero vector detected", i, 22);
+	if (i == 1021)
+		ft_prt_err("Vector w/ out of [-1, 1] range coordinates", i, 22);
 	(void)s;
 }

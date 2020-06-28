@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 17:09:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/27 16:23:12 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/06/28 19:05:42 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double		ft_point_in_triangle(t_point p, t_triangle tr)
 	area1 = ft_norm(ft_cross_prod(ft_2p_to_v(p, tr.p1), ft_2p_to_v(p, tr.p2)));
 	area2 = ft_norm(ft_cross_prod(ft_2p_to_v(p, tr.p1), ft_2p_to_v(p, tr.p3)));
 	area3 = ft_norm(ft_cross_prod(ft_2p_to_v(p, tr.p2), ft_2p_to_v(p, tr.p3)));
-	return (area1 + area2 + area3 <= tr.area_x2 + 0.000004);
+	return (area1 + area2 + area3 <= tr.area_x2 + 0.000001);
 }
 
 t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
@@ -40,26 +40,18 @@ t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 	if (h[0] >= 0 && h[0] <= cy.h)
 	{
 		t0 = (h[0] * coef[3] + coef[4]) / coef[5];
-		res.p.x = ray.p.x + t0 * ray.v.x;
-		res.p.y = ray.p.y + t0 * ray.v.y;
-		res.p.z = ray.p.z + t0 * ray.v.z;
+		res.p = ft_add_v(ray.p, ray.v, t0);
 		res.dist = ft_two_pts_dist(res.p, ray.p);
-		slide.x = cy.p.x + h[0] * cy.v.x / ft_norm(cy.v);
-		slide.y = cy.p.y + h[0] * cy.v.y / ft_norm(cy.v);
-		slide.x = cy.p.z + h[0] * cy.v.z / ft_norm(cy.v);
-		res.normal = ft_2p_to_v(slide, res.p);
+		slide = ft_add_v(cy.p, ft_unit_v(cy.v), h[0]);
+		res.normal = ft_unit_v(ft_2p_to_v(slide, res.p));
 	}
 	if (h[1] >= 0 && h[1] <= cy.h)
 	{
-		t0 = (h[0] * coef[3] + coef[4]) / coef[5];
-		storage.p.x = ray.p.x + t0 * ray.v.x;
-		storage.p.y = ray.p.y + t0 * ray.v.y;
-		storage.p.z = ray.p.z + t0 * ray.v.z;
+		t0 = (h[1] * coef[3] + coef[4]) / coef[5];
+		storage.p = ft_add_v(ray.p, ray.v, t0);
 		storage.dist = ft_two_pts_dist(res.p, ray.p);
-		slide.x = cy.p.x + h[0] * cy.v.x / ft_norm(cy.v);
-		slide.y = cy.p.y + h[0] * cy.v.y / ft_norm(cy.v);
-		slide.x = cy.p.z + h[0] * cy.v.z / ft_norm(cy.v);
-		storage.normal = ft_2p_to_v(slide, res.p);
+		slide = ft_add_v(cy.p, ft_unit_v(cy.v), h[1]);
+		storage.normal = ft_unit_v(ft_2p_to_v(slide, res.p));
 	}
 	if (storage.dist < res.dist && storage.dist != -1)
 		res = storage;
