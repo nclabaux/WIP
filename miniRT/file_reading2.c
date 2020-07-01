@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/27 16:20:47 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:01:54 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,42 +76,33 @@ void	ft_sp_rd(char **s, t_scene *ascene)
 
 void	ft_sq_rd(char **s, t_scene *ascene)
 {
-	int			i;
-	t_obj_link	*new_ol;
+	int		i;
+	t_square sq;
 
-	if (!(new_ol = malloc(sizeof(t_obj_link))))
-		ft_errors(1011, "");
-	if (!(new_ol->object = malloc(sizeof(t_object))))
-		ft_errors(1011, "");
-	new_ol->next = NULL;
-	new_ol->type = 3;
 	i = 2;
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1016, "");
-	i += ft_read_point(*s + i, &(new_ol->object->sq.p));
+	i += ft_read_point(*s + i, &(sq.p));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1016, "");
-	i += ft_read_vector(*s + i, &(new_ol->object->sq.v));
+	i += ft_read_vector(*s + i, &(sq.v));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1016, "");
-	new_ol->object->sq.size = ft_atod(*s + i);
+	sq.size = ft_atod(*s + i);
 	while (ft_isdigit((*s)[i]) || (*s)[i] == '.')
 		i++;
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1016, "");
-	ft_read_color(*s + i, &(new_ol->object->sq.color));
-	ft_set_sq_data(&(new_ol->object->sq));
-	ft_set_tr_data(&(new_ol->object->sq.a));
-	ft_set_tr_data(&(new_ol->object->sq.b));
-	ft_add_object(ascene, new_ol);
+	ft_read_color(*s + i, &(sq.color));
+	ft_set_sq_data(&sq, ascene);
 }
 
 void	ft_cy_rd(char **s, t_scene *ascene)
@@ -160,36 +151,29 @@ void	ft_cy_rd(char **s, t_scene *ascene)
 
 void	ft_tr_rd(char **s, t_scene *ascene)
 {
-	int			i;
-	t_obj_link	*new_ol;
+	int		i;
+	t_triangle	tr;
 
-	if (!(new_ol = malloc(sizeof(t_obj_link))))
-		ft_errors(1011, "");
-	if (!(new_ol->object = malloc(sizeof(t_object))))
-		ft_errors(1011, "");
-	new_ol->next = NULL;
-	new_ol->type = 5;
 	i = 2;
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1018, "");
-	i += ft_read_point(*s + i, &(new_ol->object->tr.p1));
+	i += ft_read_point(*s + i, &(tr.p1));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1018, "");
-	i += ft_read_point(*s + i, &(new_ol->object->tr.p2));
+	i += ft_read_point(*s + i, &(tr.p2));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1018, "");
-	i += ft_read_point(*s + i, &(new_ol->object->tr.p3));
+	i += ft_read_point(*s + i, &(tr.p3));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1018, "");
-	ft_read_color(*s + i, &(new_ol->object->tr.color));
-	ft_set_tr_data(&(new_ol->object->tr));
-	ft_add_object(ascene, new_ol);
+	ft_read_color(*s + i, &(tr.color));
+	ft_alloc_tr(tr, ascene);
 }

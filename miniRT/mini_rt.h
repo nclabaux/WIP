@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/28 17:57:52 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:02:34 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ typedef struct	s_square
 	t_color		color;
 	t_triangle	a;
 	t_triangle	b;
+	t_triangle	c;
+	t_triangle	d;
 }				t_square;
 
 typedef struct	s_cylinder
@@ -282,7 +284,9 @@ t_intersec		ft_shot_ray(t_ray ray, t_scene scene);
 **	set_data.c
 */
 void			ft_set_tr_data(t_triangle *tr);
-void			ft_set_sq_data(t_square *sq);
+void			ft_set_sq_data(t_square *sq, t_scene *ascene);
+void			ft_create_4tr_sq(t_square *sq, t_scene *ascene);
+void			ft_alloc_tr(t_triangle tr, t_scene *ascene);
 
 /*
 **	vectorial_calculus.c
