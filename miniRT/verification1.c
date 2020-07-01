@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:44:36 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/28 17:44:18 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/01 20:11:41 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,9 @@ void	ft_cam_verif(t_scene *ascene)
 		ft_errors(1019, "");
 	while (cam)
 	{
-		if (cam->fov < 0)
-		{
-			cam->fov = 0;
-			ft_printf("Field of view changed to 0\n");
-		}
-		if (cam->fov > 180)
-		{
-			cam->fov = 180;
-			ft_printf("Field of view changed to 180\n");
-		}
+		ft_vector_verif(&(cam->v));
+		if (cam->fov < 0 || cam->fov > 180)
+			ft_errors(1012, "");
 		cam = cam->next;
 	}
 }
@@ -42,16 +35,8 @@ void	ft_light_verif(t_scene *ascene)
 	light = ascene->light_list;
 	while (light)
 	{
-		if (light->brightness < 0)
-		{
-			ascene->al.intensity = 0;
-			ft_printf("Light brightness changed to 0\n");
-		}
-		if (ascene->al.intensity > 1)
-		{
-			ascene->al.intensity = 1;
-			ft_printf("Light brightness changed to 1\n");
-		}
+		if (light->brightness < 0 || light->brightness > 1)
+			ft_errors(1013,"");
 		light = light->next;
 	}
 }

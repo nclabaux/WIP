@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:05:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/28 17:57:19 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/01 21:40:59 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,6 @@ void	ft_res_verif(t_scene *ascene, void *mlx_ptr)
 
 void	ft_al_verif(t_scene *ascene)
 {
-	if (ascene->al.intensity < 0)
-	{
-		ascene->al.intensity = 0;
-		ft_printf("Ambient light ratio has been change to 0 (min value)\n");
-	}
-	if (ascene->al.intensity > 1)
-	{
-		ascene->al.intensity = 1;
-		ft_printf("Ambient light ratio has been change to 1 (max value)\n");
-	}
+	if (ascene->al.intensity < 0 || ascene->al.intensity > 1)
+		ft_errors(1007, "");
 }

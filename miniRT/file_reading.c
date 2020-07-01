@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/28 17:29:56 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/01 21:56:44 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,49 +71,34 @@ void	ft_translate_line(char **line, t_scene *ascene)
 int		ft_read_color(char *s, t_color *color_storage)
 {
 	int	i;
-
+	
 	i = 0;
 	while (s[i] && ft_isspace(s[i]))
 		i++;
 	if (ft_isdigit(s[i]))
 		color_storage->r = ft_atoi(s + i);
 	else
-	{
-		ft_printf("%s\n", s + i);
 		ft_errors(1008, NULL);
-	}
 	while (ft_isdigit(s[i]))
 		i++;
 	if (s[i] == ',')
 		i++;
 	else
-	{
-		ft_printf("%s\n", s + i);
 		ft_errors(1008, NULL);
-	}
 	if (ft_isdigit(s[i]))
 		color_storage->g = ft_atoi(s + i);
 	else
-	{
-		ft_printf("2 %s\n", s + i);
 		ft_errors(1008, NULL);
-	}
 	while (ft_isdigit(s[i]))
 		i++;
 	if (s[i] == ',')
 		i++;
 	else
-	{
-		ft_printf("3 %s\n", s + i);
 		ft_errors(1008, NULL);
-	}
 	if (ft_isdigit(s[i]))
 		color_storage->b = ft_atoi(s + i);
 	else
-	{
-		ft_printf("4 %s\n", s + i);
 		ft_errors(1008, NULL);
-	}
 	return (i);
 }
 

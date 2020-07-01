@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/01 17:21:50 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/01 20:47:50 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ t_intersec	ft_sq_inter(t_ray ray, t_square sq)
 
 t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 {
-	double		t0;
 	double		coef[3];
 	double		roots[2];
 	t_intersec	res;
@@ -84,25 +83,28 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 	res.dist = -1;
 	coef[0] = ft_sq(ray.v.x) + ft_sq(ray.v.y) + ft_sq(ray.v.z);
 	coef[1] = 2 * (ray.v.x * (ray.p.x - sp.p.x) + ray.v.y * (ray.p.y - sp.p.y) + ray.v.z * (ray.p.z - sp.p.z));
-	coef[2] = -(ft_sq(sp.diam / 2)) + ft_sq(ray.p.x) + ft_sq(ray.p.y) + ft_sq(ray.p.z) - 2 * (ray.p.x * sp.p.x + ray.p.y * sp.p.y + ray.p.z * sp.p.z);
+	coef[2] = ft_sq(ray.p.x - sp.p.x) + ft_sq(ray.p.y - sp.p.y) + ft_sq(ray.p.z - sp.p.z) - ft_sq(sp.diam / 2); 
 	if (!(ft_solve_quadra(coef[0], coef[1], coef[2], roots)))
 		return (res);
 	if (roots[0] > 0)
 	{
-		t0 = roots[0];
-		res.p = ft_add_v(ray.p, ray.v, t0);
+		res.p = ft_add_v(ray.p, ray.v, roots[0]);
 		res.dist = ft_two_pts_dist(res.p, ray.p);
 	}
 	if (roots[1] > 0)
 	{
-		t0 = roots[1];
-		storage.p = ft_add_v(ray.p, ray.v, t0);
+		storage.p = ft_add_v(ray.p, ray.v, roots[1]);
 		storage.dist = ft_two_pts_dist(storage.p, ray.p);
 	}
 	if (storage.dist < res.dist && storage.dist != -1)
 		res = storage;
 	res.color = sp.color;
 	res.normal = ft_unit_v(ft_2p_to_v(sp.p, res.p));
+//	if (ft_two_pts_dist(ray.p, sp.p) < sp.diam / 2)
+//	{
+//		ft_printf("no");
+//		res.normal = ft_inverse_v(res.normal);
+//	}
 	return (res);
 }
 

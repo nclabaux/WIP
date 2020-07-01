@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 19:52:53 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/24 19:54:15 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/01 20:50:57 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_vector	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
 	double			q;
 
 	p = ((double)cam->fov / 2 - (double)cam->fov / scene.res.x * x) * M_PI / 180;
-	q = ((double)cam->fov / 2 * (double)scene.res.y / scene.res.x - (double)cam->fov / scene.res.x * y) * M_PI / 180;
+	q = ((double)cam->fov / 2 * (double)scene.res.y / (double)scene.res.x - (double)cam->fov / scene.res.x * y) * M_PI / 180;
 	v.x = (cam->v.x * cos(p) + cam->l.x * sin(p)) * cos(q) + cam->m.x * sin(q);
 	v.y = (cam->v.y * cos(p) + cam->l.y * sin(p)) * cos(q) + cam->m.y * sin(q);
 	v.z = (cam->v.z * cos(p) + cam->l.z * sin(p)) * cos(q) + cam->m.z * sin(q);

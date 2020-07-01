@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 18:22:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/28 17:55:53 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/01 21:42:36 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ void	ft_errors2(int i, char *s)
 	if (i == 1020)
 		ft_prt_err("Zero vector detected", i, 22);
 	if (i == 1021)
-		ft_prt_err("Vector w/ out of [-1, 1] range coordinates", i, 22);
+		ft_prt_err("Vector coordinates out of [-1, 1] range", i, 22);
 	(void)s;
 }
