@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 19:52:53 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/01 20:50:57 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/02 15:50:12 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_vector	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
 	v.x = (cam->v.x * cos(p) + cam->l.x * sin(p)) * cos(q) + cam->m.x * sin(q);
 	v.y = (cam->v.y * cos(p) + cam->l.y * sin(p)) * cos(q) + cam->m.y * sin(q);
 	v.z = (cam->v.z * cos(p) + cam->l.z * sin(p)) * cos(q) + cam->m.z * sin(q);
-	return (v);
+	return (ft_unit_v(v));
 }
 
 t_intersec	ft_shot_ray(t_ray ray, t_scene scene)

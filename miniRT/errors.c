@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 18:22:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/01 21:42:36 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/02 15:51:24 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_errors(int i, char *s)
 	if (i < 1000 || i > 1100)
 		ft_prt_err("Unknown error  ¯\\_(ツ)_/¯", i, 0);
 	if (i == 1000)
-		ft_prt_err("No file given\n\"./miniRT <file.rt> [-save]", i, 0);
+		ft_prt_err("No file given\n\"./miniRT <file.rt> [-save]\"", i, 0);
 	if (i == 1001)
 		ft_prt_err(s, i, 22);
 	if (i == 1002)

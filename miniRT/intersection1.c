@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 17:09:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/30 15:19:58 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/02 18:01:29 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,17 @@ double		*ft_set_number(t_ray ray, t_cylinder cy)
 		return (NULL);
 	if (!(coef = malloc(sizeof(double) * 5)))
 		ft_errors(12, "");
-	n[0] = cy.v.x + cy.v.y + cy.v.z;
+	n[0] = ft_sq(cy.v.x) + ft_sq(cy.v.y) + ft_sq(cy.v.z);
 	n[0] /= (ray.v.x * cy.v.x + ray.v.y * cy.v.y + ray.v.z * cy.v.z); 
-	n[1] = cy.p.x + cy.p.y + cy.p.z;
-	n[1] -= cy.v.x * ray.p.x + cy.v.y * ray.p.y + cy.v.z * ray.p.z;
+	n[1] = cy.v.x * (ray.p.x + cy.p.x) + cy.v.y * (ray.p.x + cy.p.y);
+	n[1] += cy.v.z * (ray.p.z + cy.p.z);
 	n[1] /= (ray.v.x * cy.v.x + ray.v.y * cy.v.y + ray.v.z * cy.v.z); 
 	n[2] = ray.v.x * n[0] - cy.v.x;
 	n[3] = ray.v.y * n[0] - cy.v.y;
 	n[4] = ray.v.z * n[0] - cy.v.z;
-	n[5] = ray.p.x + cy.p.x + n[1];
-	n[6] = ray.p.y + cy.p.y + n[1];
-	n[7] = ray.p.z + cy.p.z + n[1];
+	n[5] = ray.p.x + n[1] * ray.v.x - cy.p.x;
+	n[6] = ray.p.y + n[1] * ray.v.y - cy.p.y;
+	n[7] = ray.p.z + n[1] * ray.v.z - cy.p.z;
 	coef[0] = ft_sq(n[2]) + ft_sq(n[3]) + ft_sq(n[4]);
 	coef[1] = 2 * (n[2] * n[5] + n[3] * n[6] + n[4] * n[7]);
 	coef[2] = ft_sq(n[5]) + ft_sq(n[6]) + ft_sq(n[7]) - ft_sq(cy.d / 2);
