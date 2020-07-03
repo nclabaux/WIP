@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:05:42 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/25 15:04:16 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 12:28:34 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ t_color	ft_get_light(t_intersec i, t_scene scene)
 		light_source.p = i.p;
 		light_source.v = ft_unit_v(ft_2p_to_v(i.p, light->p));
 		storage = ft_shot_ray(light_source, scene);
-		lambert = (ft_scalar_prod(light_source.v, i.normal));
+		lambert = (ft_dot(light_source.v, i.normal));
 		if ((storage.dist == -1
 			|| (storage.p.x == light_source.p.x
 				&& storage.p.y == light_source.p.y
 				&& storage.p.z == light_source.p.z)
-			|| storage.dist > ft_two_pts_dist(light->p, i.p))
+			|| storage.dist > ft_2p_dist(light->p, i.p))
 				&& (lambert > 0 
 			|| (i.normal.x == 0 && i.normal.y == 0 && i.normal.z == 0)))
 		{

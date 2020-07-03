@@ -6,13 +6,13 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 18:19:39 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/12 17:39:48 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 12:07:56 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-double	ft_two_pts_dist(t_point a, t_point b)
+double	ft_2p_dist(t_td a, t_td b)
 {
 	return (hypot(hypot(a.x - b.x, a.y - b.y), a.z - b.z));
 }

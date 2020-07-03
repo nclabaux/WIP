@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:06:55 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/01 18:01:26 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 12:36:53 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_set_tr_data(t_triangle *tr)
 {
-	tr->area_x2 = ft_norm(ft_cross_prod(ft_2p_to_v(tr->p1, tr->p2), ft_2p_to_v(tr->p1, tr->p3)));
+	tr->area_x2 = ft_norm(ft_cross(ft_2p_to_v(tr->p1, tr->p2), ft_2p_to_v(tr->p1, tr->p3)));
 }
 
 void	ft_set_sq_data(t_square *sq, t_scene *ascene)
 {
-	t_vector	s;
-	t_vector	t;
+	t_td	s;
+	t_td	t;
 
 	s.x = 0;
 	s.y = -sq->v.z;
@@ -32,13 +32,13 @@ void	ft_set_sq_data(t_square *sq, t_scene *ascene)
 		s.z = 0;
 	}
 	s = ft_unit_v(s);
-	t = ft_cross_prod(ft_unit_v(sq->v), s);
+	t = ft_cross(ft_unit_v(sq->v), s);
 	sq->a.p1 = sq->p;
-	sq->a.p2 = ft_add_v(sq->p, s, sq->size);
-	sq->a.p3 = ft_add_v(sq->p, t, sq->size);
+	sq->a.p2 = ft_add_td_n(sq->p, s, sq->size);
+	sq->a.p3 = ft_add_td_n(sq->p, t, sq->size);
 	sq->b.p1 = sq->a.p2;
 	sq->b.p2 = sq->a.p3;
-	sq->b.p3 = ft_add_v(sq->a.p2, t, sq->size);
+	sq->b.p3 = ft_add_td_n(sq->a.p2, t, sq->size);
 	sq->a.color = sq->color;
 	sq->b.color = sq->color;
 	ft_create_4tr_sq(sq, ascene);

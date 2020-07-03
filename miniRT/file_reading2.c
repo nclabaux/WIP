@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/01 18:01:54 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 12:13:30 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	ft_pl_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1014, "");
-	i += ft_read_point(*s + i, &(new_ol->object->pl.p));
+	i += ft_read_td(*s + i, &(new_ol->object->pl.p));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1014, "");
-	i += ft_read_vector(*s + i, &(new_ol->object->pl.v));
+	i += ft_read_td(*s + i, &(new_ol->object->pl.v));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))
@@ -58,7 +58,7 @@ void	ft_sp_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1015, "");
-	i += ft_read_point(*s + i, &(new_ol->object->sp.p));
+	i += ft_read_td(*s + i, &(new_ol->object->sp.p));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))
@@ -84,12 +84,12 @@ void	ft_sq_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1016, "");
-	i += ft_read_point(*s + i, &(sq.p));
+	i += ft_read_td(*s + i, &(sq.p));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1016, "");
-	i += ft_read_vector(*s + i, &(sq.v));
+	i += ft_read_td(*s + i, &(sq.v));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))
@@ -121,12 +121,12 @@ void	ft_cy_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1017, "");
-	i += ft_read_point(*s + i, &(new_ol->object->cy.p));
+	i += ft_read_td(*s + i, &(new_ol->object->cy.p));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1017, "");
-	i += ft_read_vector(*s + i, &(new_ol->object->cy.v));
+	i += ft_read_td(*s + i, &(new_ol->object->cy.v));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))
@@ -159,17 +159,17 @@ void	ft_tr_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1018, "");
-	i += ft_read_point(*s + i, &(tr.p1));
+	i += ft_read_td(*s + i, &(tr.p1));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1018, "");
-	i += ft_read_point(*s + i, &(tr.p2));
+	i += ft_read_td(*s + i, &(tr.p2));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1018, "");
-	i += ft_read_point(*s + i, &(tr.p3));
+	i += ft_read_td(*s + i, &(tr.p3));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))

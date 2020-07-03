@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:05:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/01 21:40:59 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 12:18:26 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_scene_verif(t_scene *ascene, void *mlx_ptr)
 	ft_object_verif(ascene);
 }
 
-void	ft_vector_verif(t_vector *v)
+void	ft_td_verif(t_td *v)
 {
 	if (!v->x && !v->y && !v->z)
 		ft_errors(1020, "");

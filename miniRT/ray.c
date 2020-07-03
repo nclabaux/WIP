@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 19:52:53 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/02 15:50:12 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 12:17:13 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void		ft_init_scene(t_scene *ascene)
 	ascene->object_list = NULL;
 }
 
-t_vector	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
+t_td	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
 {
-	t_vector		v;
+	t_td		v;
 	double			p;
 	double			q;
 

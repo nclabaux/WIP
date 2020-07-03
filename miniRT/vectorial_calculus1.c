@@ -6,26 +6,26 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 15:45:15 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/27 16:11:43 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 12:38:19 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_point		ft_add_v(t_point p, t_vector v, double coef)
+t_td		ft_add_td_n(t_td p, t_td v, double n)
 {
-	t_point	res;
+	t_td	res;
 
-	res.x = p.x + v.x * coef;
-	res.y = p.y + v.y * coef;
-	res.z = p.z + v.z * coef;
+	res.x = p.x + v.x * n;
+	res.y = p.y + v.y * n;
+	res.z = p.z + v.z * n;
 	return (res);
 }
 
-t_vector	ft_unit_v(t_vector v)
+t_td	ft_unit_v(t_td v)
 {
 	double		norm;
-	t_vector	res;
+	t_td	res;
 
 	norm = ft_norm(v);
 	res.x = v.x / norm;
@@ -34,12 +34,20 @@ t_vector	ft_unit_v(t_vector v)
 	return (res);
 }
 
-t_vector	ft_inverse_v(t_vector v)
+t_td	ft_inverse(t_td v)
 {
-	t_vector	res;
+	t_td	res;
 
 	res.x = -v.x;
 	res.y = -v.y;
 	res.z = -v.z;
 	return (res);
+}
+
+t_td	ft_multi_td(t_td v, double n)
+{
+	t_td	origin;
+
+	origin = (t_td){0,0,0};
+	return (ft_add_td_n(origin, v, n));
 }

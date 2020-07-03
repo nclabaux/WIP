@@ -6,32 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 16:12:54 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/28 17:22:37 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 12:28:03 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-
-int		ft_read_vector(char *s, t_vector *vector)
-{
-	int	i;
-
-	i = 0;
-	while (ft_isspace(s[i]))
-		i++;
-	i += ft_read_double(s + i, &vector->x);
-	if (s[i] == ',')
-		i++;
-	else
-		ft_errors(1010, "");
-	i += ft_read_double(s + i, &vector->y);
-	if (s[i] == ',')
-		i++;
-	else
-		ft_errors(1010, "");
-	i += ft_read_double(s + i, &vector->z);
-	return (i);
-}
 
 void	ft_res_rd(char **s, t_scene *ascene)
 {
@@ -87,12 +66,12 @@ void	ft_cam_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1012, "");
-	i += ft_read_point((*s) + i, &new_cam->p);
+	i += ft_read_td((*s) + i, &new_cam->p);
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1012, "");
-	i += ft_read_vector(*s + i, &new_cam->v);
+	i += ft_read_td(*s + i, &new_cam->v);
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))
@@ -104,7 +83,7 @@ void	ft_cam_rd(char **s, t_scene *ascene)
 	new_cam->l.z = 0;
 	if (!new_cam->l.x && !new_cam->l.y)
 		new_cam->l.x = 1;
-	new_cam->m = ft_cross_prod(new_cam->v, new_cam->l);
+	new_cam->m = ft_cross(new_cam->v, new_cam->l);
 	ft_add_cam(ascene, new_cam);
 }
 
@@ -120,7 +99,7 @@ void	ft_light_rd(char **s, t_scene *ascene)
 		i++;
 	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
 		ft_errors(1013, "");
-	i += ft_read_point(*s + i, &new_light->p);
+	i += ft_read_td(*s + i, &new_light->p);
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))

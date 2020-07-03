@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/01 21:56:44 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 12:11:57 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,23 +123,23 @@ int		ft_read_double(char *s, double *coor)
 	return (i);
 }
 
-int		ft_read_point(char *s, t_point *point)
+int		ft_read_td(char *s, t_td *atd)
 {
 	int	i;
 
 	i = 0;
 	while (s[i] && ft_isspace(s[i]))
 		i++;
-	i += ft_read_double(s + i, &point->x);
+	i += ft_read_double(s + i, &atd->x);
 	if (s[i] == ',')
 		i++;
 	else
 		ft_errors(1009, NULL);
-	i += ft_read_double(s + i, &point->y);
+	i += ft_read_double(s + i, &atd->y);
 	if (s[i] == ',')
 		i++;
 	else
 		ft_errors(1009, NULL);
-	i += ft_read_double(s + i, &point->z);
+	i += ft_read_double(s + i, &atd->z);
 	return (i);
 }

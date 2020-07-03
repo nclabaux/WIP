@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/01 20:47:50 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 14:13:19 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ t_intersec	ft_pl_inter(t_ray ray, t_plane pl)
 	t0 = (d - pl.v.x * ray.p.x - pl.v.y * ray.p.y - pl.v.z * ray.p.z) / div;
 	if (t0 <= 0)
 		return (res);
-	res.p = ft_add_v(ray.p, ray.v, t0);
-	res.dist = ft_two_pts_dist(ray.p, res.p);
+	res.p = ft_add_td_n(ray.p, ray.v, t0);
+	res.dist = ft_2p_dist(ray.p, res.p);
 	res.normal = ft_unit_v(pl.v);
-	if (ft_scalar_prod(res.normal, ft_unit_v(ft_2p_to_v(res.p, ray.p))) < 0)
-		res.normal = ft_inverse_v(res.normal);
+	if (ft_dot(res.normal, ft_unit_v(ft_2p_to_v(res.p, ray.p))) < 0)
+		res.normal = ft_inverse(res.normal);
 	res.color = pl.color;
 	return (res);
 }
@@ -48,7 +48,7 @@ t_intersec	ft_tr_inter(t_ray ray, t_triangle tr)
 	res = ft_pl_inter(ray, pl);
 	if (res.dist != -1)
 	{
-		if (!(ft_point_in_triangle(res.p, tr)))
+		if (!(ft_td_in_triangle(res.p, tr)))
 			res.dist = -1;
 	}
 	res.color = tr.color;
@@ -88,22 +88,22 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 		return (res);
 	if (roots[0] > 0)
 	{
-		res.p = ft_add_v(ray.p, ray.v, roots[0]);
-		res.dist = ft_two_pts_dist(res.p, ray.p);
+		res.p = ft_add_td_n(ray.p, ray.v, roots[0]);
+		res.dist = ft_2p_dist(res.p, ray.p);
 	}
 	if (roots[1] > 0)
 	{
-		storage.p = ft_add_v(ray.p, ray.v, roots[1]);
-		storage.dist = ft_two_pts_dist(storage.p, ray.p);
+		storage.p = ft_add_td_n(ray.p, ray.v, roots[1]);
+		storage.dist = ft_2p_dist(storage.p, ray.p);
 	}
 	if (storage.dist < res.dist && storage.dist != -1)
 		res = storage;
 	res.color = sp.color;
 	res.normal = ft_unit_v(ft_2p_to_v(sp.p, res.p));
-//	if (ft_two_pts_dist(ray.p, sp.p) < sp.diam / 2)
+//	if (ft_2p_dist(ray.p, sp.p) < sp.diam / 2)
 //	{
 //		ft_printf("no");
-//		res.normal = ft_inverse_v(res.normal);
+//		res.normal = ft_inverse(res.normal);
 //	}
 	return (res);
 }
@@ -117,16 +117,16 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 
 	base_disc.p = cy.p;
 	base_disc.v = cy.v;
-	upper_disc.p = ft_add_v(cy.p, ft_unit_v(cy.v), cy.h);
+	upper_disc.p = ft_add_td_n(cy.p, ft_unit_v(cy.v), cy.h);
 	upper_disc.v = cy.v;
 	res.dist = -1;
 	res = ft_pl_inter(ray, base_disc);
 	if (res.dist > 0)
 	{
-		if (ft_two_pts_dist(res.p, cy.p) <= ft_sq(cy.d / 2))
+		if (ft_2p_dist(res.p, cy.p) <= cy.d / 2)
 		{
-			res.dist = ft_two_pts_dist(ray.p, res.p);
-			res.normal = ft_unit_v(ft_inverse_v(cy.v));
+			res.dist = ft_2p_dist(ray.p, res.p);
+			res.normal = ft_unit_v(ft_inverse(cy.v));
 		}
 		else
 			res.dist = -1;
@@ -134,18 +134,18 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 	storage = ft_pl_inter(ray, upper_disc);
 	if (storage.dist > 0)
 	{
-		if (ft_two_pts_dist(storage.p, upper_disc.p) <= ft_sq(cy.d / 2))
+		if (ft_2p_dist(storage.p, upper_disc.p) <= cy.d / 2)
 		{
-			storage.dist = ft_two_pts_dist(ray.p, storage.p);
+			storage.dist = ft_2p_dist(ray.p, storage.p);
 			storage.normal = ft_unit_v(cy.v);
 		}
 		else
 			storage.dist = -1;
-		if (res.dist < 0 || (storage.dist < res.dist && storage.dist > 0))
+		if ((storage.dist < res.dist && storage.dist != -1))
 			res = storage;
 	}
 	storage = ft_cy_side(ray, cy);
-	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
+	if (res.dist == -1 || (storage.dist < res.dist + 0.000001 && storage.dist != -1))
 		res = storage;
 	res.color = cy.color;
 	return (res);

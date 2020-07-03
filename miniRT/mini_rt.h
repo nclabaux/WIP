@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/01 18:02:34 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 12:26:47 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,12 @@
 # include "libft/ft_printf/ft_printf.h"
 # include "libft/gnl/get_next_line.h"
 
-typedef struct	s_point
+typedef struct	s_td
 {
 	double	x;
 	double	y;
 	double	z;
-}				t_point;
-
-typedef	struct	s_vector
-{
-	double	x;
-	double	y;
-	double	z;
-}				t_vector;
+}				t_td;
 
 typedef struct	s_color
 {
@@ -62,17 +55,17 @@ typedef struct	s_amb_light
 
 typedef struct	s_camera
 {
-	t_point			p;
-	t_vector		v;
-	t_vector		l;
-	t_vector		m;
+	t_td			p;
+	t_td		v;
+	t_td		l;
+	t_td		m;
 	int				fov;
 	struct s_camera	*next;
 }				t_camera;
 
 typedef struct	s_light
 {
-	t_point			p;
+	t_td			p;
 	double			brightness;
 	t_color			color;
 	struct s_light	*next;
@@ -80,31 +73,31 @@ typedef struct	s_light
 
 typedef struct	s_sphere
 {
-	t_point	p;
+	t_td	p;
 	double	diam;
 	t_color	color;
 }				t_sphere;
 
 typedef struct	s_plane
 {
-	t_point		p;
-	t_vector	v;
+	t_td		p;
+	t_td	v;
 	t_color		color;
 }				t_plane;
 
 typedef struct	s_triangle
 {
-	t_point	p1;
-	t_point	p2;
-	t_point	p3;
+	t_td	p1;
+	t_td	p2;
+	t_td	p3;
 	t_color	color;
 	double	area_x2;
 }				t_triangle;
 
 typedef struct	s_square
 {
-	t_point		p;
-	t_vector	v;
+	t_td		p;
+	t_td	v;
 	double		size;
 	t_color		color;
 	t_triangle	a;
@@ -115,8 +108,8 @@ typedef struct	s_square
 
 typedef struct	s_cylinder
 {
-	t_point		p;
-	t_vector	v;
+	t_td		p;
+	t_td	v;
 	double		d;
 	double		h;
 	t_color		color;
@@ -149,15 +142,15 @@ typedef struct	s_scene
 
 typedef struct	s_ray
 {
-	t_point		p;
-	t_vector	v;
+	t_td		p;
+	t_td	v;
 }				t_ray;
 
 typedef struct	s_intersec
 {
-	t_point		p;
+	t_td		p;
 	double		dist;
-	t_vector	normal;
+	t_td	normal;
 	t_color		color;
 }				t_intersec;
 
@@ -191,7 +184,7 @@ unsigned int	ft_get_color(t_ray ray, void *mlx_ptr, t_scene scene);
 /*
 **	distance.c
 */
-double			ft_two_pts_dist(t_point a, t_point b);
+double			ft_2p_dist(t_td a, t_td b);
 
 /*
 **	errors.c
@@ -208,12 +201,11 @@ void			ft_read_file(char *file, t_scene *ascene);
 void			ft_translate_line(char **line, t_scene *ascene);
 int				ft_read_color(char *s, t_color *color_storage);
 int				ft_read_double(char *s, double *coor);
-int				ft_read_point(char*s, t_point *point);
+int				ft_read_td(char*s, t_td *point);
 
 /*
 **	file_reading1.c
 */
-int				ft_read_vector(char *s, t_vector *vector);
 void			ft_res_rd(char **line, t_scene *ascene);
 void			ft_al_rd(char **line, t_scene *ascene);
 void			ft_cam_rd(char **line, t_scene *ascene);
@@ -247,7 +239,7 @@ t_intersec		ft_cy_inter(t_ray ray, t_cylinder cy);
 /*
 **	intersection1.c
 */
-double			ft_point_in_triangle(t_point p, t_triangle tr);
+double			ft_td_in_triangle(t_td p, t_triangle tr);
 t_intersec		ft_cy_side(t_ray ray, t_cylinder cy);
 double			*ft_set_number(t_ray ray, t_cylinder cy);
 
@@ -277,7 +269,7 @@ int				main(int argc, char **argv);
 **	ray.c
 */
 void			ft_init_scene(t_scene *ascene);
-t_vector		ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y);
+t_td		ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y);
 t_intersec		ft_shot_ray(t_ray ray, t_scene scene);
 
 /*
@@ -291,24 +283,25 @@ void			ft_alloc_tr(t_triangle tr, t_scene *ascene);
 /*
 **	vectorial_calculus.c
 */
-t_vector		ft_3p_to_v(t_point a, t_point b, t_point c);
-double			ft_scalar_prod(t_vector a, t_vector b);
-t_vector		ft_cross_prod(t_vector a, t_vector b);
-double			ft_norm(t_vector v);
-t_vector		ft_2p_to_v(t_point a, t_point b);
+t_td		ft_3p_to_v(t_td a, t_td b, t_td c);
+double			ft_dot(t_td a, t_td b);
+t_td		ft_cross(t_td a, t_td b);
+double			ft_norm(t_td v);
+t_td		ft_2p_to_v(t_td a, t_td b);
 
 /*
 **	vectorial_calculus1.c
 */
-t_point			ft_add_v(t_point p, t_vector v, double	size);
-t_vector		ft_unit_v(t_vector v);
-t_vector		ft_inverse_v(t_vector v);
+t_td			ft_add_td_n(t_td p, t_td v, double n);
+t_td		ft_unit_v(t_td v);
+t_td		ft_inverse(t_td v);
+t_td		ft_multi_td(t_td v, double n);
 
 /*
 **	verification.c
 */
 void			ft_scene_verif(t_scene *ascene, void *mlx_ptr);
-void			ft_vector_verif(t_vector *v);
+void			ft_td_verif(t_td *v);
 void			ft_res_verif(t_scene *ascene, void *mlx_ptr);
 void			ft_al_verif(t_scene *ascene);
 
