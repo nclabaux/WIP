@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:05:42 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/03 12:28:34 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 14:58:30 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ t_color	ft_get_light(t_intersec i, t_scene scene)
 
 	if (i.dist == -1)
 	{
-		res.r = 0;
-		res.g = 0;
-		res.b = 0;
+		res = (t_color){0, 0, 0};
 		return (res);
 	}
 	c = ft_weight_color(scene.al.color, scene.al.intensity);
@@ -39,16 +37,13 @@ t_color	ft_get_light(t_intersec i, t_scene scene)
 		storage = ft_shot_ray(light_source, scene);
 		lambert = (ft_dot(light_source.v, i.normal));
 		if ((storage.dist == -1
-			|| (storage.p.x == light_source.p.x
-				&& storage.p.y == light_source.p.y
-				&& storage.p.z == light_source.p.z)
-			|| storage.dist > ft_2p_dist(light->p, i.p))
-				&& (lambert > 0 
-			|| (i.normal.x == 0 && i.normal.y == 0 && i.normal.z == 0)))
+				|| (storage.p.x == light_source.p.x
+					&& storage.p.y == light_source.p.y
+					&& storage.p.z == light_source.p.z)
+				|| storage.dist > ft_2p_dist(light->p, i.p))
+			&& lambert > 0)
 		{
-			c.r = 0;
-			c.g = 0;
-			c.b = 0;
+			c = (t_color){0, 0, 0};
 			c = ft_weight_color(light->color, light->brightness);
 			c = ft_multiply_colors(c, i.color);
 			c = ft_weight_color(c, lambert);

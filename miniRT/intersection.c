@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/03 14:13:19 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/03 15:19:59 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_intersec	ft_pl_inter(t_ray ray, t_plane pl)
 	if (!(div))
 		return (res);
 	t0 = (d - pl.v.x * ray.p.x - pl.v.y * ray.p.y - pl.v.z * ray.p.z) / div;
-	if (t0 <= 0)
+	if (t0 <= 0.000001)
 		return (res);
 	res.p = ft_add_td_n(ray.p, ray.v, t0);
 	res.dist = ft_2p_dist(ray.p, res.p);
@@ -145,7 +145,7 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 			res = storage;
 	}
 	storage = ft_cy_side(ray, cy);
-	if (res.dist == -1 || (storage.dist < res.dist + 0.000001 && storage.dist != -1))
+	if (res.dist == -1 || (storage.dist < res.dist + 0.00001 && storage.dist != -1))
 		res = storage;
 	res.color = cy.color;
 	return (res);
