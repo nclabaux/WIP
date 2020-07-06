@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 15:34:32 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/05/12 17:37:20 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/06 14:24:43 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,10 @@ void	ft_add_object(t_scene *ascene, t_obj_link *new_ol)
 {
 	new_ol->next = ascene->object_list;
 	ascene->object_list = new_ol;
+}
+
+void	ft_add_img_link(t_scene *ascene, t_img_link *new_img_link)
+{
+	new_img_link->next = ascene->img_list;
+	ascene->img_list = new_img_link;
 }

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/03 15:19:59 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/04 15:25:32 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,21 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 	double		roots[2];
 	t_intersec	res;
 	t_intersec	storage;
+	t_td		m;
 
 	res.dist = -1;
-	coef[0] = ft_sq(ray.v.x) + ft_sq(ray.v.y) + ft_sq(ray.v.z);
-	coef[1] = 2 * (ray.v.x * (ray.p.x - sp.p.x) + ray.v.y * (ray.p.y - sp.p.y) + ray.v.z * (ray.p.z - sp.p.z));
-	coef[2] = ft_sq(ray.p.x - sp.p.x) + ft_sq(ray.p.y - sp.p.y) + ft_sq(ray.p.z - sp.p.z) - ft_sq(sp.diam / 2); 
+	m = ft_2p_to_v(sp.p, ray.p);
+	coef[0] = ft_dot(ray.v, ray.v);
+	coef[1] = 2 * ft_dot(ray.v, m);
+	coef[2] = ft_dot(m, m) - ft_sq(sp.diam / 2); 
 	if (!(ft_solve_quadra(coef[0], coef[1], coef[2], roots)))
 		return (res);
-	if (roots[0] > 0)
+	if (roots[0] > 0.000001)
 	{
 		res.p = ft_add_td_n(ray.p, ray.v, roots[0]);
 		res.dist = ft_2p_dist(res.p, ray.p);
 	}
-	if (roots[1] > 0)
+	if (roots[1] > 0.000001)
 	{
 		storage.p = ft_add_td_n(ray.p, ray.v, roots[1]);
 		storage.dist = ft_2p_dist(storage.p, ray.p);
@@ -100,11 +102,8 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 		res = storage;
 	res.color = sp.color;
 	res.normal = ft_unit_v(ft_2p_to_v(sp.p, res.p));
-//	if (ft_2p_dist(ray.p, sp.p) < sp.diam / 2)
-//	{
-//		ft_printf("no");
-//		res.normal = ft_inverse(res.normal);
-//	}
+	if (ft_2p_dist(ray.p, sp.p) < sp.diam / 2)
+		res.normal = ft_inverse(res.normal);
 	return (res);
 }
 
@@ -120,17 +119,20 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 	upper_disc.p = ft_add_td_n(cy.p, ft_unit_v(cy.v), cy.h);
 	upper_disc.v = cy.v;
 	res.dist = -1;
-	res = ft_pl_inter(ray, base_disc);
-	if (res.dist > 0)
+	res = ft_cy_side(ray, cy);
+	storage = ft_pl_inter(ray, base_disc);
+	if (storage.dist > 0)
 	{
-		if (ft_2p_dist(res.p, cy.p) <= cy.d / 2)
+		if (ft_2p_dist(storage.p, cy.p) <= cy.d / 2)
 		{
-			res.dist = ft_2p_dist(ray.p, res.p);
-			res.normal = ft_unit_v(ft_inverse(cy.v));
+			storage.dist = ft_2p_dist(ray.p, storage.p);
+			storage.normal = ft_unit_v(ft_inverse(cy.v));
 		}
 		else
-			res.dist = -1;
+			storage.dist = -1;
 	}
+	if (res.dist == -1 || (storage.dist <= res.dist + 0.000001 && storage.dist != -1))
+		res = storage;
 	storage = ft_pl_inter(ray, upper_disc);
 	if (storage.dist > 0)
 	{
@@ -141,11 +143,8 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 		}
 		else
 			storage.dist = -1;
-		if ((storage.dist < res.dist && storage.dist != -1))
-			res = storage;
 	}
-	storage = ft_cy_side(ray, cy);
-	if (res.dist == -1 || (storage.dist < res.dist + 0.00001 && storage.dist != -1))
+	if (res.dist == -1 || (storage.dist <= res.dist + 0.000001 && storage.dist != -1))
 		res = storage;
 	res.color = cy.color;
 	return (res);

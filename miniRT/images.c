@@ -6,61 +6,66 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 14:11:37 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/25 15:10:25 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/06 16:48:48 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	ft_gen_img(t_scene scene, t_img_link **img_lst, void *mlx_ptr)
+void	ft_gen_img(t_scene *ascene, void *mlx_ptr)
 {
-	int				x;
-	int				y;
+	t_pixel	px;
 	t_ray			ray;
 	t_camera		*cam;
 	t_img_link		*new;
-	unsigned int	color;
-	void			*win_ptr;
+//	void			*win_ptr;
 
-	cam = scene.cam_list;
+	cam = ascene->cam_list;
 	if (!(new = malloc(sizeof(t_img_link))))
 		return ;
 	while (cam)
 	{
-		//ft_set_image(&new, mlx_ptr, scene);
-		win_ptr = mlx_new_window(mlx_ptr, scene.res.x, scene.res.y, "one");
-		if (*img_lst)
-			new->next = *img_lst;
-		else
-			new->next = NULL;
-		*img_lst = new;
-		y = 0;
+		new = ft_set_image(mlx_ptr, *ascene);
+//		win_ptr = mlx_new_window(mlx_ptr, scene.res.x, scene.res.y, "one");
+		new->next = NULL;
+		px.y = 0;
 		ray.p = cam->p;
-		while (y < scene.res.y)
+		while (px.y < ascene->res.y)
 		{
-			x = 0;
-			while (x < scene.res.x)
+			px.x = 0;
+			while (px.x < ascene->res.x)
 			{
-				ray.v = ft_get_ray_v(scene, cam, x, y);
-				color = ft_get_color(ray, mlx_ptr, scene);
-				mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
-				(void)color;
-				x++;
+				ray.v = ft_get_ray_v(*ascene, cam, px.x, px.y);
+				px.color = ft_get_color(ray, mlx_ptr, *ascene);
+				//mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
+				ft_add_pixel(new, px);
+				px.x++;
 			}
-			y++;
+			px.y++;
 		}
+		ft_add_img_link(ascene, new);
 		cam = cam->next;
 	}
 }
 
-void	ft_set_image(t_img_link **il, void *mlx_ptr, t_scene scene)
+t_img_link	*ft_set_image(void *mlx_ptr, t_scene scene)
 {
-	ft_printf("%p\n%p\n%d\t%d\n", *il, mlx_ptr, scene.res.x, scene.res.y);
-	(*il)->ip = mlx_new_image(mlx_ptr, scene.res.x, scene.res.y);
-	(*il)->fp = mlx_get_data_addr(&((*il)->ip), &((*il)->bpp), &((*il)->sl), &((*il)->en));
-	ft_printf("\nip:%p\tfp:%p\tbpp:%d\tsl:%d\tendian:%d\n", (*il)->ip, (*il)->fp, (*il)->bpp, (*il)->sl, (*il)->en);
+	t_img_link	*res;
+	
+	if (!(res = malloc(sizeof(t_img_link))))
+		ft_errors(1011, "");
+	res->ip = mlx_new_image(mlx_ptr, scene.res.x, scene.res.y);
+	res->fp = (int *)mlx_get_data_addr(&res->ip, &res->bpp, &res->sl, &res->en);
+	ft_printf("%p\n%p\n%d\t%d\t%d\n", res, res->fp, res->bpp, res->sl, res->en);
+	return (res);
 }
 
+void	ft_add_pixel(t_img_link *il, t_pixel px)
+{
+	ft_printf("%p\n%p\n%d\t%d\t%d\n", il, il->fp, il->bpp, il->sl, il->en);
+	(il->fp)[px.x + px.y * il->sl] = px.color;
+}
+		
 void	ft_create_bmp(void *image, char *filename, t_scene scene)
 {
 	int fd;

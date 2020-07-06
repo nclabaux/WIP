@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 18:52:34 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/24 19:44:10 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/06 14:01:53 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ unsigned int	ft_get_color(t_ray ray, void *mlx_ptr, t_scene scene)
 	t_color			color;
 
 	color = ft_get_light(ft_shot_ray(ray, scene), scene);
-	res = /*mlx_get_color_value(mlx_ptr,*/ ft_rgb_to_int(color)/*)*/;
-//	printf("%d\t%d\t%d\t%u\n", color.r, color.g, color.b, res);
-	(void)mlx_ptr;
+	res = mlx_get_color_value(mlx_ptr, ft_rgb_to_int(color));
 	return (res);
 }

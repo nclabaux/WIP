@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/03 12:26:47 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/06 14:58:30 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,16 @@ typedef	struct	s_obj_link
 	struct s_obj_link	*next;
 }				t_obj_link;
 
+typedef struct	s_img_link
+{
+	void				*ip;
+	int					*fp;
+	int					bpp;
+	int					sl;
+	int					en;
+	struct s_img_link	*next;
+}				t_img_link;
+
 typedef struct	s_scene
 {
 	t_resolution	res;
@@ -138,6 +148,7 @@ typedef struct	s_scene
 	t_camera		*cam_list;
 	t_light			*light_list;
 	t_obj_link		*object_list;
+	t_img_link		*img_list;
 }				t_scene;
 
 typedef struct	s_ray
@@ -150,19 +161,16 @@ typedef struct	s_intersec
 {
 	t_td		p;
 	double		dist;
-	t_td	normal;
+	t_td		normal;
 	t_color		color;
 }				t_intersec;
 
-typedef struct	s_img_link
+typedef struct	s_pixel
 {
-	void				*ip;
-	char				*fp;
-	int					bpp;
-	int					sl;
-	int					en;
-	struct s_img_link	*next;
-}				t_img_link;
+	int		x;
+	int		y;
+	unsigned int	color;
+}				t_pixel;
 
 /*
 **	calculus.c
@@ -223,8 +231,9 @@ void			ft_tr_rd(char **line, t_scene *ascene);
 /*
 **	images.c
 */
-void			ft_gen_img(t_scene scene, t_img_link **img_lst, void *mlx_ptr);
-void			ft_set_image(t_img_link **il, void *mlx_ptr, t_scene scene);
+void			ft_gen_img(t_scene *ascene, void *mlx_ptr);
+t_img_link		*ft_set_image(void *mlx_ptr, t_scene scene);
+void			ft_add_pixel(t_img_link	*il, t_pixel px);
 void			ft_create_bmp(void *image, char *filename, t_scene scene);
 
 /*
@@ -254,6 +263,7 @@ t_color			ft_get_light(t_intersec i, t_scene scene);
 void			ft_add_cam(t_scene *ascene, t_camera *new_cam);
 void			ft_add_light(t_scene *ascene, t_light *new_light);
 void			ft_add_object(t_scene *ascene, t_obj_link *new_ol);
+void			ft_add_img_link(t_scene *ascene, t_img_link *new_img_link);
 
 /*
 **	loop.c
