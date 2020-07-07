@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/06/24 19:56:10 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/07/07 19:38:30 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS =	calculus.c\
 	intersection.c\
 	intersection1.c\
 	list_handling.c\
+	loop.c\
 	ray.c\
 	set_data.c\
 	vectorial_calculus.c\
@@ -33,7 +34,6 @@ SRCS =	calculus.c\
 
 A = 	\
     	main.c\
-	loop.c
 
 OBJS = $(SRCS:.c=.o)
 

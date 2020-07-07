@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/06 14:58:30 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/07 20:24:18 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ typedef	struct	s_obj_link
 typedef struct	s_img_link
 {
 	void				*ip;
-	int					*fp;
+	unsigned int				*fp;
 	int					bpp;
 	int					sl;
 	int					en;
@@ -268,7 +268,9 @@ void			ft_add_img_link(t_scene *ascene, t_img_link *new_img_link);
 /*
 **	loop.c
 */
-int				esc_key_pressed(int key, void *p);
+int				ft_key(int key, void *p[4]);
+void			ft_disp_next_img(t_img_link **img, void *mlx_ptr, void *win_ptr);
+void			ft_terminator(t_scene *ascene);
 
 /*
 **	main.c
