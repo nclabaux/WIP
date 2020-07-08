@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 14:11:37 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/07 20:39:30 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/08 19:16:38 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ void	ft_gen_img(t_scene *ascene, void *mlx_ptr)
 	t_ray			ray;
 	t_camera		*cam;
 	t_img_link		*new;
-	t_img_link		*last;
+	int				nbr;
 
 	cam = ascene->cam_list;
 	if (!(new = malloc(sizeof(t_img_link))))
-		return ;
+		ft_errors(1011, "");
+	nbr = 1;
 	while (cam)
 	{
+		ft_printf("\033[01;37m\tImage %d / %d ", nbr, ascene->cam_nbr);
 		new = ft_set_image(mlx_ptr, *ascene);
 		new->next = NULL;
 		px.y = 0;
@@ -41,11 +43,12 @@ void	ft_gen_img(t_scene *ascene, void *mlx_ptr)
 			}
 			px.y++;
 		}
+		new->total = ascene->cam_nbr;
+		new->nbr = nbr++;
 		ft_add_img_link(ascene, new);
-		last = new;
+		ft_printf("\033[01;32mrendered!\n");
 		cam = cam->next;
 	}
-	last->next = ascene->img_list;
 }
 
 t_img_link	*ft_set_image(void *mlx_ptr, t_scene scene)

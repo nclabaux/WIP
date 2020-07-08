@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/07 20:24:18 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/08 19:05:19 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ typedef struct	s_img_link
 	int					bpp;
 	int					sl;
 	int					en;
+	int					nbr;
+	int					total;
 	struct s_img_link	*next;
 }				t_img_link;
 
@@ -146,6 +148,7 @@ typedef struct	s_scene
 	t_resolution	res;
 	t_amb_light		al;
 	t_camera		*cam_list;
+	int				cam_nbr;
 	t_light			*light_list;
 	t_obj_link		*object_list;
 	t_img_link		*img_list;
@@ -269,13 +272,15 @@ void			ft_add_img_link(t_scene *ascene, t_img_link *new_img_link);
 **	loop.c
 */
 int				ft_key(int key, void *p[4]);
-void			ft_disp_next_img(t_img_link **img, void *mlx_ptr, void *win_ptr);
+void			ft_disp_next_img(void *p[4]);
+void			ft_disp_prev_img(void *p[4]);
 void			ft_terminator(t_scene *ascene);
 
 /*
 **	main.c
 */
 int				main(int argc, char **argv);
+void			ft_put_images_to_window(void *mlx_ptr, t_scene *ascene);
 
 /*
 **	ray.c

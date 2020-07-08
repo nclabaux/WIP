@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 19:52:53 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/06 13:11:46 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/08 15:30:41 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		ft_init_scene(t_scene *ascene)
 	ascene->al.color.g = 0;
 	ascene->al.color.b = 0;
 	ascene->cam_list = NULL;
+	ascene->cam_nbr = 0;
 	ascene->light_list = NULL;
 	ascene->object_list = NULL;
 	ascene->img_list = NULL;

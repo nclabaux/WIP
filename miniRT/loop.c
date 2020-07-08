@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 15:20:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/07 20:58:32 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/08 19:25:58 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,63 +17,90 @@ int		ft_key(int key, void *p[4])
 	if (key == 65307)
 	{
 		mlx_destroy_window(p[0], p[1]);
-		ft_terminator(p[3]);
+		ft_terminator(p[2]);
 		exit(0);
 	}
-	else if (key == 65421 || key == 65293 || key == 32)
-		ft_disp_next_img((t_img_link **)&p[2], p[0], p[1]);
+	else if (key == 65363)
+		ft_disp_next_img(p);
+	else if (key == 65361)
+		ft_disp_prev_img(p);
 	return (0);
 }
 
-void	ft_disp_next_img(t_img_link **img, void *mlx_ptr, void *win_ptr)
+void	ft_disp_next_img(void *p[4])
 {
-	//	*img = (*img)->next;
-		mlx_clear_window(mlx_ptr, win_ptr);
-	//	mlx_put_image_to_window(mlx_ptr, win_ptr, (*img)->ip, 0, 0);
-		(void)img;
+	t_scene		*ascene;
+	t_img_link	*il;
+	int		*current;
+	int		to_be_displayed;
+
+	ascene = p[2];
+	il = ascene->img_list;
+	current = p[3];
+	to_be_displayed = *current + 1;
+	if (to_be_displayed > ascene->cam_nbr)
+		to_be_displayed = 1;
+	*current = to_be_displayed;
+	while (il->nbr != to_be_displayed)
+		il = il->next;
+	mlx_put_image_to_window(p[0], p[1], il->ip, 0, 0);
+}
+
+void	ft_disp_prev_img(void *p[4])
+{
+	t_scene		*ascene;
+	t_img_link	*il;
+	int		*current;
+	int		to_be_displayed;
+
+	ascene = p[2];
+	il = ascene->img_list;
+	current = p[3];
+	to_be_displayed = *current - 1;
+	if (to_be_displayed < 1)
+		to_be_displayed = ascene->cam_nbr;
+	*current = to_be_displayed;
+	while (il->nbr != to_be_displayed)
+		il = il->next;
+	mlx_put_image_to_window(p[0], p[1], il->ip, 0, 0);
 }
 
 void	ft_terminator(t_scene *ascene)
 {
-	t_camera	*cam;
-	t_light		*light;
-	t_obj_link	*obj;
-	t_img_link	*img;
-	void		*next;
+	void	*current;
+	void	*next;
+	int	i;
 
-	cam = ascene->cam_list;
-	light = ascene->light_list;
-	obj = ascene->object_list;
-	img = ascene->img_list;
-	while (cam)
+	current = ascene->cam_list;
+	while (current)
 	{
-		next = cam->next;
-		free(cam);
-		cam = next;
+		next = ((t_camera *)current)->next;
+		free(current);
+		current = next;
 	}
-	while (light)
+	current = ascene->light_list;
+	while (current)
 	{
-		next = light->next;
-		free(light);
-		light = next;
+		next = ((t_light *)current)->next;
+		free(current);
+		current = next;
 	}
-	while (obj)
+	current = ascene->object_list;
+	while (current)
 	{
-		next = obj->next;
-		free(obj->object);
-		free(obj);
-		obj = next;
+		next = ((t_obj_link *)current)->next;
+		free(((t_obj_link *)current)->object);
+		free((t_obj_link *)current);
+		current= next;
 	}
-	while (img)
+	current = ascene->img_list;
+	i = 0;
+	while (i < ascene->cam_nbr)
 	{
-		if (img->next)
-		{
-			next = img->next;
-			img->next = NULL;
-			free(img->ip);
-			free(img->fp);
-			free(img);
-			img = next;
-		}
+		next = ((t_img_link *)current)->next;
+		free(((t_img_link *)current)->ip);
+		free((t_img_link *)current);
+		current = next;
+		i++;
 	}
 }

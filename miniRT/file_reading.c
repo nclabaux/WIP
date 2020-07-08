@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/03 12:11:57 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/08 15:54:28 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,15 @@ void	ft_read_file(char *file, t_scene *ascene)
 		if (!status)
 			end = 1;
 		if (status == -1)
+		{
+			close(fd);
+			free(line);
 			ft_errors(1002, NULL);
+		}
 		ft_translate_line(&line, ascene);
 	}
+	close(fd);
+	free(line);
 }
 
 void	ft_translate_line(char **line, t_scene *ascene)

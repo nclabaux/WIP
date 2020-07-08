@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:05:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/03 12:18:26 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/08 18:51:38 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	ft_res_verif(t_scene *ascene, void *mlx_ptr)
 	if (ascene->res.x > x)
 	{
 		ascene->res.x = x;
-		ft_printf("Horizontal resolution changed to %d", x);
+		ft_printf("\033[01;33mHorizontal resolution changed to %d", x);
 		ft_printf(" to fit current monitor\n");
 	}
 	if (ascene->res.y > y)
 	{
 		ascene->res.y = y;
-		ft_printf("Vertical resolution changed to %d", y);
+		ft_printf("\033[01;33mVertical resolution changed to %d", y);
 		ft_printf(" to fit current display\n");
 	}
 }
