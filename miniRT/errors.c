@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 18:22:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/08 18:50:45 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/08 19:34:34 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 void	ft_prt_err(char *s, int i, int x)
 {
 	if (!x)
-	{
 		ft_printf("\033[01;31mError %d: %s\n", i, s);
-		exit(0);
-	}
-	ft_printf("Error %d: %s\t%s\n", i - 1000, s, strerror(x));
+	else
+		ft_printf("\033[01;31mError %d: %s\n%s\n", i - 1000, s, strerror(x));
+	ft_printf("\033[22;31mAborting...\n\n\033[22;37m");
 	exit(0);
 }
 
