@@ -6,13 +6,14 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/07/07 19:38:30 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/07/09 15:28:57 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 
-SRCS =	calculus.c\
+SRCS =	bmp.c\
+	calculus.c\
 	colors.c\
 	distances.c\
 	errors.c\

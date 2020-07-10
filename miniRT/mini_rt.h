@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/08 19:05:19 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/10 18:38:48 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,34 @@ typedef struct	s_pixel
 	unsigned int	color;
 }				t_pixel;
 
+typedef struct	s_bmp_header
+{
+	char		type[2];
+	unsigned int	size;
+	unsigned int	reserved;
+	unsigned int	offset;
+	unsigned int	dib_size;
+	int		dib_x;
+	int		dib_y;
+	unsigned short	dib_color_planes;
+	unsigned short	dib_bpp;
+	unsigned int	dib_compress;
+	unsigned int	dib_img_size;
+	int		dib_x_ppm;
+	int		dib_y_ppm;
+	int		dib_colors_in_palette;
+	int		dib_important_colors;
+}				t_bmp_header;
+
+/*
+**	bmp.c
+*/
+void			ft_save_img(t_img_link *il, t_scene *ascene);
+void			ft_gen_name(t_img_link *il, char *name);
+void			ft_bmp_header(int fd, t_scene *ascene);
+void			ft_write_bmp_hd(int fd, t_bmp_header hd);
+void			ft_write_bmp_data(int fd, t_img_link *il, t_scene *ascene);
+
 /*
 **	calculus.c
 */
@@ -237,7 +265,6 @@ void			ft_tr_rd(char **line, t_scene *ascene);
 void			ft_gen_img(t_scene *ascene, void *mlx_ptr);
 t_img_link		*ft_set_image(void *mlx_ptr, t_scene scene);
 void			ft_add_pixel(t_img_link	*il, t_pixel px);
-void			ft_create_bmp(void *image, char *filename, t_scene scene);
 
 /*
 **	intersection.c
@@ -281,6 +308,7 @@ void			ft_terminator(t_scene *ascene);
 */
 int				main(int argc, char **argv);
 void			ft_put_images_to_window(void *mlx_ptr, t_scene *ascene);
+void			ft_save_images_to_bmp(t_scene *ascene);
 
 /*
 **	ray.c

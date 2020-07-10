@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 18:22:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/08 19:34:34 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/10 18:39:50 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ void	ft_errors2(int i, char *s)
 		ft_prt_err("Zero vector detected", i, 22);
 	if (i == 1021)
 		ft_prt_err("Vector coordinates out of [-1, 1] range", i, 22);
+	if (i == 1022)
+		ft_prt_err("Unable to create bmp file", i, 0);
 	(void)s;
 }
