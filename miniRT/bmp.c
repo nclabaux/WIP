@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 14:38:44 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/10 18:39:08 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/13 18:06:02 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,19 @@ void	ft_save_img(t_img_link *il, t_scene *ascene)
 	int		fd;
 
 	name = NULL;
-	ft_gen_name(il, name);
-	if (!(fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU)))
+	//ft_gen_name(il, name);
+	name = ft_strdup("ok");
+	if ((fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXO)) <= 0)
 	{
 		free(name);
+		perror("");
+		ft_printf("\n");
 		ft_errors(1022 ,"");
 	}
 	free(name);
 	ft_bmp_header(fd, ascene);
 	ft_write_bmp_data(fd, il, ascene);
-	(void)ascene;
+	close(fd);
 }
 
 void	ft_gen_name(t_img_link *il, char *name)
@@ -76,6 +79,7 @@ void	ft_bmp_header(int fd, t_scene *ascene)
 void	ft_write_bmp_hd(int fd, t_bmp_header hd)
 {
 	write(fd, &hd.type, 2);
+	perror("");
 	write(fd, &hd.size, 4);
 	write(fd, &hd.reserved, 4);
 	write(fd, &hd.offset, 4);
@@ -111,5 +115,6 @@ void	ft_write_bmp_data(int fd, t_img_link *il, t_scene *ascene)
 		pixel++;
 	}
 	write(fd, data, ascene->res.x * ascene->res.y * 4);
+	perror("");
 	free(data);
 }
