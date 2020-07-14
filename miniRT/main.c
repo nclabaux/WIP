@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/13 18:40:06 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/14 18:12:58 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int			main(int argc, char **argv)
 	if (scene.cam_nbr > 1)
 		ft_printf("(images are rendered from last to first camera)\n");
 	ft_gen_img(&scene, mlx_ptr);
+	ft_printf("\n");
 	if (argc == 3 && !ft_strncmp(argv[3], ft_strdup("-save"), 5))
 		ft_save_images_to_bmp(&scene);
 	else
@@ -43,7 +44,7 @@ void		ft_put_images_to_window(void *mlx_ptr, t_scene *ascene)
 	void	*win_ptr;
 	int	current;
 
-	ft_printf("\033[22;37m\n\nYou can use ");
+	ft_printf("\033[22;37m\nYou can use ");
 	if (ascene->cam_nbr > 1)
 	{
 		ft_printf("the\033[01;36m right/left arrow key ");
@@ -71,11 +72,11 @@ void		ft_save_images_to_bmp(t_scene *ascene)
 		ft_save_img(il, ascene);
 		il = il->next;
 	}
-	ft_printf("\n\n\033[22;32mThe image");
+	ft_printf("\n\033[22;32mThe image");
 	if (ascene->cam_nbr == 1)
 		ft_printf(" has ");
 	else
 		ft_printf("s have "); 	
 	ft_printf("succesfully been saved in ");
-	ft_printf("\033[01;36msaved/ \033[22;32mdirectory\n\033[22;37m");
+	ft_printf("\033[01;36msaves/ \033[22;32mdirectory\n\033[22;37m");
 }

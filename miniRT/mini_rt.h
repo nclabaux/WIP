@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/13 18:40:15 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/14 15:48:50 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ typedef struct	s_bmp_header
 **	bmp.c
 */
 void			ft_save_img(t_img_link *il, t_scene *ascene);
-void			ft_gen_name(t_img_link *il, char *name);
+char			*ft_gen_name(t_img_link *il);
 void			ft_bmp_header(int fd, t_scene *ascene);
 void			ft_write_bmp_hd(int fd, t_bmp_header hd);
 void			ft_write_bmp_data(int fd, t_img_link *il, t_scene *ascene);

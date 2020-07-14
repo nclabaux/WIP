@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/07/09 15:28:57 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/07/14 18:14:48 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,13 @@ SRCS =	bmp.c\
 	intersection1.c\
 	list_handling.c\
 	loop.c\
+    	main.c\
 	ray.c\
 	set_data.c\
 	vectorial_calculus.c\
 	vectorial_calculus1.c\
 	verification.c\
 	verification1.c
-
-A = 	\
-    	main.c\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -47,7 +45,7 @@ CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 LIBFLAGS = -L./minilibx-linux -lm -lmlx -lXext -lX11 -L./libft -lft
 
 $(NAME): $(OBJS) libraries
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) main.c $(LIBFLAGS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFLAGS)
 
 all: $(NAME)
 
@@ -56,23 +54,17 @@ clean:
 	make -C libft/ clean
 	$(RM) $(OBJS)
 
-fclean: clean
+fclean: clean delsaves
 	make -C libft/ fclean
 	$(RM) $(NAME)
 
 re: fclean all
 
-mactest:
-	gcc tester.c -lmlx -framework OpenGL -framework AppKit 
-
-linuxtest:
-	make -C libft/ 
-	clang tester.c f_main.c $(SRCS) $(LIBFLAGS) 
-
 libraries:
 	make -C minilibx-linux/
 	make -C libft/
 
-.PHONY: all clean fclean re
+delsaves:
+	$(RM) saves/*.bmp
 
-#.SILENT: all clean fclean re $(NAME) $(OBJS) make
+.PHONY: all clean fclean re
