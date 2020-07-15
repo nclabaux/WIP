@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/14 18:12:58 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/15 19:11:09 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void		ft_put_images_to_window(void *mlx_ptr, t_scene *ascene)
 	p[2] = ascene;
 	p[3] = &current;
 	mlx_key_hook(win_ptr, ft_key, p);
+	mlx_hook(win_ptr, DestroyNotify, StructureNotifyMask, ft_close_program, ascene);
+	mlx_hook(win_ptr, FocusIn, FocusChangeMask, ft_disp_curr_img, p);
 	mlx_loop(mlx_ptr);
 }
 

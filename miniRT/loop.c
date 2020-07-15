@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 15:20:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/13 18:39:59 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/15 17:15:17 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,10 @@ void	ft_terminator(t_scene *ascene)
 		current = next;
 		i++;
 	}
+}
+
+int	ft_close_program(t_scene *ascene)
+{
+	ft_terminator(ascene);
+	exit(0);
 }

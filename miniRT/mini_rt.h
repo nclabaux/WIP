@@ -6,13 +6,14 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/14 15:48:50 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/15 19:05:13 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINI_RT_H
 # define MINI_RT_H
 
+# include <X11/Xlib.h>
 # include <mlx.h>
 # include <math.h>
 # include <fcntl.h>
@@ -302,6 +303,12 @@ int				ft_key(int key, void *p[4]);
 void			ft_disp_next_img(void *p[4]);
 void			ft_disp_prev_img(void *p[4]);
 void			ft_terminator(t_scene *ascene);
+int				ft_close_program(t_scene *ascene);
+
+/*
+**	loop1.c
+*/
+int				ft_disp_curr_img(void *p[4]);
 
 /*
 **	main.c
