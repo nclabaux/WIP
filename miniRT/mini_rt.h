@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/15 19:05:13 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/17 18:52:01 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,6 +225,7 @@ unsigned int	ft_get_color(t_ray ray, void *mlx_ptr, t_scene scene);
 **	distance.c
 */
 double			ft_2p_dist(t_td a, t_td b);
+double			ft_p_line_dist(t_td p, t_td l_p, t_td l_v);
 
 /*
 **	errors.c

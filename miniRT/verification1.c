@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:44:36 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/03 12:18:40 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/17 18:43:03 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ void	ft_object_verif(t_scene *ascene)
 	t_obj_link	*ol;
 
 	ol = ascene->object_list;
+	if (!ol)
+	{
+		ft_printf("\033[01;33mNo object in scene, generated image");
+		if (ascene->cam_nbr > 1)
+			ft_printf("s");
+		ft_printf(" will be completely black.\n");
+	}
 	while (ol)
 	{
 		if (ol->type == 2)

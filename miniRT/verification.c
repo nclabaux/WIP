@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:05:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/08 18:51:38 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/17 18:37:35 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,13 @@ void	ft_al_verif(t_scene *ascene)
 {
 	if (ascene->al.intensity < 0 || ascene->al.intensity > 1)
 		ft_errors(1007, "");
+	if (ascene->al.intensity <= 0.1)
+	{
+		ft_printf("\033[01;33m");
+		if (ascene->al.intensity == 0)
+			ft_printf("No ambient light");
+		else
+			ft_printf("Ambient light is faint");
+		ft_printf(", some objects might not be visible.\n");
+	}
 }

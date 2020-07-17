@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/15 19:11:09 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/17 18:56:39 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ int			main(int argc, char **argv)
 	void		*mlx_ptr;
 	t_scene		scene;
 
-	ft_printf("\033[01;37m\nHello and welcome in this mini Ray Tracer!\n\n");
+	ft_printf("\033[01;37m\nHello and welcome in this mini Ray Tracer!\n");
 	if (argc < 2)
 		ft_errors(1000, "");
+	if (argc > 3)
+		ft_errors(1025, "");
 	ft_init_scene(&scene);
-	ft_printf("\033[01;34mReading file...\n");
+	ft_printf("\033[01;34m\nReading file...\n");
 	ft_read_file(argv[1], &scene);
 	mlx_ptr = mlx_init();
 	ft_scene_verif(&scene, mlx_ptr);
@@ -31,10 +33,11 @@ int			main(int argc, char **argv)
 		ft_printf("(images are rendered from last to first camera)\n");
 	ft_gen_img(&scene, mlx_ptr);
 	ft_printf("\n");
-	if (argc == 3 && !ft_strncmp(argv[3], ft_strdup("-save"), 5))
-		ft_save_images_to_bmp(&scene);
-	else
+	if (argc == 2)
 		ft_put_images_to_window(mlx_ptr, &scene);
+	if ((ft_strncmp(argv[2], "-save", 5)))
+		ft_errors(1001, argv[3]);
+	ft_save_images_to_bmp(&scene);
 	return (0);
 }
 
