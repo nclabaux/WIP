@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/17 18:56:39 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/20 20:48:28 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int			main(int argc, char **argv)
 	if (argc == 2)
 		ft_put_images_to_window(mlx_ptr, &scene);
 	if ((ft_strncmp(argv[2], "-save", 5)))
-		ft_errors(1001, argv[3]);
-	ft_save_images_to_bmp(&scene);
+		ft_errors(1001, argv[2]);
+	ft_save_images_to_bmp(&scene, argv[1]);
 	return (0);
 }
 
@@ -67,14 +67,14 @@ void		ft_put_images_to_window(void *mlx_ptr, t_scene *ascene)
 	mlx_loop(mlx_ptr);
 }
 
-void		ft_save_images_to_bmp(t_scene *ascene)
+void		ft_save_images_to_bmp(t_scene *ascene, char *rt_file)
 {
 	t_img_link	*il;
 
 	il = ascene->img_list;
 	while (il)
 	{
-		ft_save_img(il, ascene);
+		ft_save_img(il, ascene, rt_file);
 		il = il->next;
 	}
 	ft_printf("\n\033[22;32mThe image");

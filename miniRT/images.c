@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 14:11:37 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/10 17:04:40 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/20 20:31:41 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_gen_img(t_scene *ascene, void *mlx_ptr)
 	nbr = ascene->cam_nbr;
 	while (cam)
 	{
-		ft_printf("\033[01;37m\n\tImage %d / %d ", nbr, ascene->cam_nbr);
+		ft_printf("\033[01;37m\n\tImage %3d / %d ", nbr, ascene->cam_nbr);
 		new = ft_set_image(mlx_ptr, *ascene);
 		new->next = NULL;
 		px.y = 0;

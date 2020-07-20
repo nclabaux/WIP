@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/07/15 18:13:51 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/07/20 21:18:52 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS =	bmp.c\
     	main.c\
 	ray.c\
 	set_data.c\
+	utils.c\
 	vectorial_calculus.c\
 	vectorial_calculus1.c\
 	verification.c\

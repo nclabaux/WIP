@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/17 18:52:01 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/20 21:18:39 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,8 +198,8 @@ typedef struct	s_bmp_header
 /*
 **	bmp.c
 */
-void			ft_save_img(t_img_link *il, t_scene *ascene);
-char			*ft_gen_name(t_img_link *il);
+void			ft_save_img(t_img_link *il, t_scene *ascene, char *rt_file);
+char			*ft_gen_name(t_img_link *il, char *rt_file);
 void			ft_bmp_header(int fd, t_scene *ascene);
 void			ft_write_bmp_hd(int fd, t_bmp_header hd);
 void			ft_write_bmp_data(int fd, t_img_link *il, t_scene *ascene);
@@ -316,7 +316,7 @@ int				ft_disp_curr_img(void *p[4]);
 */
 int				main(int argc, char **argv);
 void			ft_put_images_to_window(void *mlx_ptr, t_scene *ascene);
-void			ft_save_images_to_bmp(t_scene *ascene);
+void			ft_save_images_to_bmp(t_scene *ascene, char *rt_file);
 
 /*
 **	ray.c
@@ -332,6 +332,11 @@ void			ft_set_tr_data(t_triangle *tr);
 void			ft_set_sq_data(t_square *sq, t_scene *ascene);
 void			ft_create_4tr_sq(t_square *sq, t_scene *ascene);
 void			ft_alloc_tr(t_triangle tr, t_scene *ascene);
+
+/*
+**	utils.c
+*/
+char			*ft_cut_filename(char *filename);
 
 /*
 **	vectorial_calculus.c
