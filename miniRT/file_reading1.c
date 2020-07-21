@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 16:12:54 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/20 19:01:41 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/21 15:23:15 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_cam_rd(char **s, t_scene *ascene)
 	new_cam->l.y = new_cam->v.x;
 	new_cam->l.z = 0;
 	if (!new_cam->l.x && !new_cam->l.y)
-		new_cam->l.y = 1;
+		new_cam->l.x = -1;
 	new_cam->m = ft_cross(new_cam->v, new_cam->l);
 	ft_add_cam(ascene, new_cam);
 	ascene->cam_nbr++;

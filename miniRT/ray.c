@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 19:52:53 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/08 15:30:41 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/21 15:20:29 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ t_intersec	ft_shot_ray(t_ray ray, t_scene scene)
 			storage = ft_sp_inter(ray, obj->object->sp);
 		else if (obj->type == 2)
 			storage = ft_pl_inter(ray, obj->object->pl);
-		else if (obj->type == 3)
-			storage = ft_sq_inter(ray, obj->object->sq);
 		else if (obj->type == 4)
 			storage = ft_cy_inter(ray, obj->object->cy);
 		else if (obj->type == 5)

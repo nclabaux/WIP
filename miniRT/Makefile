@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/07/20 21:18:52 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/07/21 14:25:58 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,9 @@ CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 
 LIBFLAGS = -L./minilibx-linux -lm -lmlx -lXext -lX11 -L./libft -lft
 
-$(NAME): $(OBJS) libraries
+$(NAME): $(OBJS)
+	make -C minilibx-linux/
+	make -C libft/
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFLAGS)
 
 all: $(NAME)
@@ -61,10 +63,6 @@ fclean: clean delsaves
 	$(RM) $(NAME)
 
 re: fclean all
-
-libraries:
-	make -C minilibx-linux/
-	make -C libft/
 
 delsaves:
 	$(RM) saves/*.bmp
