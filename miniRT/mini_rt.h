@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/21 15:19:49 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/23 19:21:53 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct	s_camera
 	t_td		v;
 	t_td		l;
 	t_td		m;
-	int				fov;
+	double				fov;
 	struct s_camera	*next;
 }				t_camera;
 
@@ -322,6 +322,7 @@ void			ft_save_images_to_bmp(t_scene *ascene, char *rt_file);
 */
 void			ft_init_scene(t_scene *ascene);
 t_td		ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y);
+t_td		ft_get_ray_v2(double q, t_td v);
 t_intersec		ft_shot_ray(t_ray ray, t_scene scene);
 
 /*

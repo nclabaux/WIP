@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 19:52:53 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/21 15:20:29 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/23 19:29:53 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,46 @@ void		ft_init_scene(t_scene *ascene)
 
 t_td	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
 {
+	double		p;
+	double		q;
+	t_td		z;
+	t_td		u;
 	t_td		v;
-	double			p;
-	double			q;
 
-	p = ((double)cam->fov / 2 - (double)cam->fov / scene.res.x * x) * M_PI / 180;
-	q = ((double)cam->fov / 2 * (double)scene.res.y / (double)scene.res.x - (double)cam->fov / scene.res.x * y) * M_PI / 180;
-	v.x = (cam->v.x * cos(p) + cam->l.x * sin(p)) * cos(q) + cam->m.x * sin(q);
-	v.y = (cam->v.y * cos(p) + cam->l.y * sin(p)) * cos(q) + cam->m.y * sin(q);
-	v.z = (cam->v.z * cos(p) + cam->l.z * sin(p)) * cos(q) + cam->m.z * sin(q);
-	return (ft_unit_v(v));
+	p = (((double)cam->fov / 2 - (double)cam->fov / scene.res.x * x) * M_PI / 180);
+	q = -(double)(M_PI * cam->fov * (scene.res.y - (2 * y))) / (double)(scene.res.x * 360);
+	cam->v = ft_unit_v(cam->v);
+	z = (t_td) {0,0,1};
+	if (cam->v.x == 0 && cam->v.y == 0)
+		z = (t_td) {1,0,0};
+	u = ft_multi_td(cam->v, cos(p));
+	u = ft_add_td_n(u, z, (1 - cos(p)) * ft_dot(cam->v, z));
+	u = ft_add_td_n(u, ft_cross(z, cam->v), sin(p));
+	if (cam->v.x == 0 && cam->v.y == 0)
+		u.x = 0;
+	else
+		u.z = 0;
+	u = ft_unit_v(u);
+	v = ft_get_ray_v2(q, cam->v);
+	z = ft_add_td_n(u, v, 1);
+	return (ft_unit_v(z));
+}
+
+t_td	ft_get_ray_v2(double q, t_td v)
+{
+	t_td	res;
+	t_td	h;
+
+	h = v;
+	if (v.x == 0 && v.y == 0)
+		h = (t_td) {0, -v.z, v.y};
+	else
+		h = (t_td) {-v.y, v.x, 0};
+	h = ft_unit_v(h);
+	res = ft_multi_td(v, cos(q));
+	res = ft_add_td_n(res, h, (1 - cos(q)) * ft_dot(v, h));
+	res = ft_add_td_n(res, ft_cross(h, v), sin(q));
+	return (res);
 }
 
 t_intersec	ft_shot_ray(t_ray ray, t_scene scene)
