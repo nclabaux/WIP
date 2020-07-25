@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:05:42 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/21 14:41:07 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/25 16:21:21 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ t_color	ft_get_light(t_intersec i, t_scene scene)
 				|| (storage.p.x == light_source.p.x
 					&& storage.p.y == light_source.p.y
 					&& storage.p.z == light_source.p.z)
-				|| storage.dist > ft_2p_dist(light->p, i.p))
-			&& lambert > 0)
+				|| storage.dist + 0.000001 > ft_2p_dist(light->p, i.p))
+			&& lambert > 0.000001)
 		{
 			c = (t_color){0, 0, 0};
 			c = ft_weight_color(light->color, light->brightness);
