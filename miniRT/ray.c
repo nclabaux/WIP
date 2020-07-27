@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 19:52:53 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/25 16:02:55 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/27 19:10:45 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ t_td	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
 	t_td		res;
 
 	p = (((double)cam->fov / 2 - (double)cam->fov / scene.res.x * x) * M_PI / 180);
-	q = -(double)(M_PI * cam->fov * (scene.res.y - (2 * y))) / (double)(scene.res.x * 360);
-	cam->v = ft_unit_v(cam->v);
+	q = (double)(M_PI * cam->fov * (scene.res.y - (2 * y))) / (double)(scene.res.x * 360);
 	res = ft_multi_td(cam->v, cos(p) + cos(q));
 	res = ft_add_td_n(res, cam->l, sin(p));
 	res = ft_add_td_n(res, cam->m, sin(q));

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/21 15:59:43 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/27 19:23:29 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 	t_td		m;
 
 	res.dist = -1;
+	storage.dist = -1;
 	m = ft_2p_to_v(sp.p, ray.p);
 	coef[0] = ft_dot(ray.v, ray.v);
 	coef[1] = 2 * ft_dot(ray.v, m);
@@ -80,7 +81,7 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 		storage.p = ft_add_td_n(ray.p, ray.v, roots[1]);
 		storage.dist = ft_2p_dist(storage.p, ray.p);
 	}
-	if (storage.dist < res.dist && storage.dist != -1)
+	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
 		res = storage;
 	res.color = sp.color;
 	res.normal = ft_unit_v(ft_2p_to_v(sp.p, res.p));
@@ -92,7 +93,7 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 {
 	t_intersec	res;
-	t_intersec	storage;
+/*	t_intersec	storage;
 	t_plane		base_disc;
 	t_plane		upper_disc;
 
@@ -100,9 +101,9 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 	base_disc.v = cy.v;
 	upper_disc.p = ft_add_td_n(cy.p, ft_unit_v(cy.v), cy.h);
 	upper_disc.v = cy.v;
-	res.dist = -1;
+*/	res.dist = -1;
 	res = ft_cy_side(ray, cy);
-	storage = ft_pl_inter(ray, base_disc);
+/*	storage = ft_pl_inter(ray, base_disc);
 	if (storage.dist > 0.000001)
 	{
 		if (ft_2p_dist(storage.p, cy.p) < cy.d / 2)
@@ -113,7 +114,7 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 		else
 			storage.dist = -1;
 	}
-	if (res.dist == -1 || (storage.dist <= res.dist + 0.000001 && storage.dist != -1))
+	if (res.dist == -1 || (storage.dist < res.dist + 0.000001 && storage.dist != -1))
 		res = storage;
 	storage = ft_pl_inter(ray, upper_disc);
 	if (storage.dist > 0.000001)
@@ -126,12 +127,12 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 		else
 			storage.dist = -1;
 	}
-	if (res.dist == -1 || (storage.dist <= res.dist + 0.000001 && storage.dist != -1))
+	if (res.dist == -1 || (storage.dist < res.dist + 0.000001 && storage.dist != -1))
 		res = storage;
-	res.color = cy.color;
-	if (ft_p_line_dist(ray.p, cy.p, cy.v) < cy.d / 2
+*/	res.color = cy.color;
+/*	if (ft_p_line_dist(ray.p, cy.p, cy.v) < cy.d / 2
 			&& ft_dot(ft_2p_to_v(cy.p, ray.p), cy.v) > 0
 			&& ft_dot(ft_2p_to_v(upper_disc.p, ray.p), ft_inverse(cy.v)) > 0)
-		res.normal = ft_inverse(res.normal);
-	return (res);
+	res.normal = ft_inverse(res.normal);
+*/	return (res);
 }

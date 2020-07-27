@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 17:09:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/20 20:23:16 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/27 19:27:40 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,12 @@ t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 		return res;
 	d1 = ft_dot(cy.v, ft_2p_to_v(cy.p, ft_add_td_n(ray.p, ray.v, root[0])));
 	d2 = ft_dot(cy.v, ft_add_td_n(ft_add_td_n(ray.p, ray.v, root[1]), cy.p, -1));
-	if (!((d1 >= 0 && d1 <= cy.h && root[0] > 0.000001) || (d2 >= 0 && d2 <= cy.h && root[1] > 0.000001)))
+	if (!((d1 > 0.000001 && d1 < cy.h + 0.000001 && root[0] > 0.000001) || (d2 > 0.000001 && d2 < cy.h + 0.000001 && root[1] > 0.000001)))
 		return (res);
-	res.p.x = ray.p.x + root[0] * ray.v.x - cy.p.x;
-	res.p.y = ray.p.y + root[0] * ray.v.y - cy.p.y;
-	res.p.z = ray.p.z + root[0] * ray.v.z - cy.p.z;
+	res.p = ft_2p_to_v(cy.p, ft_add_td_n(ray.p, ray.v, root[0]));
 	res.dist = ft_2p_dist(ray.p, res.p);
 	res.normal = ft_unit_v(ft_add_td_n(ft_add_td_n(ft_multi_td(ray.v, root[0]), ft_multi_td(cy.v, d1), -1), ft_add_td_n(cy.p, ray.p, -1), -1));
-	storage.p.x = ray.p.x + root[0] * ray.v.x - cy.p.x;
-	storage.p.y = ray.p.y + root[0] * ray.v.y - cy.p.y;
-	storage.p.z = ray.p.z + root[0] * ray.v.z - cy.p.z;
+	storage.p = ft_2p_to_v(cy.p, ft_add_td_n(ray.p, ray.v, root[1]));
 	storage.dist = ft_2p_dist(ray.p, storage.p);
 	storage.normal = ft_unit_v(ft_add_td_n(ft_add_td_n(ft_multi_td(ray.v, root[1]), ft_multi_td(cy.v, d2), -1), ft_add_td_n(cy.p, ray.p, -1), -1));
 	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
