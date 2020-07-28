@@ -67,53 +67,20 @@ void	ft_disp_prev_img(void *p[3])
 	mlx_put_image_to_window(ascene->mlx, p[0], il->ip, 0, 0);
 }
 
-void	ft_terminator(t_scene *ascene)
+int	ft_disp_curr_img(void *p[3])
 {
-	void	*current;
-	void	*next;
-
-	current = ascene->cam_list;
-	while (current)
-	{
-		next = ((t_camera *)current)->next;
-		free(current);
-		current = next;
-	}
-	current = ascene->light_list;
-	while (current)
-	{
-		next = ((t_light *)current)->next;
-		free(current);
-		current = next;
-	}
-	current = ascene->object_list;
-	while (current)
-	{
-		next = ((t_obj_link *)current)->next;
-		free(((t_obj_link *)current)->object);
-		free((t_obj_link *)current);
-		current = next;
-	}
-}
-
-void	ft_destroy_images(t_scene *ascene)
-{
+	t_scene		*ascene;
 	t_img_link	*il;
-	t_img_link	*next;
-
+	int		*in;
+	int		img_nbr;
+	
+	ascene = p[1];
 	il = ascene->img_list;
-	while (il->nbr < ascene->cam_nbr)
-	{
-		mlx_destroy_image(ascene->mlx, il->ip);
-		next = il->next;
-		free(il);
-		il = next;
-	}
+	in = p[2];
+	img_nbr = *in;
+	while (img_nbr != il->nbr)
+		il = il->next;
+	mlx_put_image_to_window(ascene->mlx, p[0], il->ip, 0, 0);
+	return (0);
 }
 
-int		ft_close_program(t_scene *ascene)
-{
-	ft_terminator(ascene);
-	ft_destroy_images(ascene);
-	exit(0);
-}

@@ -14,6 +14,7 @@ NAME = miniRT
 
 SRCS =	bmp.c\
 	calculus.c\
+	clear.c\
 	colors.c\
 	distances.c\
 	errors.c\
@@ -27,8 +28,7 @@ SRCS =	bmp.c\
 	intersection1.c\
 	list_handling.c\
 	loop.c\
-	loop1.c\
-    	main.c\
+	main.c\
 	ray.c\
 	set_data.c\
 	utils.c\

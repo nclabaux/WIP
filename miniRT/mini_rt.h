@@ -215,6 +215,13 @@ double			ft_max_double(double a, double b);
 double			ft_min_double(double a, double b);
 
 /*
+**	clear.c
+*/
+void			ft_terminator(t_scene *ascene);
+int				ft_close_program(t_scene *ascene);
+void			ft_destroy_images(t_scene *ascene);
+
+/*
 **	colors.c
 */
 int				ft_rgb_to_int(t_color c);
@@ -313,13 +320,7 @@ void			ft_add_img_link(t_scene *ascene, t_img_link *new_img_link);
 int				ft_key(int key, void *p[3]);
 void			ft_disp_next_img(void *p[3]);
 void			ft_disp_prev_img(void *p[3]);
-void			ft_terminator(t_scene *ascene);
-int				ft_close_program(t_scene *ascene);
-
-/*
-**	loop1.c
-*/
-int				ft_disp_curr_img(void *p[4]);
+int				ft_disp_curr_img(void *p[3]);
 
 /*
 **	main.c
