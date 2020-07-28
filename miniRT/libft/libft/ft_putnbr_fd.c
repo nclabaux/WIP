@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 18:12:35 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/08 14:02:18 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 14:00:09 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,4 @@ void		ft_putnbr_fd(int n, int fd)
 	}
 	while (len)
 		write(fd, &stock[--len], 1);
-}
-
-void		ft_putint_fd(int n, int fd)
-{
-	unsigned char	a;
-	unsigned char	b;
-	unsigned char	c;
-
-	a = n / exp2(8*3);
-	n -= a;
-	b = n / exp2(8*2);
-	n -= b;
-	c = n / exp2(8);
-	n -= c;
-	write(fd, &a, 1);
-	write(fd, &b, 1);
-	write(fd, &c, 1);
-	write(fd, &n, 1);
-}
-
-void		ft_putbyte_fd(char n, int fd)
-{
-	write(fd, &n, 1);
 }

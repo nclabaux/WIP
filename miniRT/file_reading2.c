@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/03 12:13:30 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 14:52:14 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_pl_rd(char **s, t_scene *ascene)
 		ft_errors(1011, "");
 	if (!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
-	new_ol->next = NULL;
 	new_ol->type = 2;
 	i = 2;
 	while ((*s)[i] && ft_isspace((*s)[i]))
@@ -51,7 +50,6 @@ void	ft_sp_rd(char **s, t_scene *ascene)
 		ft_errors(1011, "");
 	if (!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
-	new_ol->next = NULL;
 	new_ol->type = 1;
 	i = 2;
 	while (ft_isspace((*s)[i]))
@@ -76,8 +74,8 @@ void	ft_sp_rd(char **s, t_scene *ascene)
 
 void	ft_sq_rd(char **s, t_scene *ascene)
 {
-	int		i;
-	t_square sq;
+	int			i;
+	t_square	sq;
 
 	i = 2;
 	while (ft_isspace((*s)[i]))
@@ -114,7 +112,6 @@ void	ft_cy_rd(char **s, t_scene *ascene)
 		ft_errors(1011, "");
 	if (!(new_ol->object = malloc(sizeof(t_object))))
 		ft_errors(1011, "");
-	new_ol->next = NULL;
 	new_ol->type = 4;
 	i = 2;
 	while (ft_isspace((*s)[i]))
@@ -132,26 +129,12 @@ void	ft_cy_rd(char **s, t_scene *ascene)
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1017, "");
 	new_ol->object->cy.d = ft_atod(*s + i);
-	while (ft_isdigit((*s)[i]) || (*s)[i] == '.')
-		i++;
-	while (ft_isspace((*s)[i]))
-		i++;
-	if (!(ft_isdigit((*s)[i])))
-		ft_errors(1017, "");
-	new_ol->object->cy.h = ft_atod(*s + i);
-	while (ft_isdigit((*s)[i]) || (*s)[i] == '.')
-		i++;
-	while (ft_isspace((*s)[i]))
-		i++;
-	if (!(ft_isdigit((*s)[i])))
-		ft_errors(1017, "");
-	ft_read_color(*s + i, &(new_ol->object->cy.color));
-	ft_add_object(ascene, new_ol);
+	ft_cy_rd2(s, ascene, new_ol, i);
 }
 
 void	ft_tr_rd(char **s, t_scene *ascene)
 {
-	int		i;
+	int			i;
 	t_triangle	tr;
 
 	i = 2;

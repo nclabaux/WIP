@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/23 19:21:53 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 14:51:39 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,7 @@ void			ft_res_rd(char **line, t_scene *ascene);
 void			ft_al_rd(char **line, t_scene *ascene);
 void			ft_cam_rd(char **line, t_scene *ascene);
 void			ft_light_rd(char **line, t_scene *ascene);
+void			ft_cy_rd2(char **s, t_scene *ascene, t_obj_link *new_ol, int i);
 
 /*
 **	file_reading2.c
@@ -328,6 +329,7 @@ t_intersec		ft_shot_ray(t_ray ray, t_scene scene);
 /*
 **	set_data.c
 */
+void			ft_set_cam_data(t_camera *cam);
 void			ft_set_tr_data(t_triangle *tr);
 void			ft_set_sq_data(t_square *sq, t_scene *ascene);
 void			ft_create_4tr_sq(t_square *sq, t_scene *ascene);

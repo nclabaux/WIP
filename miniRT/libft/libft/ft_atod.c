@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 14:41:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/06/11 17:49:14 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 13:59:40 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 double	ft_atod(char *s)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
 	double	result;
 
 	i = 0;
@@ -39,7 +39,7 @@ double	ft_atod(char *s)
 	return (result);
 }
 
-double		ft_pot(int n)
+double	ft_pot(int n)
 {
 	int x;
 	int result;

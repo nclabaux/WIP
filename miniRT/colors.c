@@ -6,18 +6,18 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 18:52:34 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/06 14:01:53 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 14:10:13 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-int			ft_rgb_to_int(t_color c)
+int				ft_rgb_to_int(t_color c)
 {
 	return (65536 * c.r + 256 * c.g + c.b);
 }
 
-t_color		ft_add_colors(t_color a, t_color b)
+t_color			ft_add_colors(t_color a, t_color b)
 {
 	t_color	res;
 	int		x;
@@ -40,7 +40,7 @@ t_color		ft_add_colors(t_color a, t_color b)
 	return (res);
 }
 
-t_color		ft_multiply_colors(t_color a, t_color b)
+t_color			ft_multiply_colors(t_color a, t_color b)
 {
 	t_color res;
 
@@ -50,7 +50,7 @@ t_color		ft_multiply_colors(t_color a, t_color b)
 	return (res);
 }
 
-t_color		ft_weight_color(t_color c, double intensity)
+t_color			ft_weight_color(t_color c, double intensity)
 {
 	t_color	res;
 

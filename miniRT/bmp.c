@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 14:38:44 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/20 21:22:12 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 14:09:22 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_save_img(t_img_link *il, t_scene *ascene, char *rt_file)
 }
 
 char	*ft_gen_name(t_img_link *il, char *rt_file)
-{	
+{
 	char	*name;
 	char	*file;
 	size_t	size;
@@ -79,7 +79,7 @@ void	ft_bmp_header(int fd, t_scene *ascene)
 	hd.dib_img_size = hd.size;
 	hd.dib_x_ppm = 2835;
 	hd.dib_y_ppm = 2835;
-	hd.dib_colors_in_palette= 0;
+	hd.dib_colors_in_palette = 0;
 	hd.dib_important_colors = 0;
 	ft_write_bmp_hd(fd, hd);
 }
@@ -106,8 +106,8 @@ void	ft_write_bmp_hd(int fd, t_bmp_header hd)
 void	ft_write_bmp_data(int fd, t_img_link *il, t_scene *ascene)
 {
 	char	*data;
-	int	pixel;
-	int	byte;
+	int		pixel;
+	int		byte;
 
 	if (!(data = malloc(ascene->res.x * ascene->res.y * 4)))
 		ft_errors(1011, "");

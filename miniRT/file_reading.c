@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/08 15:54:28 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 14:18:33 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,10 @@ void	ft_read_file(char *file, t_scene *ascene)
 
 void	ft_translate_line(char **line, t_scene *ascene)
 {
-	int	r;
-	int	a;
-
-	r = 0;
-	a = 0;
 	if ((*line)[0] == 'R')
-	{
-		r++;
 		ft_res_rd(line, ascene);
-	}
 	else if ((*line)[0] == 'A')
-	{
-		a++;
 		ft_al_rd(line, ascene);
-	}
 	else if ((*line)[0] == 'c' && ft_isspace((*line)[1]))
 		ft_cam_rd(line, ascene);
 	else if ((*line)[0] == 'l')
@@ -77,34 +66,27 @@ void	ft_translate_line(char **line, t_scene *ascene)
 int		ft_read_color(char *s, t_color *color_storage)
 {
 	int	i;
-	
+
 	i = 0;
 	while (s[i] && ft_isspace(s[i]))
 		i++;
-	if (ft_isdigit(s[i]))
-		color_storage->r = ft_atoi(s + i);
-	else
+	if (!(ft_isdigit(s[i])))
 		ft_errors(1008, NULL);
+	color_storage->r = ft_atoi(s + i);
 	while (ft_isdigit(s[i]))
 		i++;
-	if (s[i] == ',')
-		i++;
-	else
+	if (!(s[i++] == ','))
 		ft_errors(1008, NULL);
-	if (ft_isdigit(s[i]))
-		color_storage->g = ft_atoi(s + i);
-	else
+	if (!(ft_isdigit(s[i])))
 		ft_errors(1008, NULL);
+	color_storage->g = ft_atoi(s + i);
 	while (ft_isdigit(s[i]))
 		i++;
-	if (s[i] == ',')
-		i++;
-	else
+	if (!(s[i++] == ','))
 		ft_errors(1008, NULL);
-	if (ft_isdigit(s[i]))
-		color_storage->b = ft_atoi(s + i);
-	else
+	if (!(ft_isdigit(s[i])))
 		ft_errors(1008, NULL);
+	color_storage->b = ft_atoi(s + i);
 	return (i);
 }
 

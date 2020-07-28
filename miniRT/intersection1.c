@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 17:09:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/27 19:27:40 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 13:25:18 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,48 @@ double		ft_td_in_triangle(t_td p, t_triangle tr)
 	return (area1 + area2 + area3 <= tr.area_x2 + 0.000001);
 }
 
+t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
+{
+	double	coef[3];
+	double	root[2];
+	t_intersec	res;
+	t_intersec	storage;
+	t_td	u;
+
+	res.dist = -1;
+	storage.dist = -1;
+	u = ft_2p_to_v(cy.p, ray.p);
+	coef[0] = ft_dot(ray.v, ray.v) - ft_sq(ft_dot(ray.v, cy.v));
+	coef[1] = 2 * (ft_dot(ray.v, u) - ft_dot(ray.v, cy.v) * ft_dot(u, cy.v));
+	coef[2] = -(ft_dot(u, u) + ft_sq(ft_dot(u, cy.v)) + ft_sq(cy.d / 2));
+	if (!(ft_solve_quadra(coef[0], coef[1], coef[2], root)))
+		return (res);
+	if (root[0] > 0.000001)
+	{
+		res.p = ft_add_td_n(ray.p, ray.v, root[0]);
+		u = ft_2p_to_v(cy.p, res.p);
+		if (ft_dot(cy.v, u) > 0 && ft_dot(cy.v, ft_2p_to_v(ft_add_td_n(cy.p, cy.v, cy.h), res.p)) < 0)
+		{
+			res.dist = ft_2p_dist(ray.p, res.p);
+			res.normal = ft_2p_to_v(ft_multi_td(cy.v, ft_dot(u, cy.v)), u);
+		}
+	}
+	if (root[1] > 0.000001)
+	{
+		storage.p = ft_add_td_n(ray.p, ray.v, root[1]);
+		u = ft_2p_to_v(cy.p, storage.p);
+		if (ft_dot(cy.v, u) > 0 && ft_dot(cy.v, ft_2p_to_v(ft_add_td_n(cy.p, cy.v, cy.h), res.p)) < 0)
+		{
+			storage.dist = ft_2p_dist(ray.p, storage.p);
+			res.normal = ft_2p_to_v(ft_multi_td(cy.v, ft_dot(u, cy.v)), u);
+		}
+	}
+	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
+		res = storage;
+	return (res);
+}
+
+/*
 t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 {
 	t_td	u;
@@ -58,4 +100,4 @@ t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
 		res = storage;
 	return (res);
-}
+}*/

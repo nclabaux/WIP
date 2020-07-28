@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 16:12:54 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/27 18:56:52 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 14:45:53 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,7 @@ void	ft_cam_rd(char **s, t_scene *ascene)
 		ft_errors(1012, "");
 	new_cam->fov = ft_atod(*s + i);
 	new_cam->next = NULL;
-	new_cam->v = ft_unit_v(new_cam->v);
-	new_cam->l.x = -new_cam->v.y;
-	new_cam->l.y = new_cam->v.x;
-	new_cam->l.z = 0;
-	if (!new_cam->l.x && !new_cam->l.y)
-		new_cam->l.y = -1;
-	new_cam->m = ft_cross(new_cam->v, new_cam->l);
+	ft_set_cam_data(new_cam);
 	ft_add_cam(ascene, new_cam);
 	ascene->cam_nbr++;
 }
@@ -116,4 +110,23 @@ void	ft_light_rd(char **s, t_scene *ascene)
 	ft_read_color(*s + i, &new_light->color);
 	new_light->next = NULL;
 	ft_add_light(ascene, new_light);
+}
+
+void	ft_cy_rd2(char **s, t_scene *ascene, t_obj_link *new_ol, int i)
+{
+	while (ft_isdigit((*s)[i]) || (*s)[i] == '.')
+		i++;
+	while (ft_isspace((*s)[i]))
+		i++;
+	if (!(ft_isdigit((*s)[i])))
+		ft_errors(1017, "");
+	new_ol->object->cy.h = ft_atod(*s + i);
+	while (ft_isdigit((*s)[i]) || (*s)[i] == '.')
+		i++;
+	while (ft_isspace((*s)[i]))
+		i++;
+	if (!(ft_isdigit((*s)[i])))
+		ft_errors(1017, "");
+	ft_read_color(*s + i, &(new_ol->object->cy.color));
+	ft_add_object(ascene, new_ol);
 }
