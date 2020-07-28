@@ -112,21 +112,31 @@ void	ft_light_rd(char **s, t_scene *ascene)
 	ft_add_light(ascene, new_light);
 }
 
-void	ft_cy_rd2(char **s, t_scene *ascene, t_obj_link *new_ol, int i)
+void	ft_pl_rd(char **s, t_scene *ascene)
 {
-	while (ft_isdigit((*s)[i]) || (*s)[i] == '.')
+	int			i;
+	t_obj_link	*new_ol;
+
+	if (!(new_ol = malloc(sizeof(t_obj_link))))
+		ft_errors(1011, "");
+	if (!(new_ol->object = malloc(sizeof(t_object))))
+		ft_errors(1011, "");
+	new_ol->type = 2;
+	i = 2;
+	while ((*s)[i] && ft_isspace((*s)[i]))
 		i++;
+	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
+		ft_errors(1014, "");
+	i += ft_read_td(*s + i, &(new_ol->object->pl.p));
+	while (ft_isspace((*s)[i]))
+		i++;
+	if (!(ft_isdigit((*s)[i]) || (*s)[i] == '-'))
+		ft_errors(1014, "");
+	i += ft_read_td(*s + i, &(new_ol->object->pl.v));
 	while (ft_isspace((*s)[i]))
 		i++;
 	if (!(ft_isdigit((*s)[i])))
-		ft_errors(1017, "");
-	new_ol->object->cy.h = ft_atod(*s + i);
-	while (ft_isdigit((*s)[i]) || (*s)[i] == '.')
-		i++;
-	while (ft_isspace((*s)[i]))
-		i++;
-	if (!(ft_isdigit((*s)[i])))
-		ft_errors(1017, "");
-	ft_read_color(*s + i, &(new_ol->object->cy.color));
+		ft_errors(1014, "");
+	ft_read_color(*s + i, &(new_ol->object->pl.color));
 	ft_add_object(ascene, new_ol);
 }
