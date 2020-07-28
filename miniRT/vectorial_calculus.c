@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 16:01:45 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/03 12:38:04 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 18:04:34 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,15 @@
 
 t_td	ft_3p_to_v(t_td a, t_td b, t_td c)
 {
-	t_td	result;
-	double		x;
-	double		y;
-	double		z;
-	double		max;
+	t_td		res;
 
-	x = (b.y - a.y) * (c.z - a.z) - (b.z - a.z) * (c.y - a.y);
-	y = (b.z - a.z) * (c.x - a.x) - (b.x - a.x) * (c.z - a.z);
-	z = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
-	max = ft_max_double(ft_max_double(x, y), z);
-	result.x = x / max;
-	result.y = y / max;
-	result.z = z / max;
-	return (result);
+	res.x = (b.y - a.y) * (c.z - a.z) - (b.z - a.z) * (c.y - a.y);
+	res.y = (b.z - a.z) * (c.x - a.x) - (b.x - a.x) * (c.z - a.z);
+	res.z = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+	return (ft_unit_v(res));
 }
 
-double		ft_dot(t_td a, t_td b)
+double	ft_dot(t_td a, t_td b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
@@ -45,7 +37,7 @@ t_td	ft_cross(t_td a, t_td b)
 	return (result);
 }
 
-double		ft_norm(t_td v)
+double	ft_norm(t_td v)
 {
 	return (hypot(hypot(v.x, v.y), v.z));
 }

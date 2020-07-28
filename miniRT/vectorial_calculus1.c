@@ -6,13 +6,13 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 15:45:15 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/03 12:38:19 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 17:21:40 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_td		ft_add_td_n(t_td p, t_td v, double n)
+t_td	ft_add_td_n(t_td p, t_td v, double n)
 {
 	t_td	res;
 
@@ -24,7 +24,7 @@ t_td		ft_add_td_n(t_td p, t_td v, double n)
 
 t_td	ft_unit_v(t_td v)
 {
-	double		norm;
+	double	norm;
 	t_td	res;
 
 	norm = ft_norm(v);
@@ -48,6 +48,6 @@ t_td	ft_multi_td(t_td v, double n)
 {
 	t_td	origin;
 
-	origin = (t_td){0,0,0};
+	origin = (t_td){0, 0, 0};
 	return (ft_add_td_n(origin, v, n));
 }

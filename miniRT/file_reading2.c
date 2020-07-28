@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 16:49:59 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 18:00:58 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	ft_sq_rd2(char **s, t_scene *as, t_square sq, int i)
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(as, 1016, "");
 	ft_read_color(as, *s + i, &(sq.color));
+	sq.v = ft_unit_v(sq.v);
 	ft_set_sq_data(&sq, as);
 }
 

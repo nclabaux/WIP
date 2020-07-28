@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:56:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 16:59:08 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 17:19:13 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,22 @@ char	*ft_cut_filename(char *filename)
 	int		j;
 	char	*res;
 
-	i = 0;
+	i = -1;
 	last_dir = 0;
 	last_point = ft_strlen(filename);
-	while (filename[i])
+	while (filename[++i])
 	{
 		if (filename[i] == '/')
 			last_dir = i;
 		if (filename[i] == '.')
 			last_point = i;
-		i++;
 	}
 	if (!(res = malloc(sizeof(char) * (last_point - last_dir))))
 		return (NULL);
 	i = last_dir + 1;
 	j = 0;
 	while (i < last_point)
-	{
-		res[j] = filename[i];
-		i++;
-		j++;
-	}
+		res[j++] = filename[i++];
 	res[j] = 0;
 	return (res);
 }

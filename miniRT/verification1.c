@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:44:36 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 17:02:43 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 17:22:05 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_light_verif(t_scene *as)
 	while (light)
 	{
 		if (light->brightness < 0 || light->brightness > 1)
-			ft_errors(as, 1013,"");
+			ft_errors(as, 1013, "");
 		light = light->next;
 	}
 }

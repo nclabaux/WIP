@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:06:55 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 16:58:24 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 17:43:47 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	ft_set_cam_data(t_camera *cam)
 
 void	ft_set_tr_data(t_triangle *tr)
 {
-	tr->area_x2 = ft_norm(ft_cross(ft_2p_to_v(tr->p1, tr->p2), ft_2p_to_v(tr->p1, tr->p3)));
+	t_td u;
+
+	u = ft_cross(ft_2p_to_v(tr->p1, tr->p2), ft_2p_to_v(tr->p1, tr->p3));
+	tr->area_x2 = ft_norm(u);
 }
 
 void	ft_set_sq_data(t_square *sq, t_scene *as)
@@ -34,15 +37,18 @@ void	ft_set_sq_data(t_square *sq, t_scene *as)
 	t_td	s;
 	t_td	t;
 
-	s.x = 0;
-	s.y = -sq->v.z;
-	s.z = sq->v.y;
+	sq->v = ft_unit_v(sq->v);
+	s.x = sq->v.z;
+	s.y = 0;
+	s.z = -sq->v.x;
 	if (!sq->v.y && !sq->v.z)
 	{
-		s.x = sq->v.z;
-		s.y = -sq->v.x;
+		s.x = 0;
+		s.y = 1;
 		s.z = 0;
 	}
+	if (!sq->v.x && !sq->v.z)
+		s.z = 1;
 	s = ft_unit_v(s);
 	t = ft_cross(ft_unit_v(sq->v), s);
 	sq->a.p1 = sq->p;
