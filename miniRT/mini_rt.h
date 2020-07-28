@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 14:51:39 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 16:08:29 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ typedef struct	s_scene
 	t_light			*light_list;
 	t_obj_link		*object_list;
 	t_img_link		*img_list;
+	void			*mlx;
 }				t_scene;
 
 typedef struct	s_ray
@@ -174,6 +175,7 @@ typedef struct	s_pixel
 	int		x;
 	int		y;
 	unsigned int	color;
+	t_camera	*cam;
 }				t_pixel;
 
 typedef struct	s_bmp_header
@@ -251,22 +253,29 @@ void			ft_res_rd(char **line, t_scene *ascene);
 void			ft_al_rd(char **line, t_scene *ascene);
 void			ft_cam_rd(char **line, t_scene *ascene);
 void			ft_light_rd(char **line, t_scene *ascene);
-void			ft_cy_rd2(char **s, t_scene *ascene, t_obj_link *new_ol, int i);
+void			ft_pl_rd(char **line, t_scene *ascene);
 
 /*
 **	file_reading2.c
 */
-void			ft_pl_rd(char **line, t_scene *ascene);
 void			ft_sp_rd(char **line, t_scene *ascene);
+void			ft_sp_rd2(char **s, t_scene *ascene, t_obj_link *new_ol, int i);
 void			ft_sq_rd(char **line, t_scene *ascene);
-void			ft_cy_rd(char **line, t_scene *ascene);
+void			ft_sq_rd2(char **s, t_scene *ascene, t_square sq, int i);
 void			ft_tr_rd(char **line, t_scene *ascene);
+
+/*
+**	file_reading3.c
+*/
+void			ft_cy_rd(char **line, t_scene *ascene);
+void			ft_cy_rd2(char **s, t_scene *ascene, t_obj_link *new_ol, int i);
 
 /*
 **	images.c
 */
-void			ft_gen_img(t_scene *ascene, void *mlx_ptr);
-t_img_link		*ft_set_image(void *mlx_ptr, t_scene scene);
+void			ft_gen_img(t_scene *ascene);
+void			ft_img_loop(t_pixel px, t_scene *ascene, t_ray ray, t_img_link *new);
+t_img_link		*ft_set_image(t_scene scene, int *nbr);
 void			ft_add_pixel(t_img_link	*il, t_pixel px);
 
 /*
@@ -288,6 +297,7 @@ double			*ft_set_number(t_ray ray, t_cylinder cy);
 **	light.c
 */
 t_color			ft_get_light(t_intersec i, t_scene scene);
+t_color			ft_get_light2(t_color res, t_light *light, t_intersec i, double lambert);
 
 /*
 **	list_handling.c
@@ -300,9 +310,9 @@ void			ft_add_img_link(t_scene *ascene, t_img_link *new_img_link);
 /*
 **	loop.c
 */
-int				ft_key(int key, void *p[4]);
-void			ft_disp_next_img(void *p[4]);
-void			ft_disp_prev_img(void *p[4]);
+int				ft_key(int key, void *p[3]);
+void			ft_disp_next_img(void *p[3]);
+void			ft_disp_prev_img(void *p[3]);
 void			ft_terminator(t_scene *ascene);
 int				ft_close_program(t_scene *ascene);
 
@@ -315,7 +325,7 @@ int				ft_disp_curr_img(void *p[4]);
 **	main.c
 */
 int				main(int argc, char **argv);
-void			ft_put_images_to_window(void *mlx_ptr, t_scene *ascene);
+void			ft_put_images_to_window(t_scene *ascene);
 void			ft_save_images_to_bmp(t_scene *ascene, char *rt_file);
 
 /*
@@ -360,9 +370,9 @@ t_td		ft_multi_td(t_td v, double n);
 /*
 **	verification.c
 */
-void			ft_scene_verif(t_scene *ascene, void *mlx_ptr);
+void			ft_scene_verif(t_scene *ascene);
 void			ft_td_verif(t_td *v);
-void			ft_res_verif(t_scene *ascene, void *mlx_ptr);
+void			ft_res_verif(t_scene *ascene);
 void			ft_al_verif(t_scene *ascene);
 
 /*

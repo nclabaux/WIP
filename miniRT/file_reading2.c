@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:40:09 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 14:52:14 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 15:16:35 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_sp_rd(char **s, t_scene *ascene)
 	ft_sp_rd2(s, ascene, new_ol, i);
 }
 
-void	ft_sp_rd2(char	**s, t_scene *ascene, t_obj_link *new_ol, int i)
+void	ft_sp_rd2(char **s, t_scene *ascene, t_obj_link *new_ol, int i)
 {
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1015, "");
@@ -73,10 +73,10 @@ void	ft_sq_rd(char **s, t_scene *ascene)
 		i++;
 	while (ft_isspace((*s)[i]))
 		i++;
-	ft_sq_rd2(s, ascene, new_ol, i);
+	ft_sq_rd2(s, ascene, sq, i);
 }
 
-void ft_sq_rd2(char **s, t_scene *ascene, t_obj_link *new_ol, int i)
+void	ft_sq_rd2(char **s, t_scene *ascene, t_square sq, int i)
 {
 	if (!(ft_isdigit((*s)[i])))
 		ft_errors(1016, "");

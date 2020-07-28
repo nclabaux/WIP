@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 13:54:52 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 15:58:53 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 	m = ft_2p_to_v(sp.p, ray.p);
 	coef[0] = ft_dot(ray.v, ray.v);
 	coef[1] = 2 * ft_dot(ray.v, m);
-	coef[2] = ft_dot(m, m) - ft_sq(sp.diam / 2); 
+	coef[2] = ft_dot(m, m) - ft_sq(sp.diam / 2);
 	if (!(ft_solve_quadra(coef[0], coef[1], coef[2], roots)))
 		return (res);
 	if (roots[0] > 0.000001)
@@ -133,6 +133,6 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 	if (ft_p_line_dist(ray.p, cy.p, cy.v) < cy.d / 2
 			&& ft_dot(ft_2p_to_v(cy.p, ray.p), cy.v) > 0
 			&& ft_dot(ft_2p_to_v(upper_disc.p, ray.p), ft_inverse(cy.v)) > 0)
-	res.normal = ft_inverse(res.normal);
+		res.normal = ft_inverse(res.normal);
 	return (res);
 }

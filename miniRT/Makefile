@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/07/21 14:25:58 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/07/28 15:14:04 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS =	bmp.c\
 	file_reading.c\
 	file_reading1.c\
 	file_reading2.c\
+	file_reading3.c\
 	images.c\
 	light.c\
 	intersection.c\

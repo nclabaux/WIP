@@ -6,15 +6,15 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:05:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/17 18:37:35 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 15:41:24 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	ft_scene_verif(t_scene *ascene, void *mlx_ptr)
+void	ft_scene_verif(t_scene *ascene)
 {
-	ft_res_verif(ascene, mlx_ptr);
+	ft_res_verif(ascene);
 	ft_al_verif(ascene);
 	ft_cam_verif(ascene);
 	ft_light_verif(ascene);
@@ -29,14 +29,14 @@ void	ft_td_verif(t_td *v)
 		ft_errors(1021, "");
 }
 
-void	ft_res_verif(t_scene *ascene, void *mlx_ptr)
+void	ft_res_verif(t_scene *ascene)
 {
 	int	x;
 	int	y;
 
 	if (ascene->res.x < 1 || ascene->res.y < 1)
 		ft_errors(1006, "");
-	mlx_get_screen_size(mlx_ptr, &x, &y);
+	mlx_get_screen_size(ascene->mlx, &x, &y);
 	if (ascene->res.x > x)
 	{
 		ascene->res.x = x;

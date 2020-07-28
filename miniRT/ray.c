@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 19:52:53 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/27 19:10:45 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 15:38:01 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void		ft_init_scene(t_scene *ascene)
 	ascene->light_list = NULL;
 	ascene->object_list = NULL;
 	ascene->img_list = NULL;
+	ascene->mlx = NULL;
 }
 
 t_td	ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
