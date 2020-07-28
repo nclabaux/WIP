@@ -326,13 +326,13 @@ int				ft_disp_curr_img(void *p[3]);
 **	main.c
 */
 int				main(int argc, char **argv);
+void			ft_init_scene(t_scene *as);
 void			ft_put_images_to_window(t_scene *as);
 void			ft_save_images_to_bmp(t_scene *as, char *rt_file);
 
 /*
 **	ray.c
 */
-void			ft_init_scene(t_scene *as);
 t_td		ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y);
 t_td		ft_get_ray_v2(double q, t_td v);
 t_intersec		ft_shot_ray(t_ray ray, t_scene scene);

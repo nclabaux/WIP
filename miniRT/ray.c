@@ -12,22 +12,6 @@
 
 #include "mini_rt.h"
 
-void		ft_init_scene(t_scene *ascene)
-{
-	ascene->res.x = 0;
-	ascene->res.y = 0;
-	ascene->al.intensity = 0;
-	ascene->al.color.r = 0;
-	ascene->al.color.g = 0;
-	ascene->al.color.b = 0;
-	ascene->cam_list = NULL;
-	ascene->cam_nbr = 0;
-	ascene->light_list = NULL;
-	ascene->object_list = NULL;
-	ascene->img_list = NULL;
-	ascene->mlx = NULL;
-}
-
 t_td		ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
 {
 	double		p;
