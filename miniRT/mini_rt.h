@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 16:08:29 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 17:02:09 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,11 +200,11 @@ typedef struct	s_bmp_header
 /*
 **	bmp.c
 */
-void			ft_save_img(t_img_link *il, t_scene *ascene, char *rt_file);
+void			ft_save_img(t_img_link *il, t_scene *as, char *rt_file);
 char			*ft_gen_name(t_img_link *il, char *rt_file);
-void			ft_bmp_header(int fd, t_scene *ascene);
+void			ft_bmp_header(int fd, t_scene *as);
 void			ft_write_bmp_hd(int fd, t_bmp_header hd);
-void			ft_write_bmp_data(int fd, t_img_link *il, t_scene *ascene);
+void			ft_write_bmp_data(int fd, t_img_link *il, t_scene *as);
 
 /*
 **	calculus.c
@@ -217,9 +217,9 @@ double			ft_min_double(double a, double b);
 /*
 **	clear.c
 */
-void			ft_terminator(t_scene *ascene);
-int				ft_close_program(t_scene *ascene);
-void			ft_destroy_images(t_scene *ascene);
+void			ft_terminator(t_scene *as);
+int				ft_kill(t_scene *as);
+void			ft_destroy_images(t_scene *as);
 
 /*
 **	colors.c
@@ -239,49 +239,49 @@ double			ft_p_line_dist(t_td p, t_td l_p, t_td l_v);
 /*
 **	errors.c
 */
-void			ft_ptr_err(char *s, int i, int x);
-void			ft_errors(int i, char *s);
-void			ft_errors1(int i, char *s);
-void			ft_errors2(int i, char *s);
+void			ft_ptr_err(t_scene *as, char *s, int i, int x);
+void			ft_errors(t_scene *as, int i, char *s);
+void			ft_errors1(t_scene *as, int i, char *s);
+void			ft_errors2(t_scene *as, int i, char *s);
 
 /*
 **	file_reading.c
 */
-void			ft_read_file(char *file, t_scene *ascene);
-void			ft_translate_line(char **line, t_scene *ascene);
-int				ft_read_color(char *s, t_color *color_storage);
-int				ft_read_double(char *s, double *coor);
-int				ft_read_td(char*s, t_td *point);
+void			ft_read_file(char *file, t_scene *as);
+void			ft_translate_line(char **line, t_scene *as);
+int				ft_read_color(t_scene *as, char *s, t_color *color_storage);
+int				ft_read_double(t_scene *as, char *s, double *coor);
+int				ft_read_td(t_scene *as, char*s, t_td *point);
 
 /*
 **	file_reading1.c
 */
-void			ft_res_rd(char **line, t_scene *ascene);
-void			ft_al_rd(char **line, t_scene *ascene);
-void			ft_cam_rd(char **line, t_scene *ascene);
-void			ft_light_rd(char **line, t_scene *ascene);
-void			ft_pl_rd(char **line, t_scene *ascene);
+void			ft_res_rd(char **line, t_scene *as);
+void			ft_al_rd(char **line, t_scene *as);
+void			ft_cam_rd(char **line, t_scene *as);
+void			ft_light_rd(char **line, t_scene *as);
+void			ft_pl_rd(char **line, t_scene *as);
 
 /*
 **	file_reading2.c
 */
-void			ft_sp_rd(char **line, t_scene *ascene);
-void			ft_sp_rd2(char **s, t_scene *ascene, t_obj_link *new_ol, int i);
-void			ft_sq_rd(char **line, t_scene *ascene);
-void			ft_sq_rd2(char **s, t_scene *ascene, t_square sq, int i);
-void			ft_tr_rd(char **line, t_scene *ascene);
+void			ft_sp_rd(char **line, t_scene *as);
+void			ft_sp_rd2(char **s, t_scene *as, t_obj_link *new_ol, int i);
+void			ft_sq_rd(char **line, t_scene *as);
+void			ft_sq_rd2(char **s, t_scene *as, t_square sq, int i);
+void			ft_tr_rd(char **line, t_scene *as);
 
 /*
 **	file_reading3.c
 */
-void			ft_cy_rd(char **line, t_scene *ascene);
-void			ft_cy_rd2(char **s, t_scene *ascene, t_obj_link *new_ol, int i);
+void			ft_cy_rd(char **line, t_scene *as);
+void			ft_cy_rd2(char **s, t_scene *as, t_obj_link *new_ol, int i);
 
 /*
 **	images.c
 */
-void			ft_gen_img(t_scene *ascene);
-void			ft_img_loop(t_pixel px, t_scene *ascene, t_ray ray, t_img_link *new);
+void			ft_gen_img(t_scene *as);
+void			ft_img_loop(t_pixel px, t_scene *as, t_ray ray, t_img_link *new);
 t_img_link		*ft_set_image(t_scene scene, int *nbr);
 void			ft_add_pixel(t_img_link	*il, t_pixel px);
 
@@ -309,10 +309,10 @@ t_color			ft_get_light2(t_color res, t_light *light, t_intersec i, double lamber
 /*
 **	list_handling.c
 */
-void			ft_add_cam(t_scene *ascene, t_camera *new_cam);
-void			ft_add_light(t_scene *ascene, t_light *new_light);
-void			ft_add_object(t_scene *ascene, t_obj_link *new_ol);
-void			ft_add_img_link(t_scene *ascene, t_img_link *new_img_link);
+void			ft_add_cam(t_scene *as, t_camera *new_cam);
+void			ft_add_light(t_scene *as, t_light *new_light);
+void			ft_add_object(t_scene *as, t_obj_link *new_ol);
+void			ft_add_img_link(t_scene *as, t_img_link *new_img_link);
 
 /*
 **	loop.c
@@ -326,13 +326,13 @@ int				ft_disp_curr_img(void *p[3]);
 **	main.c
 */
 int				main(int argc, char **argv);
-void			ft_put_images_to_window(t_scene *ascene);
-void			ft_save_images_to_bmp(t_scene *ascene, char *rt_file);
+void			ft_put_images_to_window(t_scene *as);
+void			ft_save_images_to_bmp(t_scene *as, char *rt_file);
 
 /*
 **	ray.c
 */
-void			ft_init_scene(t_scene *ascene);
+void			ft_init_scene(t_scene *as);
 t_td		ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y);
 t_td		ft_get_ray_v2(double q, t_td v);
 t_intersec		ft_shot_ray(t_ray ray, t_scene scene);
@@ -342,9 +342,9 @@ t_intersec		ft_shot_ray(t_ray ray, t_scene scene);
 */
 void			ft_set_cam_data(t_camera *cam);
 void			ft_set_tr_data(t_triangle *tr);
-void			ft_set_sq_data(t_square *sq, t_scene *ascene);
-void			ft_create_4tr_sq(t_square *sq, t_scene *ascene);
-void			ft_alloc_tr(t_triangle tr, t_scene *ascene);
+void			ft_set_sq_data(t_square *sq, t_scene *as);
+void			ft_create_4tr_sq(t_square *sq, t_scene *as);
+void			ft_alloc_tr(t_triangle tr, t_scene *as);
 
 /*
 **	utils.c
@@ -371,16 +371,16 @@ t_td		ft_multi_td(t_td v, double n);
 /*
 **	verification.c
 */
-void			ft_scene_verif(t_scene *ascene);
-void			ft_td_verif(t_td *v);
-void			ft_res_verif(t_scene *ascene);
-void			ft_al_verif(t_scene *ascene);
+void			ft_scene_verif(t_scene *as);
+void			ft_td_verif(t_scene *as, t_td *v);
+void			ft_res_verif(t_scene *as);
+void			ft_al_verif(t_scene *as);
 
 /*
 **	verification1.c
 */
-void			ft_cam_verif(t_scene *ascene);
-void			ft_light_verif(t_scene *ascene);
-void			ft_object_verif(t_scene *ascene);
+void			ft_cam_verif(t_scene *as);
+void			ft_light_verif(t_scene *as);
+void			ft_object_verif(t_scene *as);
 
 #endif

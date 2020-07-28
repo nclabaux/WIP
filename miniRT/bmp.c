@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 14:38:44 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 14:09:22 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 16:59:54 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ void	ft_save_img(t_img_link *il, t_scene *ascene, char *rt_file)
 	int		fd;
 
 	name = NULL;
-	name = ft_gen_name(il, rt_file);
+	if (!(name = ft_gen_name(il, rt_file)))
+		ft_errors(ascene, 1011, "");
 	if ((fd = open(name, O_WRONLY | O_TRUNC)) < 1)
 	{
 		if ((fd = open(name, O_WRONLY | O_CREAT, S_IRWXU)) < 1)
 		{
 			free(name);
 			ft_printf("\n");
-			ft_errors(1022, "");
+			ft_errors(ascene, 1022, "");
 		}
 	}
 	ft_bmp_header(fd, ascene);
@@ -40,10 +41,11 @@ char	*ft_gen_name(t_img_link *il, char *rt_file)
 	char	*file;
 	size_t	size;
 
-	file = ft_cut_filename(rt_file);
+	if (!(file = ft_cut_filename(rt_file)))
+		return (NULL);
 	size = (ft_strlen(file) + 14);
 	if (!(name = malloc(sizeof(char) * size)))
-		ft_errors(1011, "");
+		return (NULL);
 	ft_bzero(name, size);
 	ft_strlcat(name, "saves/", size);
 	ft_strlcat(name, file, size);
@@ -110,7 +112,7 @@ void	ft_write_bmp_data(int fd, t_img_link *il, t_scene *ascene)
 	int		byte;
 
 	if (!(data = malloc(ascene->res.x * ascene->res.y * 4)))
-		ft_errors(1011, "");
+		ft_errors(ascene, 1011, "");
 	pixel = 0;
 	byte = 0;
 	while (pixel < ascene->res.x * ascene->res.y)

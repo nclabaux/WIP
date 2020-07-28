@@ -6,61 +6,61 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:44:36 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/17 18:43:03 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 17:02:43 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	ft_cam_verif(t_scene *ascene)
+void	ft_cam_verif(t_scene *as)
 {
 	t_camera	*cam;
 
-	cam = ascene->cam_list;
+	cam = as->cam_list;
 	if (!cam)
-		ft_errors(1019, "");
+		ft_errors(as, 1019, "");
 	while (cam)
 	{
-		ft_td_verif(&(cam->v));
+		ft_td_verif(as, &(cam->v));
 		if (cam->fov < 0 || cam->fov > 180)
-			ft_errors(1012, "");
+			ft_errors(as, 1012, "");
 		cam = cam->next;
 	}
 }
 
-void	ft_light_verif(t_scene *ascene)
+void	ft_light_verif(t_scene *as)
 {
 	t_light	*light;
 
-	light = ascene->light_list;
+	light = as->light_list;
 	while (light)
 	{
 		if (light->brightness < 0 || light->brightness > 1)
-			ft_errors(1013,"");
+			ft_errors(as, 1013,"");
 		light = light->next;
 	}
 }
 
-void	ft_object_verif(t_scene *ascene)
+void	ft_object_verif(t_scene *as)
 {
 	t_obj_link	*ol;
 
-	ol = ascene->object_list;
+	ol = as->object_list;
 	if (!ol)
 	{
 		ft_printf("\033[01;33mNo object in scene, generated image");
-		if (ascene->cam_nbr > 1)
+		if (as->cam_nbr > 1)
 			ft_printf("s");
 		ft_printf(" will be completely black.\n");
 	}
 	while (ol)
 	{
 		if (ol->type == 2)
-			ft_td_verif(&(ol->object->pl.v));
+			ft_td_verif(as, &(ol->object->pl.v));
 		else if (ol->type == 3)
-			ft_td_verif(&(ol->object->sq.v));
+			ft_td_verif(as, &(ol->object->sq.v));
 		else if (ol->type == 4)
-			ft_td_verif(&(ol->object->cy.v));
+			ft_td_verif(as, &(ol->object->cy.v));
 		ol = ol->next;
 	}
 }

@@ -1,4 +1,18 @@
-int		ft_close_program(t_scene *ascene)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clear.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/28 16:29:50 by nclabaux          #+#    #+#             */
+/*   Updated: 2020/07/28 16:34:50 by nclabaux         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "mini_rt.h"
+
+int		ft_kill(t_scene *ascene)
 {
 	ft_terminator(ascene);
 	ft_destroy_images(ascene);

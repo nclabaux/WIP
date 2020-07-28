@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:06:55 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 14:23:37 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 16:58:24 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_set_tr_data(t_triangle *tr)
 	tr->area_x2 = ft_norm(ft_cross(ft_2p_to_v(tr->p1, tr->p2), ft_2p_to_v(tr->p1, tr->p3)));
 }
 
-void	ft_set_sq_data(t_square *sq, t_scene *ascene)
+void	ft_set_sq_data(t_square *sq, t_scene *as)
 {
 	t_td	s;
 	t_td	t;
@@ -53,28 +53,28 @@ void	ft_set_sq_data(t_square *sq, t_scene *ascene)
 	sq->b.p3 = ft_add_td_n(sq->a.p2, t, sq->size);
 	sq->a.color = sq->color;
 	sq->b.color = sq->color;
-	ft_create_4tr_sq(sq, ascene);
+	ft_create_4tr_sq(sq, as);
 }
 
-void	ft_create_4tr_sq(t_square *sq, t_scene *ascene)
+void	ft_create_4tr_sq(t_square *sq, t_scene *as)
 {
-	ft_alloc_tr(sq->a, ascene);
-	ft_alloc_tr(sq->b, ascene);
+	ft_alloc_tr(sq->a, as);
+	ft_alloc_tr(sq->b, as);
 }
 
-void	ft_alloc_tr(t_triangle tr, t_scene *ascene)
+void	ft_alloc_tr(t_triangle tr, t_scene *as)
 {
 	t_obj_link	*ol;
 	t_obj_link	*ol_bis;
 
 	if (!(ol = malloc(sizeof(t_obj_link))))
-		ft_errors(1011, "");
+		ft_errors(as, 1011, "");
 	if (!(ol->object = malloc(sizeof(t_object))))
-		ft_errors(1011, "");
+		ft_errors(as, 1011, "");
 	if (!(ol_bis = malloc(sizeof(t_obj_link))))
-		ft_errors(1011, "");
+		ft_errors(as, 1011, "");
 	if (!(ol_bis->object = malloc(sizeof(t_object))))
-		ft_errors(1011, "");
+		ft_errors(as, 1011, "");
 	ol->type = 5;
 	ol->next = NULL;
 	ol_bis->type = 5;
@@ -86,7 +86,7 @@ void	ft_alloc_tr(t_triangle tr, t_scene *ascene)
 	ol->object->tr.color = tr.color;
 	ol_bis->object->tr.color = tr.color;
 	ft_set_tr_data(&(ol->object->tr));
-	ft_add_object(ascene, ol);
+	ft_add_object(as, ol);
 	ft_set_tr_data(&(ol_bis->object->tr));
-	ft_add_object(ascene, ol_bis);
+	ft_add_object(as, ol_bis);
 }

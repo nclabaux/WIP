@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 15:20:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 16:21:01 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 17:09:01 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_key(int key, void *p[3])
 	if (key == 65307)
 	{
 		mlx_destroy_window(ascene->mlx, p[0]);
-		ft_close_program(ascene);
+		ft_kill(ascene);
 	}
 	else if (key == 65363)
 		ft_disp_next_img(p);
@@ -67,13 +67,13 @@ void	ft_disp_prev_img(void *p[3])
 	mlx_put_image_to_window(ascene->mlx, p[0], il->ip, 0, 0);
 }
 
-int	ft_disp_curr_img(void *p[3])
+int		ft_disp_curr_img(void *p[3])
 {
 	t_scene		*ascene;
 	t_img_link	*il;
-	int		*in;
-	int		img_nbr;
-	
+	int			*in;
+	int			img_nbr;
+
 	ascene = p[1];
 	il = ascene->img_list;
 	in = p[2];
@@ -83,4 +83,3 @@ int	ft_disp_curr_img(void *p[3])
 	mlx_put_image_to_window(ascene->mlx, p[0], il->ip, 0, 0);
 	return (0);
 }
-

@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:56:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/20 21:16:58 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/28 16:59:08 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_cut_filename(char *filename)
 		i++;
 	}
 	if (!(res = malloc(sizeof(char) * (last_point - last_dir))))
-		ft_errors(1011, "");
+		return (NULL);
 	i = last_dir + 1;
 	j = 0;
 	while (i < last_point)
