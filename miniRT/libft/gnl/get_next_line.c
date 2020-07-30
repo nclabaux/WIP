@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 13:25:17 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 17:48:57 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 14:50:14 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int		ft_init(char **line)
 		return (0);
 	if (!line)
 		return (0);
+	if (*line)
+		free(*line);
 	if (!(*line = malloc(sizeof(char) * 1)))
 		return (0);
 	**line = '\0';

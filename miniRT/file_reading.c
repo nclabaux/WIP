@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 19:04:29 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 18:07:43 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 14:51:28 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_read_file(char *file, t_scene *as)
 	int		status;
 
 	end = 0;
+	line = NULL;
 	if (!(fd = open(file, O_RDONLY)))
 		ft_errors(as, 1001, file);
 	while (!end)
@@ -60,7 +61,10 @@ void	ft_translate_line(char **line, t_scene *as)
 	else if ((*line)[0] == 't' && (*line)[1] == 'r')
 		ft_tr_rd(line, as);
 	else if ((*line)[0] != 0)
+	{
 		ft_errors(as, 1005, *line);
+		free(line);
+	}
 }
 
 int		ft_read_color(t_scene *as, char *s, t_color *color_storage)

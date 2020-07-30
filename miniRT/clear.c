@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 16:29:50 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 18:07:25 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 15:55:38 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_destroy_images(t_scene *as)
 	t_img_link	*next;
 
 	il = as->img_list;
-	while (il->nbr < as->cam_nbr)
+	while (il)
 	{
 		mlx_destroy_image(as->mlx, il->ip);
 		next = il->next;

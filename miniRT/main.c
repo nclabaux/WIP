@@ -6,7 +6,7 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 18:07:56 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 14:45:41 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int			main(int argc, char **argv)
 	if ((ft_strncmp(argv[2], "-save", 5)))
 		ft_errors(&scene, 1001, argv[2]);
 	ft_save_images_to_bmp(&scene, argv[1]);
+	ft_kill(&scene);
 	return (0);
 }
 
