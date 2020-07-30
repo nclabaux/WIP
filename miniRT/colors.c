@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 18:52:34 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 14:10:13 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 02:31:31 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,28 @@ t_color			ft_add_colors(t_color a, t_color b)
 t_color			ft_multiply_colors(t_color a, t_color b)
 {
 	t_color res;
+	double	x;
 
-	res.r = a.r * b.r / 255;
-	res.g = a.g * b.g / 255;
-	res.b = a.b * b.b / 255;
+	x = (double)a.r * (double)b.r / 255;
+	res.r = (unsigned int)x;
+	x = (double)a.g * (double)b.g / 255;
+	res.g = (unsigned int)x;
+	x = (double)a.b * (double)b.b / 255;
+	res.b = (unsigned int)x;
 	return (res);
 }
 
 t_color			ft_weight_color(t_color c, double intensity)
 {
 	t_color	res;
+	double	x;
 
-	res.r = c.r * intensity;
-	res.g = c.g * intensity;
-	res.b = c.b * intensity;
+	x = (double)c.r * intensity;
+	res.r = (unsigned int)x;
+	x = c.g * intensity;
+	res.g = (unsigned int)x;
+	x = c.b * intensity;
+	res.b = (unsigned int)x;
 	return (res);
 }
 
