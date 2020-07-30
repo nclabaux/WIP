@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:06:55 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/30 01:25:36 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 22:14:34 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,7 @@ void	ft_set_sq_data(t_square *sq, t_scene *as)
 	s.y = 0;
 	s.z = -sq->v.x;
 	if (!sq->v.y && !sq->v.z)
-	{
-		s.x = 0;
-		s.y = 1;
-		s.z = 0;
-	}
+		s = (t_td) {0, 1, 0};
 	if (!sq->v.x && !sq->v.z)
 		s.z = 1;
 	s = ft_unit_v(s);
