@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/30 22:33:02 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 23:50:30 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ typedef struct	s_amb_light
 typedef struct	s_camera
 {
 	t_td			p;
-	t_td		v;
-	t_td		l;
-	t_td		m;
-	double				fov;
+	t_td			v;
+	t_td			l;
+	t_td			m;
+	double			fov;
 	struct s_camera	*next;
 }				t_camera;
 
@@ -81,9 +81,9 @@ typedef struct	s_sphere
 
 typedef struct	s_plane
 {
-	t_td		p;
+	t_td	p;
 	t_td	v;
-	t_color		color;
+	t_color	color;
 }				t_plane;
 
 typedef struct	s_triangle
@@ -98,7 +98,7 @@ typedef struct	s_triangle
 typedef struct	s_square
 {
 	t_td		p;
-	t_td	v;
+	t_td		v;
 	double		size;
 	t_color		color;
 	t_triangle	a;
@@ -110,7 +110,7 @@ typedef struct	s_square
 typedef struct	s_cylinder
 {
 	t_td		p;
-	t_td	v;
+	t_td		v;
 	double		d;
 	double		h;
 	t_color		color;
@@ -135,7 +135,7 @@ typedef	struct	s_obj_link
 typedef struct	s_img_link
 {
 	void				*ip;
-	unsigned int				*fp;
+	unsigned int		*fp;
 	int					bpp;
 	int					sl;
 	int					en;
@@ -158,43 +158,43 @@ typedef struct	s_scene
 
 typedef struct	s_ray
 {
-	t_td		p;
+	t_td	p;
 	t_td	v;
 }				t_ray;
 
 typedef struct	s_intersec
 {
-	t_td		p;
-	double		dist;
-	t_td		normal;
-	t_color		color;
+	t_td	p;
+	double	dist;
+	t_td	normal;
+	t_color	color;
 }				t_intersec;
 
 typedef struct	s_pixel
 {
-	int		x;
-	int		y;
+	int				x;
+	int				y;
 	unsigned int	color;
-	t_camera	*cam;
+	t_camera		*cam;
 }				t_pixel;
 
 typedef struct	s_bmp_header
 {
-	char		type[2];
+	char			type[2];
 	unsigned int	size;
 	unsigned int	reserved;
 	unsigned int	offset;
 	unsigned int	dib_size;
-	int		dib_x;
-	int		dib_y;
+	int				dib_x;
+	int				dib_y;
 	unsigned short	dib_color_planes;
 	unsigned short	dib_bpp;
 	unsigned int	dib_compress;
 	unsigned int	dib_img_size;
-	int		dib_x_ppm;
-	int		dib_y_ppm;
-	int		dib_colors_in_palette;
-	int		dib_important_colors;
+	int				dib_x_ppm;
+	int				dib_y_ppm;
+	int				dib_colors_in_palette;
+	int				dib_important_colors;
 }				t_bmp_header;
 
 /*
@@ -281,7 +281,8 @@ void			ft_cy_rd2(char **s, t_scene *as, t_obj_link *new_ol, int i);
 **	images.c
 */
 void			ft_gen_img(t_scene *as);
-void			ft_img_loop(t_pixel px, t_scene *as, t_ray ray, t_img_link *new);
+void			ft_img_loop(t_pixel px, t_scene *as, t_ray ray,
+					t_img_link *new);
 t_img_link		*ft_set_image(t_scene scene, int *nbr);
 void			ft_add_pixel(t_img_link	*il, t_pixel px);
 
@@ -292,19 +293,22 @@ t_intersec		ft_pl_inter(t_ray ray, t_plane pl);
 t_intersec		ft_tr_inter(t_ray ray, t_triangle tr);
 double			ft_td_in_triangle(t_td p, t_triangle tr);
 t_intersec		ft_sp_inter(t_ray ray, t_sphere sp);
-t_intersec		ft_sp_inter2(t_ray ray, double [2]);
+t_intersec		ft_sp_inter2(t_ray ray, double r[2]);
 
 /*
 **	intersection1.c
 */
 t_intersec		ft_cy_inter(t_ray ray, t_cylinder cy);
+t_intersec		ft_cy_disc(t_ray ray, t_plane disc, double r);
 t_intersec		ft_cy_side(t_ray ray, t_cylinder cy);
+double			ft_get_roots(t_ray ray, t_cylinder cy);
 
 /*
 **	light.c
 */
 t_color			ft_get_light(t_intersec i, t_scene scene);
-t_color			ft_get_light2(t_color res, t_light *light, t_intersec i, double lambert);
+t_color			ft_get_light2(t_color res, t_light *light, t_intersec i,
+					double lambert);
 
 /*
 **	list_handling.c
@@ -333,8 +337,8 @@ void			ft_save_images_to_bmp(t_scene *as, char *rt_file);
 /*
 **	ray.c
 */
-t_td		ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y);
-t_td		ft_get_ray_v2(double q, t_td v);
+t_td			ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y);
+t_td			ft_get_ray_v2(double q, t_td v);
 t_intersec		ft_shot_ray(t_ray ray, t_scene scene);
 
 /*
@@ -354,19 +358,19 @@ char			*ft_cut_filename(char *filename);
 /*
 **	vectorial_calculus.c
 */
-t_td		ft_3p_to_v(t_td a, t_td b, t_td c);
+t_td			ft_3p_to_v(t_td a, t_td b, t_td c);
 double			ft_dot(t_td a, t_td b);
-t_td		ft_cross(t_td a, t_td b);
+t_td			ft_cross(t_td a, t_td b);
 double			ft_norm(t_td v);
-t_td		ft_2p_to_v(t_td a, t_td b);
+t_td			ft_2p_to_v(t_td a, t_td b);
 
 /*
 **	vectorial_calculus1.c
 */
 t_td			ft_add_td_n(t_td p, t_td v, double n);
-t_td		ft_unit_v(t_td v);
-t_td		ft_inverse(t_td v);
-t_td		ft_multi_td(t_td v, double n);
+t_td			ft_unit_v(t_td v);
+t_td			ft_inverse(t_td v);
+t_td			ft_multi_td(t_td v, double n);
 
 /*
 **	verification.c
