@@ -12,16 +12,52 @@
 
 #include "mini_rt.h"
 
-double		ft_td_in_triangle(t_td p, t_triangle tr)
-{
-	double		area1;
-	double		area2;
-	double		area3;
 
-	area1 = ft_norm(ft_cross(ft_2p_to_v(p, tr.p1), ft_2p_to_v(p, tr.p2)));
-	area2 = ft_norm(ft_cross(ft_2p_to_v(p, tr.p1), ft_2p_to_v(p, tr.p3)));
-	area3 = ft_norm(ft_cross(ft_2p_to_v(p, tr.p2), ft_2p_to_v(p, tr.p3)));
-	return (area1 + area2 + area3 <= tr.area_x2 + 0.000001);
+t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
+{
+	t_intersec	res;
+	t_intersec	storage;
+	t_plane		base_disc;
+	t_plane		upper_disc;
+
+	base_disc.p = cy.p;
+	base_disc.v = cy.v;
+	upper_disc.p = ft_add_td_n(cy.p, ft_unit_v(cy.v), cy.h);
+	upper_disc.v = cy.v;
+	res.dist = -1;
+	res = ft_cy_side(ray, cy);
+	storage = ft_pl_inter(ray, base_disc);
+	if (storage.dist > 0)
+	{
+		if (ft_2p_dist(storage.p, cy.p) < cy.d / 2)
+			storage.dist = ft_2p_dist(ray.p, storage.p);
+		else
+			storage.dist = -1;
+	}
+	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
+	{
+		res = storage;
+		res.normal = ft_inverse(cy.v);
+	}
+	storage = ft_pl_inter(ray, upper_disc);
+	if (storage.dist > 0)
+	{
+		if (ft_2p_dist(storage.p, upper_disc.p) < cy.d / 2)
+			storage.dist = ft_2p_dist(ray.p, storage.p);
+		else
+			storage.dist = -1;
+	}
+	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
+	{
+		res = storage;
+		res.normal = cy.v;
+	}
+	res.color = cy.color;
+	if (ft_p_line_dist(ray.p, cy.p, cy.v) < cy.d / 2
+			&& ft_dot(ft_2p_to_v(cy.p, ray.p), cy.v) > 0
+			&& ft_dot(ft_2p_to_v(upper_disc.p, ray.p), ft_inverse(cy.v)) > 0)
+		res.normal = ft_inverse(res.normal);
+	return (res);
 }
 
 t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
