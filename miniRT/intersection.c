@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/29 17:41:30 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 02:01:41 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,31 +104,31 @@ t_intersec	ft_cy_inter(t_ray ray, t_cylinder cy)
 	res.dist = -1;
 	res = ft_cy_side(ray, cy);
 	storage = ft_pl_inter(ray, base_disc);
-	if (storage.dist > 0.000001)
+	if (storage.dist > 0)
 	{
 		if (ft_2p_dist(storage.p, cy.p) < cy.d / 2)
-		{
 			storage.dist = ft_2p_dist(ray.p, storage.p);
-			storage.normal = ft_unit_v(ft_inverse(cy.v));
-		}
 		else
 			storage.dist = -1;
 	}
-	if (res.dist == -1 || (storage.dist < res.dist + 0.000001 && storage.dist != -1))
+	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
+	{
 		res = storage;
+		res.normal = ft_inverse(cy.v);
+	}
 	storage = ft_pl_inter(ray, upper_disc);
-	if (storage.dist > 0.000001)
+	if (storage.dist > 0)
 	{
 		if (ft_2p_dist(storage.p, upper_disc.p) < cy.d / 2)
-		{
 			storage.dist = ft_2p_dist(ray.p, storage.p);
-			storage.normal = ft_unit_v(cy.v);
-		}
 		else
 			storage.dist = -1;
 	}
-	if (res.dist == -1 || (storage.dist < res.dist + 0.000001 && storage.dist != -1))
+	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
+	{
 		res = storage;
+		res.normal = cy.v;
+	}
 	res.color = cy.color;
 	if (ft_p_line_dist(ray.p, cy.p, cy.v) < cy.d / 2
 			&& ft_dot(ft_2p_to_v(cy.p, ray.p), cy.v) > 0

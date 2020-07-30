@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 17:09:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/29 18:12:46 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 01:48:51 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 		{
 			res.dist = root[0];
 			res.normal = ft_2p_to_v(ft_multi_td(cy.v, ft_dot(u, cy.v)), u);
+			res.normal = ft_unit_v(res.normal);
 		}
 	}
 	if (root[1] > 0.000001)
@@ -63,7 +64,8 @@ t_intersec	ft_cy_side(t_ray ray, t_cylinder cy)
 		if (ft_dot(cy.v, u) > 0 && ft_dot(cy.v, ft_2p_to_v(ft_add_td_n(cy.p, cy.v, cy.h), res.p)) < 0)
 		{
 			storage.dist = root[1];
-			res.normal = ft_2p_to_v(ft_multi_td(cy.v, ft_dot(u, cy.v)), u);
+			storage.normal = ft_2p_to_v(ft_multi_td(cy.v, ft_dot(u, cy.v)), u);
+			storage.normal = ft_unit_v(storage.normal);
 		}
 	}
 	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))

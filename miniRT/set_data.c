@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:06:55 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 17:43:47 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 01:25:36 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	ft_set_cam_data(t_camera *cam)
 {
-	cam->v = ft_unit_v(cam->v);
 	cam->l.x = -cam->v.y;
 	cam->l.y = cam->v.x;
 	cam->l.z = 0;
 	if (ft_norm(cam->l) == 0)
 		cam->l.y = -1;
+	cam->v = ft_unit_v(cam->v);
 	cam->l = ft_unit_v(cam->l);
 	cam->m = ft_cross(cam->v, cam->l);
+	cam->m = ft_unit_v(cam->m);
 }
 
 void	ft_set_tr_data(t_triangle *tr)
