@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/30 02:01:41 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 22:27:15 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,33 +60,44 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 	double		coef[3];
 	double		roots[2];
 	t_intersec	res;
-	t_intersec	storage;
 	t_td		m;
 
 	res.dist = -1;
-	storage.dist = -1;
 	m = ft_2p_to_v(sp.p, ray.p);
 	coef[0] = ft_dot(ray.v, ray.v);
 	coef[1] = 2 * ft_dot(ray.v, m);
 	coef[2] = ft_dot(m, m) - ft_sq(sp.diam / 2);
 	if (!(ft_solve_quadra(coef[0], coef[1], coef[2], roots)))
 		return (res);
-	if (roots[0] > 0.000001)
-	{
-		res.p = ft_add_td_n(ray.p, ray.v, roots[0]);
-		res.dist = ft_2p_dist(res.p, ray.p);
-	}
-	if (roots[1] > 0.000001)
-	{
-		storage.p = ft_add_td_n(ray.p, ray.v, roots[1]);
-		storage.dist = ft_2p_dist(storage.p, ray.p);
-	}
-	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
-		res = storage;
+	res = ft_sp_inter2(ray, roots);
 	res.color = sp.color;
 	res.normal = ft_unit_v(ft_2p_to_v(sp.p, res.p));
 	if (ft_2p_dist(ray.p, sp.p) < sp.diam / 2)
 		res.normal = ft_inverse(res.normal);
+	return (res);
+}
+
+t_intersec	ft_sp_inter2(t_ray ray, double r[2])
+{
+	t_intersec	res;
+	t_intersec	storage;
+
+	if (r[0] > 0.000001)
+	{
+		res.p = ft_add_td_n(ray.p, ray.v, r[0]);
+		res.dist = r[0];
+	}
+	else
+		res.dist = -1;
+	if (r[1] > 0.000001)
+	{
+		storage.p = ft_add_td_n(ray.p, ray.v, r[1]);
+		storage.dist = r[1];
+	}
+	else
+		storage.dist = -1;
+	if (res.dist == -1 || (storage.dist < res.dist && storage.dist != -1))
+		res = storage;
 	return (res);
 }
 

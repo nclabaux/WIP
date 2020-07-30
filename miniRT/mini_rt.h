@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:02:28 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 18:07:05 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 22:26:51 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,6 +291,7 @@ void			ft_add_pixel(t_img_link	*il, t_pixel px);
 t_intersec		ft_pl_inter(t_ray ray, t_plane pl);
 t_intersec		ft_tr_inter(t_ray ray, t_triangle tr);
 t_intersec		ft_sp_inter(t_ray ray, t_sphere sp);
+t_intersec		ft_sp_inter2(t_ray ray, double [2]);
 t_intersec		ft_cy_inter(t_ray ray, t_cylinder cy);
 
 /*
