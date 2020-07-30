@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/30 22:27:15 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/07/30 22:35:39 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,3 @@ t_intersec	ft_sp_inter2(t_ray ray, double r[2])
 		res = storage;
 	return (res);
 }
-
-

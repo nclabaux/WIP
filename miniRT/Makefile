@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/07/28 15:14:04 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/07/30 22:33:50 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS =	bmp.c\
 	images.c\
 	light.c\
 	intersection.c\
-	intersection1.c\
+	intersection_cy.c\
 	list_handling.c\
 	loop.c\
 	main.c\
