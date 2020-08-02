@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 14:11:37 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 16:55:40 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:38:23 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 void		ft_gen_img(t_scene *as)
 {
@@ -21,8 +21,6 @@ void		ft_gen_img(t_scene *as)
 	int			nbr;
 
 	cam = as->cam_list;
-	if (!(new = malloc(sizeof(t_img_link))))
-		ft_errors(as, 1011, "");
 	nbr = as->cam_nbr;
 	while (cam)
 	{

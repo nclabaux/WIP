@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 14:38:44 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/30 02:47:16 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:46:20 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 void	ft_save_img(t_img_link *il, t_scene *ascene, char *rt_file)
 {
@@ -60,6 +60,7 @@ char	*ft_gen_name(t_img_link *il, char *rt_file)
 		name[size - 7] = 'a' + il->nbr / 26 - 1;
 		name[size - 6] = 'a' + il->nbr % 26 - 1;
 	}
+	free(file);
 	return (name);
 }
 

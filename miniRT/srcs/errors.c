@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 18:22:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 17:16:26 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:37:50 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 void	ft_prt_err(t_scene *as, char *s, int i, int x)
 {
@@ -27,7 +27,7 @@ void	ft_errors(t_scene *as, int i, char *s)
 	if (i < 1000 || i > 1100)
 		ft_prt_err(as, "Unknown error  ¯\\_(ツ)_/¯", i, 0);
 	if (i == 1000)
-		ft_prt_err(as, "No file given\n\"./miniRT <file.rt> [-save]\"", i, 0);
+		ft_prt_err(as, "No file given\n./miniRT <file.rt> [-save]", i, 0);
 	if (i == 1001)
 		ft_prt_err(as, s, i, 22);
 	if (i == 1002)

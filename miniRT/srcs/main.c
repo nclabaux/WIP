@@ -6,22 +6,22 @@
 /*   By: nclabaux <nclabaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 17:00:33 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/30 14:45:41 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:38:59 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 int			main(int argc, char **argv)
 {
 	t_scene		scene;
 
+	ft_init_scene(&scene);
 	ft_printf("\033[01;37m\nHello and welcome in this mini Ray Tracer!\n");
 	if (argc < 2)
 		ft_errors(&scene, 1000, "");
 	if (argc > 3)
 		ft_errors(&scene, 1025, "");
-	ft_init_scene(&scene);
 	ft_printf("\033[01;34m\nReading file...\n");
 	ft_read_file(argv[1], &scene);
 	scene.mlx = mlx_init();

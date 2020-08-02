@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 18:52:34 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/30 02:31:31 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:37:37 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 int				ft_rgb_to_int(t_color c)
 {

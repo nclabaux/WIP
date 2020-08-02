@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:44:36 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 17:22:05 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:39:34 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 void	ft_cam_verif(t_scene *as)
 {
@@ -21,7 +21,7 @@ void	ft_cam_verif(t_scene *as)
 		ft_errors(as, 1019, "");
 	while (cam)
 	{
-		ft_td_verif(as, &(cam->v));
+		ft_vector_verif(as, &(cam->v));
 		if (cam->fov < 0 || cam->fov > 180)
 			ft_errors(as, 1012, "");
 		cam = cam->next;
@@ -56,11 +56,11 @@ void	ft_object_verif(t_scene *as)
 	while (ol)
 	{
 		if (ol->type == 2)
-			ft_td_verif(as, &(ol->object->pl.v));
+			ft_vector_verif(as, &(ol->object->pl.v));
 		else if (ol->type == 3)
-			ft_td_verif(as, &(ol->object->sq.v));
+			ft_vector_verif(as, &(ol->object->sq.v));
 		else if (ol->type == 4)
-			ft_td_verif(as, &(ol->object->cy.v));
+			ft_vector_verif(as, &(ol->object->cy.v));
 		ol = ol->next;
 	}
 }

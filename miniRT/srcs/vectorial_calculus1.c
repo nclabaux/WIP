@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 15:45:15 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 17:21:40 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:39:20 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 t_td	ft_add_td_n(t_td p, t_td v, double n)
 {

@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 15:20:25 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 17:09:01 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:38:53 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 int		ft_key(int key, void *p[3])
 {

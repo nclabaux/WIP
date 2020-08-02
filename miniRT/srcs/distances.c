@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 18:19:39 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/17 18:59:24 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:37:44 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 double	ft_2p_dist(t_td a, t_td b)
 {

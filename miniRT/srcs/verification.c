@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 17:05:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 17:02:12 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:39:40 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 void	ft_scene_verif(t_scene *as)
 {
@@ -21,12 +21,13 @@ void	ft_scene_verif(t_scene *as)
 	ft_object_verif(as);
 }
 
-void	ft_td_verif(t_scene *as, t_td *v)
+void	ft_vector_verif(t_scene *as, t_td *v)
 {
 	if (!v->x && !v->y && !v->z)
 		ft_errors(as, 1020, "");
 	if (v->x > 1 || v->y > 1 || v->z > 1 || v->x < -1 || v->y < -1 || v->z < -1)
 		ft_errors(as, 1021, "");
+	*v = ft_unit_v(*v);
 }
 
 void	ft_res_verif(t_scene *as)

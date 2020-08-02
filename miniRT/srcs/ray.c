@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 19:52:53 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/30 01:27:34 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:39:04 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 t_td		ft_get_ray_v(t_scene scene, t_camera *cam, int x, int y)
 {

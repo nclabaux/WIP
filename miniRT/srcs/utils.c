@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 20:56:07 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 17:19:13 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:39:14 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 char	*ft_cut_filename(char *filename)
 {

@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:05:42 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/30 14:01:38 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:38:41 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 t_color	ft_get_light(t_intersec i, t_scene scene)
 {

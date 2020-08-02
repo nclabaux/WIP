@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 16:09:22 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/01 16:18:09 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:50:34 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 int		ft_solve_quadra(double a, double b, double c, double root[2])
 {

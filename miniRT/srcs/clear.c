@@ -6,16 +6,19 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 16:29:50 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/30 15:55:38 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:37:30 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 int		ft_kill(t_scene *as)
 {
-	ft_terminator(as);
-	ft_destroy_images(as);
+	if (as)
+	{
+		ft_terminator(as);
+		ft_destroy_images(as);
+	}
 	exit(0);
 }
 

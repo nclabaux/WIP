@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 15:16:50 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 18:01:48 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:38:11 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 void	ft_cy_rd(char **s, t_scene *as)
 {

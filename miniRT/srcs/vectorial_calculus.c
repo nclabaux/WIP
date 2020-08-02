@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 16:01:45 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/28 18:04:34 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:39:28 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 t_td	ft_3p_to_v(t_td a, t_td b, t_td c)
 {

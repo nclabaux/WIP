@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 15:34:32 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/06 14:24:43 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:38:46 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 void	ft_add_cam(t_scene *ascene, t_camera *new_cam)
 {

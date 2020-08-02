@@ -6,11 +6,11 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:06:55 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/07/30 22:14:34 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 17:39:09 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 void	ft_set_cam_data(t_camera *cam)
 {
