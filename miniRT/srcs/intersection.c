@@ -6,7 +6,7 @@
 /*   By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:19:48 by nclabaux          #+#    #+#             */
-/*   Updated: 2020/08/02 17:38:30 by nclabaux         ###   ########.fr       */
+/*   Updated: 2020/08/02 18:41:20 by nclabaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ t_intersec	ft_sp_inter(t_ray ray, t_sphere sp)
 	if (!(ft_solve_quadra(coef[0], coef[1], coef[2], roots)))
 		return (res);
 	res = ft_sp_inter2(ray, roots);
+	if (res.dist == -1)
+		return (res);
 	res.color = sp.color;
 	res.normal = ft_unit_v(ft_2p_to_v(sp.p, res.p));
 	if (ft_2p_dist(ray.p, sp.p) < sp.diam / 2)

@@ -6,7 +6,7 @@
 #    By: nclabaux <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 18:28:50 by nclabaux          #+#    #+#              #
-#    Updated: 2020/08/02 17:50:03 by nclabaux         ###   ########.fr        #
+#    Updated: 2020/08/02 19:36:21 by nclabaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,11 +39,13 @@ SRCS =	srcs/bmp.c\
 
 OBJS = $(SRCS:.c=.o)
 
+SAVE_DIR = saves/
+
 CC = gcc 
 
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
 LIBFLAGS = -L./minilibx-linux -lm -lmlx -lXext -lX11 -L./libft -lft
 
@@ -51,7 +53,7 @@ $(NAME): $(OBJS)
 	make -C minilibx-linux/
 	make -C libft/
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFLAGS)
-	mkdir -p saves/
+	mkdir -p $(SAVE_DIR)
 
 all: $(NAME)
 
@@ -60,14 +62,10 @@ clean:
 	make -C libft/ clean
 	$(RM) $(OBJS)
 
-fclean: clean delsaves
+fclean: clean
 	make -C libft/ fclean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(SAVE_DIR)
 
 re: fclean all
-
-delsaves:
-	$(RM) saves/*.bmp
-	$(RM) saves/
 
 .PHONY: all clean fclean re
